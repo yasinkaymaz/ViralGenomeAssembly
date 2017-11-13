@@ -6,7 +6,7 @@ type=$2
 nt=2
 
 QuastDir='/project/umw_jeffrey_bailey/share/bin_sync/quast-4.4/'
-toolDir='/project/umw_jeffrey_bailey/OTHERS/dnaSeq_Tools'
+toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 INDEXGENOMESDIR="$toolDir/resources/Bowtie2Index"
 
 #EBV genome type

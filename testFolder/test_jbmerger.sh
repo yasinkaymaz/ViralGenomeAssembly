@@ -39,3 +39,6 @@ ref_merge_contigs \
 -g 1 \
 --min_unique_bp 60 \
 -o "$SAMPLE_NAME"_EBV_"$Type"_JBv3merged
+
+#Map assembly contigs and index bam file.
+$toolDir/scripts/map_and_index_genomeFasta.sh $type "$SAMPLE_NAME"_EBV_"$Type"_JBv3merged_genome.fa $SAMPLE_NAME

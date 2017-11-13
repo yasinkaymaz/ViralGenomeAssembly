@@ -4,9 +4,10 @@ InputGenomeFasta=$2
 SAMPLE_NAME=$3
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
-PICARDPATH="$toolDir/bin/mac/picard-2.14.1/build/libs"
-Bowtie2PATH="$toolDir/bin/mac/bowtie2-2.3.3.1-macos-x86_64"
+PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
+Bowtie2PATH="$toolDir/bin/linux/bowtie2-2.3.3.1-linux-x86_64"
 nt=2
+module load java/1.8.0_77
 
 #EBV genome type
 if [ "$type" = "1" ]
