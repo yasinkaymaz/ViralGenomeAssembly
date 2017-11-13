@@ -5,7 +5,7 @@ ReadBamfile=$2
 ContigsBamFile=$3
 SAMPLE_NAME=$4
 
-toolDir='/Users/yasinkaymaz/Dropbox/codes/ViralGenomeAssembly'
+toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 
 #EBV genome type
 if [ "$type" = "1" ]
