@@ -16,7 +16,7 @@ echo $SAMPLE_NAME
 echo -e "RunTime is $RunTime"
 
 nt=4
-cd $SAMPLE_NAME
+#cd $SAMPLE_NAME
 #rm "$SAMPLE_NAME"_err.*.txt "$SAMPLE_NAME"_out.*.txt
 #-R "span[hosts=1]" \
 
@@ -30,7 +30,7 @@ bsub -q long \
 $scriptToRun $type "$SAMPLE_NAME"*.gatk_recal.bam "$SAMPLE_NAME"*_noMQ0_sorted.bam $SAMPLE_NAME
 #~/project/OTHERS/dnaSeq_Tools/scripts/EBV_SequenceAnalysisPipeline.sh 1 $SAMPLE_NAME $Kmer_start $Kmer_end $nt n50 $type
 #~/project/OTHERS/dnaSeq_Tools/scripts/EBV_SequenceAnalysisPipeline_SNPAnalysis.sh 1 $SAMPLE_NAME $nt $type
-cd -;
+#cd -;
 
 sleep 1;
 
