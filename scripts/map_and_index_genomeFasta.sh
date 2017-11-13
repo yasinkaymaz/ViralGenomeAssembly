@@ -3,7 +3,7 @@ type=$1
 InputGenomeFasta=$2
 SAMPLE_NAME=$3
 
-toolDir='/Users/yasinkaymaz/Dropbox/codes/ViralGenomeAssembly'
+toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/mac/picard-2.14.1/build/libs"
 Bowtie2PATH="$toolDir/bin/mac/bowtie2-2.3.3.1-macos-x86_64"
 nt=2
