@@ -1,7 +1,8 @@
 #!/bin/bash
 
-cd /home/yk42w/project/yk42w/results/DNAseq/EBV/Capture_seq/CombinedBatch/Hg_clean/
-#cd /home/yk42w/project/yk42w/results/DNAseq/EBV/Capture_seq/CombinedBatch/
+scriptToRun=$1
+sampleListFile=$2
+
 
 while read line
 do
@@ -26,11 +27,11 @@ bsub -q long \
 -W $RunTime \
 -e "$SAMPLE_NAME"_err.%J.txt \
 -o "$SAMPLE_NAME"_out.%J.txt \
-~/codes/EBVseq/AssemblyQualityChecker.sh 1 $SAMPLE_NAME $Kmer_start $Kmer_end $nt n50 $type
+$scriptToRun $type "$SAMPLE_NAME"*.gatk_recal.bam "$SAMPLE_NAME"*_noMQ0_sorted.bam $SAMPLE_NAME
 #~/project/OTHERS/dnaSeq_Tools/scripts/EBV_SequenceAnalysisPipeline.sh 1 $SAMPLE_NAME $Kmer_start $Kmer_end $nt n50 $type
 #~/project/OTHERS/dnaSeq_Tools/scripts/EBV_SequenceAnalysisPipeline_SNPAnalysis.sh 1 $SAMPLE_NAME $nt $type
 cd -;
 
 sleep 1;
 
-done < samples.93
+done < $sampleListFile
