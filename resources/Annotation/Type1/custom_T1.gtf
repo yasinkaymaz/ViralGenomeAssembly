@@ -1,0 +1,358 @@
+track name=genbank_transcriptome description="features" visibility=full
+NC_007605	GenBank	transcript	166040	171823	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.1";
+NC_007605	GenBank	exon	166040	166458	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.1"; exon_number 1
+NC_007605	GenBank	transcript	1	5856	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2";
+NC_007605	GenBank	exon	58	272	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 1
+NC_007605	GenBank	exon	360	458	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 2
+NC_007605	GenBank	exon	540	788	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 3
+NC_007605	GenBank	exon	871	951	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 4
+NC_007605	GenBank	exon	1026	1196	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 5
+NC_007605	GenBank	exon	1280	1495	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 6
+NC_007605	GenBank	exon	1574	1682	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 7
+NC_007605	GenBank	exon	5408	5856	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 8
+NC_007605	GenBank	transcript	166103	171823	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.3";
+NC_007605	GenBank	exon	166103	166458	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.3"; exon_number 1
+NC_007605	GenBank	transcript	1	1680	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4";
+NC_007605	GenBank	exon	58	272	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 1
+NC_007605	GenBank	exon	360	458	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 2
+NC_007605	GenBank	exon	540	788	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 3
+NC_007605	GenBank	exon	871	951	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 4
+NC_007605	GenBank	exon	1026	1196	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 5
+NC_007605	GenBank	exon	1280	1495	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 6
+NC_007605	GenBank	exon	1574	1680	1000	+	.	gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 7
+NC_007605	GenBank	transcript	169294	171823	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.1";
+NC_007605	GenBank	exon	169294	169448	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.1"; exon_number 1
+NC_007605	GenBank	transcript	1	5856	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2";
+NC_007605	GenBank	exon	58	272	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 1
+NC_007605	GenBank	exon	360	458	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 2
+NC_007605	GenBank	exon	540	788	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 3
+NC_007605	GenBank	exon	871	951	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 4
+NC_007605	GenBank	exon	1026	1196	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 5
+NC_007605	GenBank	exon	1280	1495	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 6
+NC_007605	GenBank	exon	1574	1682	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 7
+NC_007605	GenBank	exon	5408	5856	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 8
+NC_007605	GenBank	transcript	59	1680	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3";
+NC_007605	GenBank	exon	59	272	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 1
+NC_007605	GenBank	exon	360	458	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 2
+NC_007605	GenBank	exon	540	788	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 3
+NC_007605	GenBank	exon	871	951	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 4
+NC_007605	GenBank	exon	1026	1196	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 5
+NC_007605	GenBank	exon	1280	1495	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 6
+NC_007605	GenBank	exon	1574	1680	1000	+	.	gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 7
+NC_007605	GenBank	transcript	1690	5856	1000	+	.	gene_id "BNRF1"; transcript_id "BNRF1.1";
+NC_007605	GenBank	exon	1690	5856	1000	+	.	gene_id "BNRF1"; transcript_id "BNRF1.1"; exon_number 1
+NC_007605	GenBank	transcript	5867	6171	1000	-	.	gene_id "BCLT1"; transcript_id "BCLT1";
+NC_007605	GenBank	exon	5867	6171	1000	-	.	gene_id "BCLT1"; transcript_id "BCLT1"; exon 1
+NC_007605	GenBank	transcript	6136	6475	1000	+	.	gene_id "BCRT2"; transcript_id "BCRT2";
+NC_007605	GenBank	exon	6136	6475	1000	+	.	gene_id "BCRT2"; transcript_id "BCRT2"; exon 1
+NC_007605	GenBank	transcript	9630	10262	1000	+	.	gene_id "BCRF1"; transcript_id "BCRF1.1";
+NC_007605	GenBank	exon	9630	10262	1000	+	.	gene_id "BCRF1"; transcript_id "BCRF1.1"; exon_number 1
+NC_007605	GenBank	transcript	11336	97654	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1";
+NC_007605	GenBank	exon	11336	11479	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 1
+NC_007605	GenBank	exon	11626	11657	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 2
+NC_007605	GenBank	exon	14554	14619	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 3
+NC_007605	GenBank	exon	14701	14832	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 4
+NC_007605	GenBank	exon	17626	17691	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 5
+NC_007605	GenBank	exon	17773	17904	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 6
+NC_007605	GenBank	exon	20698	20763	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 7
+NC_007605	GenBank	exon	20845	20976	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 8
+NC_007605	GenBank	exon	23770	23835	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 9
+NC_007605	GenBank	exon	23917	24048	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 10
+NC_007605	GenBank	exon	26842	26907	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 11
+NC_007605	GenBank	exon	26989	27120	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 12
+NC_007605	GenBank	exon	29914	29979	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 13
+NC_007605	GenBank	exon	30061	30192	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 14
+NC_007605	GenBank	exon	32986	33051	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 15
+NC_007605	GenBank	exon	33133	33264	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 16
+NC_007605	GenBank	exon	35473	35505	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 17
+NC_007605	GenBank	exon	35590	35711	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 18
+NC_007605	GenBank	exon	55190	55361	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 19
+NC_007605	GenBank	exon	86076	86442	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 20
+NC_007605	GenBank	exon	95654	97654	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 21
+NC_007605	GenBank	transcript	11336	37744	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1";
+NC_007605	GenBank	exon	11336	11479	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 1
+NC_007605	GenBank	exon	11626	11657	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 2
+NC_007605	GenBank	exon	14554	14619	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 3
+NC_007605	GenBank	exon	14701	14832	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 4
+NC_007605	GenBank	exon	17626	17691	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 5
+NC_007605	GenBank	exon	17773	17904	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 6
+NC_007605	GenBank	exon	20698	20763	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 7
+NC_007605	GenBank	exon	20845	20976	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 8
+NC_007605	GenBank	exon	23770	23835	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 9
+NC_007605	GenBank	exon	23917	24048	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 10
+NC_007605	GenBank	exon	26842	26907	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 11
+NC_007605	GenBank	exon	26989	27120	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 12
+NC_007605	GenBank	exon	29914	29979	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 13
+NC_007605	GenBank	exon	30061	30192	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 14
+NC_007605	GenBank	exon	32986	33051	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 15
+NC_007605	GenBank	exon	33133	33264	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 16
+NC_007605	GenBank	exon	35473	35505	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 17
+NC_007605	GenBank	exon	35590	35711	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 18
+NC_007605	GenBank	exon	36098	37744	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 19
+NC_007605	GenBank	transcript	12541	13692	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.1";
+NC_007605	GenBank	exon	12541	13692	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.1"; exon_number 1
+NC_007605	GenBank	transcript	14384	37744	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1";
+NC_007605	GenBank	exon	14384	14410	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 1
+NC_007605	GenBank	exon	14559	14619	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 2
+NC_007605	GenBank	exon	14701	14832	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 3
+NC_007605	GenBank	exon	17626	17691	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 4
+NC_007605	GenBank	exon	17773	17904	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 5
+NC_007605	GenBank	exon	20698	20763	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 6
+NC_007605	GenBank	exon	20845	20976	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 7
+NC_007605	GenBank	exon	23770	23835	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 8
+NC_007605	GenBank	exon	23917	24048	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 9
+NC_007605	GenBank	exon	26842	26907	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 10
+NC_007605	GenBank	exon	26989	27120	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 11
+NC_007605	GenBank	exon	29914	29979	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 12
+NC_007605	GenBank	exon	30061	30192	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 13
+NC_007605	GenBank	exon	32986	33051	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 14
+NC_007605	GenBank	exon	33133	33264	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 15
+NC_007605	GenBank	exon	35473	35505	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 16
+NC_007605	GenBank	exon	35590	35711	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 17
+NC_007605	GenBank	exon	36098	36156	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 18
+NC_007605	GenBank	exon	37564	37744	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 19
+NC_007605	GenBank	transcript	14409	35694	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2";
+NC_007605	GenBank	exon	14409	14410	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 1
+NC_007605	GenBank	exon	14559	14619	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 2
+NC_007605	GenBank	exon	14701	14832	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 3
+NC_007605	GenBank	exon	17626	17691	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 4
+NC_007605	GenBank	exon	17773	17904	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 5
+NC_007605	GenBank	exon	20698	20763	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 6
+NC_007605	GenBank	exon	20845	20976	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 7
+NC_007605	GenBank	exon	23770	23835	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 8
+NC_007605	GenBank	exon	23917	24048	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 9
+NC_007605	GenBank	exon	26842	26907	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 10
+NC_007605	GenBank	exon	26989	27120	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 11
+NC_007605	GenBank	exon	29914	29979	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 12
+NC_007605	GenBank	exon	30061	30192	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 13
+NC_007605	GenBank	exon	32986	33051	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 14
+NC_007605	GenBank	exon	33133	33264	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 15
+NC_007605	GenBank	exon	35473	35505	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 16
+NC_007605	GenBank	exon	35590	35694	1000	+	.	gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 17
+NC_007605	GenBank	transcript	15613	16764	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.2";
+NC_007605	GenBank	exon	15613	16764	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.2"; exon_number 1
+NC_007605	GenBank	transcript	18685	19836	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.3";
+NC_007605	GenBank	exon	18685	19836	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.3"; exon_number 1
+NC_007605	GenBank	transcript	21757	22908	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.4";
+NC_007605	GenBank	exon	21757	22908	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.4"; exon_number 1
+NC_007605	GenBank	transcript	24829	25980	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.5";
+NC_007605	GenBank	exon	24829	25980	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.5"; exon_number 1
+NC_007605	GenBank	transcript	27901	29052	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.6";
+NC_007605	GenBank	exon	27901	29052	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.6"; exon_number 1
+NC_007605	GenBank	transcript	30973	32124	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.7";
+NC_007605	GenBank	exon	30973	32124	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.7"; exon_number 1
+NC_007605	GenBank	transcript	34045	35196	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.8";
+NC_007605	GenBank	exon	34045	35196	1000	+	.	gene_id "BWRF1"; transcript_id "BWRF1.8"; exon_number 1
+NC_007605	GenBank	transcript	36216	37679	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.2";
+NC_007605	GenBank	exon	36216	37679	1000	+	.	gene_id "EBNA-2"; transcript_id "EBNA-2.2"; exon_number 1
+NC_007605	GenBank	transcript	38013	40529	1000	-	.	gene_id "BHLF1"; transcript_id "BHLF1";
+NC_007605	GenBank	exon	38013	40529	1000	-	.	gene_id "BHLF1"; transcript_id "BHLF1"; exon_number 1
+NC_007605	GenBank	transcript	41470	43251	1000	+	.	gene_id "BHRF1"; transcript_id "BHRF1";
+NC_007605	GenBank	exon	41470	43251	1000	+	.	gene_id "BHRF1"; transcript_id "BHRF1"; exon_number 1
+NC_007605	GenBank	transcript	43690	44793	1000	-	.	gene_id "BFLF2"; transcript_id "BFLF2";
+NC_007605	GenBank	exon	43690	44793	1000	-	.	gene_id "BFLF2"; transcript_id "BFLF2"; exon_number 1
+NC_007605	GenBank	transcript	43690	46280	1000	-	.	gene_id "BFLF1"; transcript_id "BFLF1";
+NC_007605	GenBank	exon	43690	46280	1000	-	.	gene_id "BFLF1"; transcript_id "BFLF1"; exon_number 1
+NC_007605	GenBank	transcript	46235	49786	1000	+	.	gene_id "BFRF1A"; transcript_id "BFRF1A";
+NC_007605	GenBank	exon	46235	49786	1000	+	.	gene_id "BFRF1A"; transcript_id "BFRF1A"; exon_number 1
+NC_007605	GenBank	transcript	46543	49786	1000	+	.	gene_id "BFRF1"; transcript_id "BFRF1";
+NC_007605	GenBank	exon	46543	49786	1000	+	.	gene_id "BFRF1"; transcript_id "BFRF1"; exon_number 1
+NC_007605	GenBank	transcript	47519	49786	1000	+	.	gene_id "BFRF2"; transcript_id "BFRF2";
+NC_007605	GenBank	exon	47519	49786	1000	+	.	gene_id "BFRF2"; transcript_id "BFRF2"; exon_number 1
+NC_007605	GenBank	transcript	49218	49786	1000	+	.	gene_id "BFRF3"; transcript_id "BFRF3";
+NC_007605	GenBank	exon	49218	49786	1000	+	.	gene_id "BFRF3"; transcript_id "BFRF3"; exon_number 1
+NC_007605	GenBank	transcript	49774	59904	1000	-	.	gene_id "BPLF1"; transcript_id "BPLF1";
+NC_007605	GenBank	exon	49774	59904	1000	-	.	gene_id "BPLF1"; transcript_id "BPLF1"; exon_number 1
+NC_007605	GenBank	transcript	50134	97654	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.2";
+NC_007605	GenBank	exon	50134	50170	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.2"; exon_number 1
+NC_007605	GenBank	exon	55190	55361	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.2"; exon_number 2
+NC_007605	GenBank	exon	95654	97654	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.2"; exon_number 3
+NC_007605	GenBank	transcript	49774	63034	1000	-	.	gene_id "BOLF1"; transcript_id "BOLF1";
+NC_007605	GenBank	exon	49774	63034	1000	-	.	gene_id "BOLF1"; transcript_id "BOLF1"; exon_number 1
+NC_007605	GenBank	transcript	62728	66600	1000	+	.	gene_id "BORF1"; transcript_id "BORF1";
+NC_007605	GenBank	exon	62728	66600	1000	+	.	gene_id "BORF1"; transcript_id "BORF1"; exon_number 1
+NC_007605	GenBank	transcript	63880	66600	1000	+	.	gene_id "BORF2"; transcript_id "BORF2";
+NC_007605	GenBank	exon	63880	66600	1000	+	.	gene_id "BORF2"; transcript_id "BORF2"; exon_number 1
+NC_007605	GenBank	transcript	66515	69916	1000	+	.	gene_id "BaRF1"; transcript_id "BaRF1";
+NC_007605	GenBank	exon	66515	69916	1000	+	.	gene_id "BaRF1"; transcript_id "BaRF1"; exon_number 1
+NC_007605	GenBank	transcript	67551	69916	1000	+	.	gene_id "BMRF1"; transcript_id "BMRF1";
+NC_007605	GenBank	exon	67551	69916	1000	+	.	gene_id "BMRF1"; transcript_id "BMRF1"; exon_number 1
+NC_007605	GenBank	transcript	68490	69916	1000	+	.	gene_id "BMRF2"; transcript_id "BMRF2";
+NC_007605	GenBank	exon	68490	69916	1000	+	.	gene_id "BMRF2"; transcript_id "BMRF2"; exon_number 1
+NC_007605	GenBank	transcript	70453	72068	1000	-	.	gene_id "BSLF2/BMLF1"; transcript_id "BSLF2/BMLF1";
+NC_007605	GenBank	exon	70453	71834	1000	-	.	gene_id "BSLF2/BMLF1"; transcript_id "BSLF2/BMLF1"; exon_number 1
+NC_007605	GenBank	exon	71940	72068	1000	-	.	gene_id "BSLF2/BMLF1"; transcript_id "BSLF2/BMLF1"; exon_number 2
+NC_007605	GenBank	transcript	70453	74593	1000	-	.	gene_id "BSLF1"; transcript_id "BSLF1";
+NC_007605	GenBank	exon	70453	74593	1000	-	.	gene_id "BSLF1"; transcript_id "BSLF1"; exon_number 1
+NC_007605	GenBank	transcript	74593	75316	1000	+	.	gene_id "BSRF1"; transcript_id "BSRF1";
+NC_007605	GenBank	exon	74593	75316	1000	+	.	gene_id "BSRF1"; transcript_id "BSRF1"; exon_number 1
+NC_007605	GenBank	transcript	75319	76231	1000	-	.	gene_id "BLLF3"; transcript_id "BLLF3";
+NC_007605	GenBank	exon	75319	76231	1000	-	.	gene_id "BLLF3"; transcript_id "BLLF3"; exon_number 1
+NC_007605	GenBank	transcript	76218	77129	1000	+	.	gene_id "BLRF1"; transcript_id "BLRF1";
+NC_007605	GenBank	exon	76218	77129	1000	+	.	gene_id "BLRF1"; transcript_id "BLRF1"; exon_number 1
+NC_007605	GenBank	transcript	76574	77129	1000	+	.	gene_id "BLRF2"; transcript_id "BLRF2";
+NC_007605	GenBank	exon	76574	77129	1000	+	.	gene_id "BLRF2"; transcript_id "BLRF2"; exon_number 1
+NC_007605	GenBank	transcript	77131	79904	1000	-	.	gene_id "BLLF1"; transcript_id "BLLF1.1";
+NC_007605	GenBank	exon	77131	79904	1000	-	.	gene_id "BLLF1"; transcript_id "BLLF1.1"; exon_number 1
+NC_007605	GenBank	transcript	77131	79904	1000	-	.	gene_id "BLLF1"; transcript_id "BLLF1.2";
+NC_007605	GenBank	exon	77131	77774	1000	-	.	gene_id "BLLF1"; transcript_id "BLLF1.2"; exon_number 1
+NC_007605	GenBank	exon	78365	79904	1000	-	.	gene_id "BLLF1"; transcript_id "BLLF1.2"; exon_number 2
+NC_007605	GenBank	transcript	77131	77774	1000	-	.	gene_id "BLLF2"; transcript_id "BLLF2";
+NC_007605	GenBank	exon	77131	77774	1000	-	.	gene_id "BLLF2"; transcript_id "BLLF2"; exon_number 1
+NC_007605	GenBank	transcript	79955	82962	1000	+	.	gene_id "EBNA-3A"; transcript_id "EBNA-3A";
+NC_007605	GenBank	exon	79955	80293	1000	+	.	gene_id "EBNA-3A"; transcript_id "EBNA-3A"; exon_number 1
+NC_007605	GenBank	exon	80382	82962	1000	+	.	gene_id "EBNA-3A"; transcript_id "EBNA-3A"; exon_number 2
+NC_007605	GenBank	transcript	83020	85959	1000	+	.	gene_id "EBNA-3B"; transcript_id "EBNA-3B";
+NC_007605	GenBank	exon	83020	83421	1000	+	.	gene_id "EBNA-3B"; transcript_id "EBNA-3B"; exon_number 1
+NC_007605	GenBank	exon	83500	89482	1000	+	.	gene_id "EBNA-3B"; transcript_id "EBNA-3B"; exon_number 2
+NC_007605	GenBank	transcript	86083	89135	1000	+	.	gene_id "EBNA-3C"; transcript_id "EBNA-3C";
+NC_007605	GenBank	exon	86076	86442	1000	+	.	gene_id "EBNA-3C"; transcript_id "EBNA-3C"; exon_number 1
+NC_007605	GenBank	exon	86517	89482	1000	+	.	gene_id "EBNA-3C"; transcript_id "EBNA-3C"; exon_number 2
+NC_007605	GenBank	transcript	89157	89828	1000	-	.	gene_id "BZLF2"; transcript_id "BZLF2";
+NC_007605	GenBank	exon	89157	89828	1000	-	.	gene_id "BZLF2"; transcript_id "BZLF2"; exon_number 1
+NC_007605	GenBank	transcript	89838	93893	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.1";
+NC_007605	GenBank	exon	89838	90053	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.1"; exon_number 1
+NC_007605	GenBank	exon	90138	90242	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.1"; exon_number 2
+NC_007605	GenBank	exon	90367	92897	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.1"; exon_number 3
+NC_007605	GenBank	exon	93838	93893	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.1"; exon_number 4
+NC_007605	GenBank	transcript	89838	90906	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.1";
+NC_007605	GenBank	exon	89838	90053	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.1"; exon_number 1
+NC_007605	GenBank	exon	90138	90242	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.1"; exon_number 2
+NC_007605	GenBank	exon	90367	90906	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.1"; exon_number 3
+NC_007605	GenBank	transcript	89922	90867	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.2";
+NC_007605	GenBank	exon	89922	90053	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.2"; exon_number 1
+NC_007605	GenBank	exon	90138	90242	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.2"; exon_number 2
+NC_007605	GenBank	exon	90367	90867	1000	-	.	gene_id "BZLF1"; transcript_id "BZLF1.2"; exon_number 3
+NC_007605	GenBank	transcript	91078	92895	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.2";
+NC_007605	GenBank	exon	91078	92895	1000	-	.	gene_id "BRLF1"; transcript_id "BRLF1.2"; exon_number 1
+NC_007605	GenBank	transcript	92727	93827	1000	+	.	gene_id "BRRF1"; transcript_id "BRRF1";
+NC_007605	GenBank	exon	92727	93827	1000	+	.	gene_id "BRRF1"; transcript_id "BRRF1"; exon_number 1
+NC_007605	GenBank	transcript	93954	95631	1000	+	.	gene_id "BRRF2"; transcript_id "BRRF2";
+NC_007605	GenBank	exon	93954	95631	1000	+	.	gene_id "BRRF2"; transcript_id "BRRF2"; exon_number 1
+NC_007605	GenBank	transcript	95662	97587	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.3";
+NC_007605	GenBank	exon	95662	97587	1000	+	.	gene_id "EBNA-1"; transcript_id "EBNA-1.3"; exon_number 1
+NC_007605	GenBank	transcript	97616	99504	1000	+	.	gene_id "BKRF2"; transcript_id "BKRF2";
+NC_007605	GenBank	exon	97616	99504	1000	+	.	gene_id "BKRF2"; transcript_id "BKRF2"; exon_number 1
+NC_007605	GenBank	transcript	98064	99504	1000	+	.	gene_id "BKRF3"; transcript_id "BKRF3";
+NC_007605	GenBank	exon	98064	99504	1000	+	.	gene_id "BKRF3"; transcript_id "BKRF3"; exon_number 1
+NC_007605	GenBank	transcript	98846	99505	1000	+	.	gene_id "BKRF4"; transcript_id "BKRF4";
+NC_007605	GenBank	exon	98846	99505	1000	+	.	gene_id "BKRF4"; transcript_id "BKRF4"; exon_number 1
+NC_007605	GenBank	transcript	99536	101971	1000	-	.	gene_id "BBLF4"; transcript_id "BBLF4";
+NC_007605	GenBank	exon	99536	101971	1000	-	.	gene_id "BBLF4"; transcript_id "BBLF4"; exon_number 1
+NC_007605	GenBank	transcript	101587	104502	1000	+	.	gene_id "BBRF1"; transcript_id "BBRF1";
+NC_007605	GenBank	exon	101587	104502	1000	+	.	gene_id "BBRF1"; transcript_id "BBRF1"; exon_number 1
+NC_007605	GenBank	transcript	103660	104496	1000	+	.	gene_id "BBRF2"; transcript_id "BBRF2";
+NC_007605	GenBank	exon	103660	104496	1000	+	.	gene_id "BBRF2"; transcript_id "BBRF2"; exon_number 1
+NC_007605	GenBank	transcript	104402	106750	1000	-	.	gene_id "BBLF2/BBLF3"; transcript_id "BBLF2/BBLF3";
+NC_007605	GenBank	exon	104402	105098	1000	-	.	gene_id "BBLF2/BBLF3"; transcript_id "BBLF2/BBLF3"; exon_number 1
+NC_007605	GenBank	exon	105227	106750	1000	-	.	gene_id "BBLF2/BBLF3"; transcript_id "BBLF2/BBLF3"; exon_number 2
+NC_007605	GenBank	transcript	106692	108075	1000	+	.	gene_id "BBRF3"; transcript_id "BBRF3";
+NC_007605	GenBank	exon	106692	108075	1000	+	.	gene_id "BBRF3"; transcript_id "BBRF3"; exon_number 1
+NC_007605	GenBank	transcript	108458	109043	1000	-	.	gene_id "BBLF1"; transcript_id "BBLF1";
+NC_007605	GenBank	exon	108458	109043	1000	-	.	gene_id "BBLF1"; transcript_id "BBLF1"; exon_number 1
+NC_007605	GenBank	transcript	108458	110053	1000	-	.	gene_id "BGLF5"; transcript_id "BGLF5";
+NC_007605	GenBank	exon	108458	110053	1000	-	.	gene_id "BGLF5"; transcript_id "BGLF5"; exon_number 1
+NC_007605	GenBank	transcript	108458	111326	1000	-	.	gene_id "BGLF4"; transcript_id "BGLF4";
+NC_007605	GenBank	exon	108458	111326	1000	-	.	gene_id "BGLF4"; transcript_id "BGLF4"; exon_number 1
+NC_007605	GenBank	transcript	108458	111829	1000	-	.	gene_id "BGLF3.5"; transcript_id "BGLF3.5";
+NC_007605	GenBank	exon	108458	111829	1000	-	.	gene_id "BGLF3.5"; transcript_id "BGLF3.5"; exon_number 1
+NC_007605	GenBank	transcript	108458	112825	1000	-	.	gene_id "BGLF3"; transcript_id "BGLF3";
+NC_007605	GenBank	exon	108458	112825	1000	-	.	gene_id "BGLF3"; transcript_id "BGLF3"; exon_number 1
+NC_007605	GenBank	transcript	112650	118063	1000	+	.	gene_id "BGRF1/BDRF1"; transcript_id "BGRF1/BDRF1";
+NC_007605	GenBank	exon	112650	113585	1000	+	.	gene_id "BGRF1/BDRF1"; transcript_id "BGRF1/BDRF1"; exon_number 1
+NC_007605	GenBank	exon	116927	118063	1000	+	.	gene_id "BGRF1/BDRF1"; transcript_id "BGRF1/BDRF1"; exon_number 2
+NC_007605	GenBank	transcript	113190	114641	1000	-	.	gene_id "BGLF2"; transcript_id "BGLF2";
+NC_007605	GenBank	exon	113190	114641	1000	-	.	gene_id "BGLF2"; transcript_id "BGLF2"; exon_number 1
+NC_007605	GenBank	transcript	113190	116144	1000	-	.	gene_id "BGLF1"; transcript_id "BGLF1";
+NC_007605	GenBank	exon	113190	116144	1000	-	.	gene_id "BGLF1"; transcript_id "BGLF1"; exon_number 1
+NC_007605	GenBank	transcript	113190	116766	1000	-	.	gene_id "BDLF4"; transcript_id "BDLF4";
+NC_007605	GenBank	exon	113190	116766	1000	-	.	gene_id "BDLF4"; transcript_id "BDLF4"; exon_number 1
+NC_007605	GenBank	transcript	113190	117016	1000	-	.	gene_id "BDLF3.5"; transcript_id "BDLF3.5";
+NC_007605	GenBank	exon	113190	117016	1000	-	.	gene_id "BDLF3.5"; transcript_id "BDLF3.5"; exon_number 1
+NC_007605	GenBank	transcript	118065	118816	1000	-	.	gene_id "BDLF3"; transcript_id "BDLF3";
+NC_007605	GenBank	exon	118065	118816	1000	-	.	gene_id "BDLF3"; transcript_id "BDLF3"; exon_number 1
+NC_007605	GenBank	transcript	118065	120188	1000	-	.	gene_id "BDLF2"; transcript_id "BDLF2";
+NC_007605	GenBank	exon	118065	120188	1000	-	.	gene_id "BDLF2"; transcript_id "BDLF2"; exon_number 1
+NC_007605	GenBank	transcript	118065	121098	1000	-	.	gene_id "BDLF1"; transcript_id "BDLF1";
+NC_007605	GenBank	exon	118065	121098	1000	-	.	gene_id "BDLF1"; transcript_id "BDLF1"; exon_number 1
+NC_007605	GenBank	transcript	121018	125422	1000	-	.	gene_id "BcLF1"; transcript_id "BcLF1";
+NC_007605	GenBank	exon	121018	125422	1000	-	.	gene_id "BcLF1"; transcript_id "BcLF1"; exon_number 1
+NC_007605	GenBank	transcript	125072	128686	1000	+	.	gene_id "BcRF1"; transcript_id "BcRF1";
+NC_007605	GenBank	exon	125072	128686	1000	+	.	gene_id "BcRF1"; transcript_id "BcRF1"; exon_number 1
+NC_007605	GenBank	transcript	127415	128686	1000	+	.	gene_id "BTRF1"; transcript_id "BTRF1";
+NC_007605	GenBank	exon	127415	128686	1000	+	.	gene_id "BTRF1"; transcript_id "BTRF1"; exon_number 1
+NC_007605	GenBank	transcript	128607	131021	1000	-	.	gene_id "BXLF2"; transcript_id "BXLF2";
+NC_007605	GenBank	exon	128607	131021	1000	-	.	gene_id "BXLF2"; transcript_id "BXLF2"; exon_number 1
+NC_007605	GenBank	transcript	128607	132846	1000	-	.	gene_id "BXLF1"; transcript_id "BXLF1";
+NC_007605	GenBank	exon	128607	132846	1000	-	.	gene_id "BXLF1"; transcript_id "BXLF1"; exon_number 1
+NC_007605	GenBank	transcript	132570	134885	1000	+	.	gene_id "BXRF1"; transcript_id "BXRF1";
+NC_007605	GenBank	exon	132570	134885	1000	+	.	gene_id "BXRF1"; transcript_id "BXRF1"; exon_number 1
+NC_007605	GenBank	transcript	133012	134886	1000	+	.	gene_id "BVRF1"; transcript_id "BVRF1";
+NC_007605	GenBank	exon	133012	134886	1000	+	.	gene_id "BVRF1"; transcript_id "BVRF1"; exon_number 1
+NC_007605	GenBank	transcript	134631	135627	1000	-	.	gene_id "BVLF1"; transcript_id "BVLF1";
+NC_007605	GenBank	exon	134631	135627	1000	-	.	gene_id "BVLF1"; transcript_id "BVLF1"; exon_number 1
+NC_007605	GenBank	transcript	135431	137455	1000	+	.	gene_id "BVRF2"; transcript_id "BVRF2";
+NC_007605	GenBank	exon	135431	137455	1000	+	.	gene_id "BVRF2"; transcript_id "BVRF2"; exon_number 1
+NC_007605	GenBank	transcript	136330	137455	1000	+	.	gene_id "BdRF1"; transcript_id "BdRF1";
+NC_007605	GenBank	exon	136330	137455	1000	+	.	gene_id "BdRF1"; transcript_id "BdRF1"; exon_number 1
+NC_007605	GenBank	transcript	137463	138282	1000	-	.	gene_id "BILF2"; transcript_id "BILF2";
+NC_007605	GenBank	exon	137463	138282	1000	-	.	gene_id "BILF2"; transcript_id "BILF2"; exon_number 1
+NC_007605	GenBank	transcript	138352	160531	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1";
+NC_007605	GenBank	exon	138352	138480	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 1
+NC_007605	GenBank	exon	149581	149712	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 2
+NC_007605	GenBank	exon	149923	150077	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 3
+NC_007605	GenBank	exon	150237	150348	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 4
+NC_007605	GenBank	exon	155267	156737	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 5
+NC_007605	GenBank	exon	156846	156928	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 6
+NC_007605	GenBank	exon	158625	160531	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 7
+NC_007605	GenBank	transcript	140569	143711	1000	-	.	gene_id "LF3"; transcript_id "LF3";
+NC_007605	GenBank	exon	140569	143711	1000	-	.	gene_id "LF3"; transcript_id "LF3"; exon_number 1
+NC_007605	GenBank	transcript	149024	150417	1000	-	.	gene_id "LF2"; transcript_id "LF2";
+NC_007605	GenBank	exon	149024	150417	1000	-	.	gene_id "LF2"; transcript_id "LF2"; exon_number 1
+NC_007605	GenBank	transcript	149024	151694	1000	-	.	gene_id "LF1"; transcript_id "LF1";
+NC_007605	GenBank	exon	149024	151694	1000	-	.	gene_id "LF1"; transcript_id "LF1"; exon_number 1
+NC_007605	GenBank	transcript	150236	155552	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.39";
+NC_007605	GenBank	exon	150236	150348	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.39"; exon_number 1
+NC_007605	GenBank	exon	155267	155552	1000	+	.	gene_id "RPMS1"; transcript_id "RPMS1.39"; exon_number 2
+NC_007605	GenBank	transcript	149024	152641	1000	-	.	gene_id "BILF1"; transcript_id "BILF1";
+NC_007605	GenBank	exon	149024	152641	1000	-	.	gene_id "BILF1"; transcript_id "BILF1"; exon_number 1
+NC_007605	GenBank	transcript	151371	156288	1000	-	.	gene_id "BALF5"; transcript_id "BALF5";
+NC_007605	GenBank	exon	151371	156288	1000	-	.	gene_id "BALF5"; transcript_id "BALF5"; exon_number 1
+NC_007605	GenBank	transcript	156526	160531	1000	+	.	gene_id "A73"; transcript_id "A73.1";
+NC_007605	GenBank	exon	156526	156737	1000	+	.	gene_id "A73"; transcript_id "A73.1"; exon_number 1
+NC_007605	GenBank	exon	156846	156928	1000	+	.	gene_id "A73"; transcript_id "A73.1"; exon_number 2
+NC_007605	GenBank	exon	158625	158751	1000	+	.	gene_id "A73"; transcript_id "A73.1"; exon_number 3
+NC_007605	GenBank	exon	159781	160531	1000	+	.	gene_id "A73"; transcript_id "A73.1"; exon_number 4
+NC_007605	GenBank	transcript	156243	158912	1000	-	.	gene_id "BALF4"; transcript_id "BALF4";
+NC_007605	GenBank	exon	156243	158912	1000	-	.	gene_id "BALF4"; transcript_id "BALF4"; exon_number 1
+NC_007605	GenBank	transcript	156652	159865	1000	+	.	gene_id "A73"; transcript_id "A73.2";
+NC_007605	GenBank	exon	156652	156737	1000	+	.	gene_id "A73"; transcript_id "A73.2"; exon_number 1
+NC_007605	GenBank	exon	156846	156928	1000	+	.	gene_id "A73"; transcript_id "A73.2"; exon_number 2
+NC_007605	GenBank	exon	158625	158751	1000	+	.	gene_id "A73"; transcript_id "A73.2"; exon_number 3
+NC_007605	GenBank	exon	159781	159865	1000	+	.	gene_id "A73"; transcript_id "A73.2"; exon_number 4
+NC_007605	GenBank	transcript	156243	160908	1000	-	.	gene_id "BALF3"; transcript_id "BALF3";
+NC_007605	GenBank	exon	156243	160908	1000	-	.	gene_id "BALF3"; transcript_id "BALF3"; exon_number 1
+NC_007605	GenBank	transcript	159121	160536	1000	+	.	gene_id "BARF0"; transcript_id "BARF0";
+NC_007605	GenBank	exon	159121	160536	1000	+	.	gene_id "BARF0"; transcript_id "BARF0"; exon_number 1
+NC_007605	GenBank	transcript	160549	164356	1000	-	.	gene_id "BALF2"; transcript_id "BALF2";
+NC_007605	GenBank	exon	160549	164356	1000	-	.	gene_id "BALF2"; transcript_id "BALF2"; exon_number 1
+NC_007605	GenBank	transcript	164387	164984	1000	-	.	gene_id "BALF1"; transcript_id "BALF1";
+NC_007605	GenBank	exon	164387	164984	1000	-	.	gene_id "BALF1"; transcript_id "BALF1"; exon_number 1
+NC_007605	GenBank	transcript	165007	165712	1000	+	.	gene_id "BARF1"; transcript_id "BARF1";
+NC_007605	GenBank	exon	165007	165712	1000	+	.	gene_id "BARF1"; transcript_id "BARF1"; exon_number 1
+NC_007605	GenBank	transcript	166483	169056	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.1";
+NC_007605	GenBank	exon	166483	168507	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.1"; exon_number 1
+NC_007605	GenBank	exon	168584	168670	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.1"; exon_number 2
+NC_007605	GenBank	exon	168749	169056	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.1"; exon_number 3
+NC_007605	GenBank	transcript	166482	166836	1000	-	.	gene_id "BNLF2b"; transcript_id "BNLF2b";
+NC_007605	GenBank	exon	166482	166836	1000	-	.	gene_id "BNLF2b"; transcript_id "BNLF2b"; exon_number 1
+NC_007605	GenBank	transcript	166482	167067	1000	-	.	gene_id "BNLF2a"; transcript_id "BNLF2a";
+NC_007605	GenBank	exon	166482	167067	1000	-	.	gene_id "BNLF2a"; transcript_id "BNLF2a"; exon_number 1
+NC_007605	GenBank	transcript	167702	169016	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.2";
+NC_007605	GenBank	exon	167702	168507	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.2"; exon_number 1
+NC_007605	GenBank	exon	168584	168670	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.2"; exon_number 2
+NC_007605	GenBank	exon	168749	169016	1000	-	.	gene_id "LMP-1"; transcript_id "LMP-1.2"; exon_number 3
+NC_007605	GenBank	transcript	6629	6795	1000	+	.	gene_id "EBER1"; transcript_id "EBER1";
+NC_007605	GenBank	exon	6629	6795	1000	+	.	gene_id "EBER1"; transcript_id "EBER1"; exon_number 1
+NC_007605	GenBank	transcript	6956	7128	1000	+	.	gene_id "EBER2"; transcript_id "EBER2";
+NC_007605	GenBank	exon	6956	7128	1000	+	.	gene_id "EBER2"; transcript_id "EBER2"; exon_number 1

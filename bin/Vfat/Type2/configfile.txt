@@ -1,0 +1,16 @@
+# Enter path for the perl scripts (contigs2assembly.pl, orientContig.pl, contigMerger.pl, fixFrameshifts.pl, annotate.pl, QA_stats.pl, runMosaik.pl),
+# Mosaik (MosaikBuild, MosaikAligner, MosaikSort, MosaikText) and Muscle version 3.8
+# between the quotation marks. The script path is mandatory for configPaths.pl to work, others can be left
+# empty if the paths to the programs are in your environment variables.
+# All paths must end with / except paths left empty
+
+scriptpath = '/project/umw_jeffrey_bailey/share/bin_sync/Vfat/'
+mosaikpath = '/project/umw_jeffrey_bailey/share/bin_sync/MOSAIK-2.2.3-Linux-x64/'
+mosaiknetworkpath = '/project/umw_jeffrey_bailey/share/bin_sync/MOSAIK-2.2.3-Linux-x64/networkFile/'
+samtoolspath = '/share/pkg/samtools/0.0.19/'
+musclepath = '/project/umw_jeffrey_bailey/share/bin_sync/Muscle/'
+perlpath = '/share/pkg/perl/5.18.1/bin/'
+genewisepath = '/project/umw_jeffrey_bailey/share/bin_sync/wise2.2.0/src/bin/'
+genewisecfgpath = '/project/umw_jeffrey_bailey/share/bin_sync/wise2.2.0/wisecfg/'
+Rpath = '/share/pkg/R/3.0.1/bin/'
+refDataPath = '/project/umw_jeffrey_bailey/share/EBV/Genomes/Type1/'
