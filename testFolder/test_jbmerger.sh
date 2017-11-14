@@ -6,6 +6,11 @@ ContigsBamFile=$3
 SAMPLE_NAME=$4
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
+module unload openssl/1.0.1g
+module load samtools/0.0.19
+module load R/3.2.2
+module load python/2.7.5
+module load python/2.7.5_packages/biopython/1.68
 
 #EBV genome type
 if [ "$type" = "1" ]
