@@ -89,21 +89,21 @@ fi
 if [ "$Reads2Assembly" = "1" ]
 then
 
-# #create bowtie2 index
-# $Bowtie2PATH/bowtie2-build $InputAssembly ${InputAssembly%.fa}_bowtieIndex
-# samtools faidx $InputAssembly
-#
-# #Map reads back to assembly
-# $Bowtie2PATH/bowtie2 -p $nt \
-# -x ${InputAssembly%.fa}_bowtieIndex \
-# -1 $fastq_1 \
-# -2 $fastq_2 \
-# -S "$SAMPLE_NAME"_readsBack2assembly.sam
-#
-# #Filter MQ<20 reads
-# samtools view -h -b -q 30 \
-# "$SAMPLE_NAME"_readsBack2assembly.sam \
-# -o "$SAMPLE_NAME"_readsBack2assembly_MQ30.bam
+#create bowtie2 index
+$Bowtie2PATH/bowtie2-build $InputAssembly ${InputAssembly%.fa}_bowtieIndex
+samtools faidx $InputAssembly
+
+#Map reads back to assembly
+$Bowtie2PATH/bowtie2 -p $nt \
+-x ${InputAssembly%.fa}_bowtieIndex \
+-1 $fastq_1 \
+-2 $fastq_2 \
+-S "$SAMPLE_NAME"_readsBack2assembly.sam
+
+#Filter MQ<20 reads
+samtools view -h -b -q 30 \
+"$SAMPLE_NAME"_readsBack2assembly.sam \
+-o "$SAMPLE_NAME"_readsBack2assembly_MQ30.bam
 
 #Sort sam file and output as bam
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
@@ -131,6 +131,12 @@ INPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD.bam \
 OUTPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam \
 SORT_ORDER=coordinate \
 VALIDATION_STRINGENCY=LENIENT
+
+#Index bam file
+java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
+$PICARDPATH/picard.jar \
+BuildBamIndex \
+INPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam
 
 samtools mpileup -uf $InputAssembly "$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam > $SAMPLE_NAME.AssemblyRawcalls.bcf
 /project/umw_jeffrey_bailey/share/bin_sync/samtools-0.1.19/bcftools/bcftools view -v $SAMPLE_NAME.AssemblyRawcalls.bcf > $SAMPLE_NAME.Assembly.variants.vcf
