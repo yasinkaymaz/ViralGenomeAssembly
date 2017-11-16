@@ -89,21 +89,21 @@ fi
 if [ "$Reads2Assembly" = "1" ]
 then
 
-#create bowtie2 index
-$Bowtie2PATH/bowtie2-build $InputAssembly ${InputAssembly%.fa}_bowtieIndex
-samtools faidx $InputAssembly
-
-#Map reads back to assembly
-$Bowtie2PATH/bowtie2 -p $nt \
--x ${InputAssembly%.fa}_bowtieIndex \
--1 $fastq_1 \
--2 $fastq_2 \
--S "$SAMPLE_NAME"_readsBack2assembly.sam
-
-#Filter MQ<20 reads
-samtools view -h -b -q 30 \
-"$SAMPLE_NAME"_readsBack2assembly.sam \
--o "$SAMPLE_NAME"_readsBack2assembly_MQ30.bam
+# #create bowtie2 index
+# $Bowtie2PATH/bowtie2-build $InputAssembly ${InputAssembly%.fa}_bowtieIndex
+# samtools faidx $InputAssembly
+#
+# #Map reads back to assembly
+# $Bowtie2PATH/bowtie2 -p $nt \
+# -x ${InputAssembly%.fa}_bowtieIndex \
+# -1 $fastq_1 \
+# -2 $fastq_2 \
+# -S "$SAMPLE_NAME"_readsBack2assembly.sam
+#
+# #Filter MQ<20 reads
+# samtools view -h -b -q 30 \
+# "$SAMPLE_NAME"_readsBack2assembly.sam \
+# -o "$SAMPLE_NAME"_readsBack2assembly_MQ30.bam
 
 #Sort sam file and output as bam
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
@@ -111,6 +111,8 @@ $PICARDPATH/picard.jar \
 SortSam \
 INPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30.bam \
 OUTPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_sorted.bam \
+SORT_ORDER=coordinate
+
 
 #Remove Duplicated reads
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
