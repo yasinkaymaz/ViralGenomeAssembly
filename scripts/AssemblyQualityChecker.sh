@@ -90,12 +90,12 @@ if [ "$Reads2Assembly" = "1" ]
 then
 
 #create bowtie2 index
-$Bowtie2PATH/bowtie2-build $WORKINGDIR/../$InputAssembly $WORKINGDIR/../${InputAssembly%.fa}_bowtieIndex
-samtools faidx $WORKINGDIR/../$InputAssembly
+$Bowtie2PATH/bowtie2-build $InputAssembly ${InputAssembly%.fa}_bowtieIndex
+samtools faidx $InputAssembly
 
 #Map reads back to assembly
 $Bowtie2PATH/bowtie2 -p $nt \
--x $WORKINGDIR/../${InputAssembly%.fa}_bowtieIndex \
+-x ${InputAssembly%.fa}_bowtieIndex \
 -1 $fastq_1 \
 -2 $fastq_2 \
 -S "$SAMPLE_NAME"_readsBack2assembly.sam
