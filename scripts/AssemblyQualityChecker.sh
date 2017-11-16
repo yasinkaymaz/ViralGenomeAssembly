@@ -105,11 +105,18 @@ samtools view -h -b -q 30 \
 "$SAMPLE_NAME"_readsBack2assembly.sam \
 -o "$SAMPLE_NAME"_readsBack2assembly_MQ30.bam
 
+#Sort sam file and output as bam
+java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
+$PICARDPATH/picard.jar \
+SortSam \
+INPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30.bam \
+OUTPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_sorted.bam \
+
 #Remove Duplicated reads
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
 $PICARDPATH/picard.jar \
 MarkDuplicates \
-I="$SAMPLE_NAME"_readsBack2assembly_MQ30.bam \
+I="$SAMPLE_NAME"_readsBack2assembly_MQ30_sorted.bam \
 O="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD.bam \
 REMOVE_DUPLICATES=true \
 METRICS_FILE=$SAMPLE_NAME._dedup_metrics.txt
