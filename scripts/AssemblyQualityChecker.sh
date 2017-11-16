@@ -19,8 +19,8 @@ module load java/1.8.0_77
 ################################################
 ############# Main Control Panel: ##############
 ################################################
-Reads2Assembly=1
-
+Reads2Assembly=0
+FixAssemblyWithReads=1
 
 ##########################################
 ######### NO NEED TO MODIFY ! ############
@@ -150,4 +150,24 @@ Rscript $toolDir/bin/MAF_plot.R $SAMPLE_NAME $SAMPLE_NAME.AssemblyMinorfreq.txt
 
 else
 echo "no pileup"
+fi
+
+#*********************************************************************************************************#
+if [ "$FixAssemblyWithReads" = "1" ]
+then
+module load python/2.7.5_packages/biopython/1.68
+#fastaName=`head -1 ../JB_ContigMerge_v3/BL614_FNAPairedPlasma_PCRsWGA_EBV_type1_genome.fa|sed 's/>//g'`
+#sed 's/'$EBVgenome'/'$fastaName'/g' ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/NC_007605_repeatMask.bed > tmp.repeatfile.tmp
+
+python $toolDir/bin/Reads2ConcensusGenome.py \
+Reads2ConcensusGenome \
+-n $EBVgenome \
+--regions_to_mask $AnnotationDir/"$EBVgenome"_repeatMask.bed \
+-r "$SAMPLE_NAME"_$RegionName.bam \
+-f $INDEXGENOMESDIR/"$EBVgenome".fa \
+-o "$SAMPLE_NAME"_EBV_"$Type"_$RegionName
+
+
+else
+echo "no read cons."
 fi
