@@ -2,6 +2,7 @@
 
 __requires__='pysam==0.8.1'
 import pkg_resources
+print pysam.__version__
 
 ###standard modules
 import argparse #parse initial arguements from command line
