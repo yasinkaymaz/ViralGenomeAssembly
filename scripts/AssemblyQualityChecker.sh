@@ -14,13 +14,13 @@ toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
 Bowtie2PATH="$toolDir/bin/linux/bowtie2-2.3.3.1-linux-x86_64"
 INDEXGENOMESDIR="$toolDir/resources/Bowtie2Index"
-nt=2
+nt=4
 module load java/1.8.0_77
 
 ################################################
 ############# Main Control Panel: ##############
 ################################################
-Reads2Assembly=0
+Reads2Assembly=1
 FixAssemblyWithReads=1
 
 ##########################################
@@ -29,36 +29,26 @@ FixAssemblyWithReads=1
 ##########################################
 #Load required modules
 module unload openssl/1.0.1g
-module load ncbi_cxx/12_0_0
-module load cutadapt/1.7.1
 module load samtools/1.4.1
 #module load bowtie2/2-2.1.0
 module load fastx_toolkit/0.0.14
 #module load java/1.7.0_25
-module load fastqc/0.10.1
-module load prinseq/0.20.4
-module load gcc/4.8.1
-module load bzip2/1.0.6
-module load tabix/0.2.6
-module load IGVTools/2.3.31
 module load R/3.2.2
 module load bedtools/2.17.0
-module load vicuna/1.3
-module load fastqc/0.10.1
 module load perl/5.18.1
 module load python/2.7.5
 
 #Set the working environment
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/pkg/ncbi_cxx/12_0_0/lib
-export PATH=/project/umw_jeffrey_bailey/share/bin_sync/tagcleaner-standalone-0.16/:$PATH
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/pkg/ncbi_cxx/12_0_0/lib
+# export PATH=/project/umw_jeffrey_bailey/share/bin_sync/tagcleaner-standalone-0.16/:$PATH
 export PERL5LIB=/project/umw_jeffrey_bailey/share/bin_sync/perl5lib/
 #export PATH=/project/umw_jeffrey_bailey/share/bin_sync/Vfat:$PATH
 #export PATH=/project/umw_jeffrey_bailey/share/bin_sync/picard-tools-1.105/:$PATH
 export PERL5LIB=/project/umw_jeffrey_bailey/share/bin_sync/perl5lib/lib/perl5/
-export PATH=/project/umw_jeffrey_bailey/share/bin_sync/velvet_1.2.10:$PATH
-export PATH=/project/umw_jeffrey_bailey/share/bin_sync/VelvetOptimiser-2.2.5:$PATH
-export PATH=/project/umw_jeffrey_bailey/share/bin_sync/velvet_1.2.10/contrib/shuffleSequences_fasta:$PATH
-export PATH=/project/umw_jeffrey_bailey/share/bin_sync/MetaVelvet-1.2.02:$PATH
+# export PATH=/project/umw_jeffrey_bailey/share/bin_sync/velvet_1.2.10:$PATH
+# export PATH=/project/umw_jeffrey_bailey/share/bin_sync/VelvetOptimiser-2.2.5:$PATH
+# export PATH=/project/umw_jeffrey_bailey/share/bin_sync/velvet_1.2.10/contrib/shuffleSequences_fasta:$PATH
+# export PATH=/project/umw_jeffrey_bailey/share/bin_sync/MetaVelvet-1.2.02:$PATH
 export PYTHONPATH=~/.local/lib/python2.7/site-packages/:$PATH
 
 #Variables for required directories
