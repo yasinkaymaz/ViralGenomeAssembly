@@ -37,60 +37,8 @@ from Bio import Phylo #not used yet but good for reading dendograms from clustal
 import pybedtools as pybt
 #pybedtools.load_path_config( 'bedtoolspath.txt')#{
 
-###global variable to allow for documentation in location for subcommands
-###this is populated as code is traversed initially until main is launched at end
-
-##This work will all be in as start zero and end 1 coordinates UCSC unless noted
-## e.g.	in ACTG ,	 CT would be designated as 1,3 (this is the same as python)
-
-##built in defaults to incorporated key programs specific to install##
-## these never change on an install unlike the config file that can require
-## modificaitons between builds, organisms, etc.
-
-#note to programmers: pysam access is all base [0,1) for tabix and fasta files
-# Fastafile.fetch(self, reference=None, start=None, end=None, region=None)
-#	(reference = None, start = None, end = None, region = None)
-
-###############################################################################
-# INSTALL SPECIFIC ENVIRONMENTAL PARAMETERS	##################################
-###############################################################################
-
-#binpath='/data/bailey/CNV_MIP_R01/pipeline_design/bin'
-#path_clustalw='/usr/bin/clustalw'
-#pybt.set_tempdir('/scratch')
-#pybt.load_path_config( {	'bedtools' , '/share/pkg/bedtools/2.22.0/bin/',	 'tabix' , '/share/pkg/tabix/0.2.6/',	 'r', '/share/pkg/R/2.15.0/bin/R',	'tabix', '/share/pkg/tabix/0.2.6/'})
-
-###############################################################################
-# INITIALIZE GLOBAL VARIABLES #################################################
-###############################################################################
-
 subcommands={} #collects data at the point
 #https://www.docker.io/learn_more/
-
-
-###############################################################################
-# LIST OF NEEDED DATA SETS ####################################################
-###############################################################################
-
-# Common SNPs(137) - SNPs with >= 1% minor allele frequency (MAF), mapping only once to reference assembly.
-# Flagged SNPs(137) - SNPs < 1% minor allele frequency (MAF) (or unknown), mapping only once to reference assembly, flagged in dbSnp as "clinically associated" -- not necessarily a risk allele!
-# Mult. SNPs(137) - SNPs mapping in more than one place on reference assembly.
-
-	#All SNPs(137) - all SNPs from dbSNP mapping to reference assembly.
-#ALL SNPS (138)
-#gunzip -c snp138.txt.gz	| cut -f 2- | bgzip >	snp138.bed0.gz
-#tabix -s 1 -b 2 -e 3 -0 snp138.bed0.gz
-###Get all text UCSC file ###
-#gunzip -c simpleRepeat.txt.gz	| cut -f 2- | bgzip >	simpleRepeat.bed0.gz
-#tabix -s 1 -b 2 -e 3 -0 simpleRepeat.bed0.gz
-
-
-####All SNPs is the most useful since it contains everything else and can be parsed to our specifications
-
-
-###############################################################################
-#	MAIN				###############################################################
-###############################################################################
 
 aparser=argparse.ArgumentParser()
 
@@ -225,7 +173,7 @@ def Reads2ConcensusGenome(args):
 #				print ('\tbase in read %s = %s' %(pileupread.alignment.query_name,pileupread.alignment.query_sequence[pileupread.query_position]))
 
 	start = time.time()
-	consseqfile = open ( args.outfilebase + "_consensusSequence.fa", 'w')
+	consseqfile = open ( args.outfilebase + "_genome.fa", 'w')
 	ConsSeq=''
 	NucleotidesfromReads_keyset=set(NucleotidesfromReads.keys())
 
@@ -238,7 +186,7 @@ def Reads2ConcensusGenome(args):
 		else:
 			ConsSeq+='N'
 #			print "N"
-	consseqfile.write(">ConcensusSeq"+"\n")
+	consseqfile.write(">FixedAssemblySeq"+"\n")
 	consseqfile.write(ConsSeq+"\n")
 	consseqfile.close()
 	print round(time.time() - start,1)
