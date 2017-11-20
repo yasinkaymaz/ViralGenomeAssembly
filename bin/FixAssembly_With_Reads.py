@@ -93,7 +93,7 @@ subcommands['Reads2ConcensusGenome'] = { 'shortDesc':shortDescText, 'longDesc': 
 def Reads2ConcensusGenome(args):
 	"""This subcommand scans a bam file against a region or genome and merges read sequences resolving discrepancies based on multiple different parameters including distance from end of contig, number of differences from reference, depth of reads, etc.
 	"""
-	aparser.add_argument("-n", "--nameChr", required=True, help='indexed contig bam file against reference (added by Cliff and Yasin)')
+	#aparser.add_argument("-n", "--nameChr", required=True, help='indexed contig bam file against reference (added by Cliff and Yasin)')
 	aparser.add_argument("-r", "--read_bam", required=True, help='indexed read bam file against reference')
 	aparser.add_argument("-f", "--fasta_reference", required=True, help='indexed read bam file against reference')
 #	aparser.add_argument( "--regions_to_mask", required=True, help='repetitive or other regions to exclude')
