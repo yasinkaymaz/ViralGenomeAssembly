@@ -156,7 +156,7 @@ Reads2ConcensusGenome \
 -o ${InputAssembly%.fa}_fixed_assembly
 
 #Map the fixed assembly contigs back to reference genome.
-$toolDir/map_and_index_genomeFasta.sh $type ${InputAssembly%.fa}_fixed_assembly_genome.fa  ${InputAssembly%.fa}_fixed_assembly
+$toolDir/scripts/map_and_index_genomeFasta.sh $type ${InputAssembly%.fa}_fixed_assembly_genome.fa  ${InputAssembly%.fa}_fixed_assembly
 
 else
 echo "no read cons."
