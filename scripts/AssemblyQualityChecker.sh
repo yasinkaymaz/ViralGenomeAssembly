@@ -159,7 +159,7 @@ module load python/2.7.5_packages/biopython/1.68
 #fastaName=`head -1 ../JB_ContigMerge_v3/BL614_FNAPairedPlasma_PCRsWGA_EBV_type1_genome.fa|sed 's/>//g'`
 #sed 's/'$EBVgenome'/'$fastaName'/g' ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/NC_007605_repeatMask.bed > tmp.repeatfile.tmp
 
-python $toolDir/bin/Reads2ConcensusGenome.py \
+python $toolDir/bin/FixAssembly_With_Reads.py \
 Reads2ConcensusGenome \
 -n $EBVgenome \
 --regions_to_mask $AnnotationDir/"$EBVgenome"_repeatMask.bed \

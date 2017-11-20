@@ -148,7 +148,7 @@ def Reads2ConcensusGenome(args):
 	aparser.add_argument("-n", "--nameChr", required=True, help='indexed contig bam file against reference (added by Cliff and Yasin)')
 	aparser.add_argument("-r", "--read_bam", required=True, help='indexed read bam file against reference')
 	aparser.add_argument("-f", "--fasta_reference", required=True, help='indexed read bam file against reference')
-#	aparser.add_argument( "--regions_to_mask", required=True, help='repetitive or other regions to exclude')
+	aparser.add_argument( "--regions_to_mask", required=True, help='repetitive or other regions to exclude')
 	aparser.add_argument("--verbose", required=False, action="store_true",help='provide additional output for debugging')
 	aparser.add_argument("-o","--outfilebase", help='output base path and filename for generated data')
 	##fix need to change the program name##
@@ -165,8 +165,8 @@ def Reads2ConcensusGenome(args):
 
 	###load mask regions ###
 
-	#tmp=FlexBed.readfile(args.regions_to_mask, args.nameChr)
-	#maskbed=FlexBed(tmp)
+	tmp=FlexBed.readfile(args.regions_to_mask, args.nameChr)
+	maskbed=FlexBed(tmp)
 	if args.read_bam:
 		readbam=pysam.Samfile(args.read_bam, 'rb')
 		print "Mapped # of reads:", readbam.mapped
@@ -178,48 +178,41 @@ def Reads2ConcensusGenome(args):
 			readcolnucleotides = []
 			deletedReads=[]
 #			print ("\ncoverage at base %s = %s" %(readcol.pos, readcol.n))
-			#here check to see if coverage is above a threshold:
-			if readcol.n < 5:
-					NucleotidesfromReads[readcol.reference_pos]='N'
-			else:
-					#else do this:
-					readdepth=0
-					for pileupread in readcol.pileups:
-			#		if not pileupread.is_del and not pileupread.is_refskip:
-		            # query position is None if is_del or is_refskip is set.
-						if pileupread.indel > 0:
-		#					print pileupread.indel, readcol.reference_pos, pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1]
-							readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1])
-						elif pileupread.is_del:
-							print readcol.reference_pos
-							print pileupread.query_position
-							deletedReads.append(readcol.reference_pos)
-							readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position])
-						else:
-							readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position])
-						readnucleotidecomposition=collections.Counter(readcolnucleotides)
-				#		print readnucleotidecomposition
-						ConsensusReadBase=''
-						if len(readnucleotidecomposition.most_common(2)) > 1:
-							if readnucleotidecomposition.most_common(2)[0][1] == readnucleotidecomposition.most_common(2)[1][1]:
-		#						print readcol.pos, readnucleotidecomposition.most_common(1)[0], readnucleotidecomposition.most_common(2)[1], refseqs[0].seq[readcol.reference_pos]
-								ConsensusReadBase=refseqs[0].seq[readcol.reference_pos]
-							else:
-								ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
-						else:
-							ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
-		#					print readcol.pos, readnucleotidecomposition.most_common(1)[0]
-						if readdepth == 1000:
-							break
-					if len(deletedReads) > readcol.n/2:
-		#				print len(deletedReads), readcol.reference_pos
-						ConsensusReadBase=''
-					else:
-						pass
+
+			for pileupread in readcol.pileups:
+	#		if not pileupread.is_del and not pileupread.is_refskip:
+            # query position is None if is_del or is_refskip is set.
+				if pileupread.indel > 0:
+#					print pileupread.indel, readcol.reference_pos, pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1]
+					readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1])
+				elif pileupread.is_del:
+					print readcol.reference_pos
+					print pileupread.query_position
+					deletedReads.append(readcol.reference_pos)
+					readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position])
+				else:
+					readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position])
+				readnucleotidecomposition=collections.Counter(readcolnucleotides)
 		#		print readnucleotidecomposition
-		#		print(readnucleotidecomposition.most_common(1))
-		#		print readcol.reference_pos, readnucleotidecomposition.most_common(1)[0][0]
-					NucleotidesfromReads[readcol.reference_pos]=ConsensusReadBase
+				ConsensusReadBase=''
+				if len(readnucleotidecomposition.most_common(2)) > 1:
+					if readnucleotidecomposition.most_common(2)[0][1] == readnucleotidecomposition.most_common(2)[1][1]:
+#						print readcol.pos, readnucleotidecomposition.most_common(1)[0], readnucleotidecomposition.most_common(2)[1], refseqs[0].seq[readcol.reference_pos]
+						ConsensusReadBase=refseqs[0].seq[readcol.reference_pos]
+					else:
+						ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
+				else:
+					ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
+#					print readcol.pos, readnucleotidecomposition.most_common(1)[0]
+			if len(deletedReads) > readcol.n/2:
+#				print len(deletedReads), readcol.reference_pos
+				ConsensusReadBase=''
+			else:
+				pass
+#		print readnucleotidecomposition
+#		print(readnucleotidecomposition.most_common(1))
+#		print readcol.reference_pos, readnucleotidecomposition.most_common(1)[0][0]
+			NucleotidesfromReads[readcol.reference_pos]=ConsensusReadBase
 
 #	print NucleotidesfromReads
 #				print ('\tbase in read %s = %s' %(pileupread.alignment.query_name,pileupread.alignment.query_sequence[pileupread.query_position]))
@@ -280,155 +273,155 @@ class ContigSegment():
 
 
 
-# ##----------------------------------------------------------------------------
-# class FlexBed:
-# 	"""flexible format bed class for in memory manipulations
-# 	note: beds are just lists but this provides static methods
-# 	to operate on such lists.
-# 	the only fixed data requirements are:
-# 	#col(1)seq/chr name
-# 	#col(2)begin position (zero coordinate)
-# 	#col(3)end position (one cooridnate)
-# 	#col(4)name
-# 	note: a bed is only defined seq:start:end:orient	(no more required)
-# 	seq
-# 	"""
-# 	def __init__(self,bed):
-# 		"""sets up a standard bed format file"""
-# 		self.bed=bed
-# 		self.current_positions=[0,0,0,0,0]
-# 		self.previous_sequences=[ [] ] * len(self.current_positions)
-# 		#0=seq,#1=start,#2=stop,#3=name, #4=score,#5=orientation
-# 	def bed_set (self, bed):
-# 		""" set the bed with in the bed object , provides no checking """
-# 		self.bed_clear()
-# 		self.bed=bed
-# 	def bed_clear(self):
-# 		self.bed=[]
-# 		self.current_positions= [position] * len(self.current_positions)
-# 		self.previous_sequences=[ [] ] * len(self.current_positions)
-#
-# 	def walker_reset(self,counter=None, position=0):
-# 		""" walker reset will reset the current_positions to index position zero
-# 		by default """
-# 		if counter!=None:
-# 			self.current_positions[counter]=position
-# 			self.previous_sequences[counter]=[]
-# 		else:
-# 			self.current_positions= [position] * len(self.current_positions)
-# 			self.previous_sequences=[ [] ] * len(self.current_positions)
-# 	def walker_get_counters(self):
-# 		return list(self.current_positions)
-# 	def bed_sort(self):
-# 		#TODO: need to actually add a sort function
-# 		if len(self.bed)==0:
-# 			return
-# 		from operator import itemgetter
-# 		#print self.bed[0:4]
-# 		#check to be sure that first element
-# 		self.bed.sort(key=itemgetter(0,1,2))
-# 		return
-#
-# 	def writefile(self,filename):
-# 		outfile=open(filename, 'w')
-# 		#print outfile, len(self.bed)
-# 		for i	in self.bed:
-# 			outline=outfile.write("\t".join([str(x) for x in i])+ "\n")
-# 		outfile.close()
-# 		return
-# 	def walker_step_upto(self, seq, start, counter=0):
-# 	#	for i in xrange (self.current_positions[counter],len(self.bed)):
-# 	#		feature=self.bed[i]
-# 	#		if seq!=feature[0]:
-# 				return
-#
-#
-# 	def walker_get_range(self, seq, start, end, counter=0,trim=False, \
-# 											 autoincrement=False):
-# 		"""walks along chromosome in zero one coordinates
-# 		this requires that comparisons are done in order
-# 		sorted sequences and shorted coordinates"""
-# 		newbed = []
-# 		for i in xrange ( self.current_positions[counter], len(self.bed) ):
-# 			feature=self.bed[i]
-# 			#print feature
-# 			if seq==feature[0] :	#bed feature on same seq as our range
-# 					if feature[2] < start: #bed feature less than start of range
-# 						if autoincrement==True:
-# 							self.current_positions[counter]=i+1 #so increment counter
-# 						continue #and go to next
-# 					newbegin=max(start,feature[1])
-# 					newend=min(end,feature[2])
-# 					if	newend-newbegin	> 0: #bed feature within our range
-# 						newbed.append(feature)
-# 						continue
-# 					else:	 # query feature << bed feature
-# 						break # already past it so stop
-# 			if seq < feature[0]:	 #stop and bail	current seq position is greater than seq
-# 				break
-# 		return newbed
-#
-# 		# return list (empty if nothing intersecting)
-# 		return []
-#
-# 	def calc_bp_overlap2interval(self,seq,begin,end ):
-# 		totalbases=0
-# 		for bedsegment in self.bed:
-# 			intersect=Interval.intersect2seq( seq,begin,end, bedsegment[0], bedsegment[1],bedsegment[2] )
-# 			#print intersect[3]
-# 			totalbases+=intersect[3]
-# 		return totalbases
-# 	@staticmethod
-# 	def readfile(filepath, check='chr', checknum=True, seq=0, start=1, stop=2,
-# 							 name=3,score=4,orient=5):
-# 		"""read a tab-delimited bed file and return bed list of lists"""
-#
-# 		lines = open(filepath, "r").readlines()
-# 		print lines
-# 		bed= FlexBed.readlist(lines, check=check,checknum=checknum,seq=seq,start=start,
-# 											stop=stop,name=name,score=score,orient=orient)
-# 		return bed
-#
-# 	@staticmethod
-# 	def readlist(textlist, check='chr',checknum=True, seq=0,
-# 							 start=1, stop=2,	name=3,score=4,orient=5):
-# 		bed=[]
-# 		#print "textlist",textlist
-# 		usedcolumns=[seq,start,stop,name,score,orient]
-# 		for line in textlist:
-# 			if line.startswith("#"):
-# 				continue
-# 			x=line.strip().split("\t")
-# 			y=[ x[seq],x[start],x[stop],None,None,None ]
-# 			if name!=None:
-# 				y[3]=x[name]
-# 			if score!=None:
-# 				y[4]=x[score]
-# 			if orient!=None:
-# 				y[5]=x[orient]
-# 			for i in xrange(0,len(x)):
-# 				if i in usedcolumns:
-# 					continue
-# 				else:
-# 					y.append(x[i])
-# 			if checknum:
-# 				y[1]=int(y[1])
-# 				y[2]=int(y[2])
-# 			if not x[0].startswith(check):
-# 				print >> sys.stderr, x[self.chrom]+ " is not a proper seq name with : ("+check+")"
-# 				sys.exit()
-# 			bed.append(y)
-# 		return bed
-#
-# 	#write a bed
-# 		#bed.split("\t")
-# 		#print bed
-# 	#		bed.check(check='chr',checknum=True)
-# 	#def bed.readlist(self,tab_delimited_list):
-# 		#"""parse list of tab-delimited text into bed list of lists"""
-# 	#tablist.strip()
-# 		#return
-# 	#def bed.check(tab_delmited_bed_list):
+##----------------------------------------------------------------------------
+class FlexBed:
+	"""flexible format bed class for in memory manipulations
+	note: beds are just lists but this provides static methods
+	to operate on such lists.
+	the only fixed data requirements are:
+	#col(1)seq/chr name
+	#col(2)begin position (zero coordinate)
+	#col(3)end position (one cooridnate)
+	#col(4)name
+	note: a bed is only defined seq:start:end:orient	(no more required)
+	seq
+	"""
+	def __init__(self,bed):
+		"""sets up a standard bed format file"""
+		self.bed=bed
+		self.current_positions=[0,0,0,0,0]
+		self.previous_sequences=[ [] ] * len(self.current_positions)
+		#0=seq,#1=start,#2=stop,#3=name, #4=score,#5=orientation
+	def bed_set (self, bed):
+		""" set the bed with in the bed object , provides no checking """
+		self.bed_clear()
+		self.bed=bed
+	def bed_clear(self):
+		self.bed=[]
+		self.current_positions= [position] * len(self.current_positions)
+		self.previous_sequences=[ [] ] * len(self.current_positions)
+
+	def walker_reset(self,counter=None, position=0):
+		""" walker reset will reset the current_positions to index position zero
+		by default """
+		if counter!=None:
+			self.current_positions[counter]=position
+			self.previous_sequences[counter]=[]
+		else:
+			self.current_positions= [position] * len(self.current_positions)
+			self.previous_sequences=[ [] ] * len(self.current_positions)
+	def walker_get_counters(self):
+		return list(self.current_positions)
+	def bed_sort(self):
+		#TODO: need to actually add a sort function
+		if len(self.bed)==0:
+			return
+		from operator import itemgetter
+		#print self.bed[0:4]
+		#check to be sure that first element
+		self.bed.sort(key=itemgetter(0,1,2))
+		return
+
+	def writefile(self,filename):
+		outfile=open(filename, 'w')
+		#print outfile, len(self.bed)
+		for i	in self.bed:
+			outline=outfile.write("\t".join([str(x) for x in i])+ "\n")
+		outfile.close()
+		return
+	def walker_step_upto(self, seq, start, counter=0):
+	#	for i in xrange (self.current_positions[counter],len(self.bed)):
+	#		feature=self.bed[i]
+	#		if seq!=feature[0]:
+				return
+
+
+	def walker_get_range(self, seq, start, end, counter=0,trim=False, \
+											 autoincrement=False):
+		"""walks along chromosome in zero one coordinates
+		this requires that comparisons are done in order
+		sorted sequences and shorted coordinates"""
+		newbed = []
+		for i in xrange ( self.current_positions[counter], len(self.bed) ):
+			feature=self.bed[i]
+			#print feature
+			if seq==feature[0] :	#bed feature on same seq as our range
+					if feature[2] < start: #bed feature less than start of range
+						if autoincrement==True:
+							self.current_positions[counter]=i+1 #so increment counter
+						continue #and go to next
+					newbegin=max(start,feature[1])
+					newend=min(end,feature[2])
+					if	newend-newbegin	> 0: #bed feature within our range
+						newbed.append(feature)
+						continue
+					else:	 # query feature << bed feature
+						break # already past it so stop
+			if seq < feature[0]:	 #stop and bail	current seq position is greater than seq
+				break
+		return newbed
+
+		# return list (empty if nothing intersecting)
+		return []
+
+	def calc_bp_overlap2interval(self,seq,begin,end ):
+		totalbases=0
+		for bedsegment in self.bed:
+			intersect=Interval.intersect2seq( seq,begin,end, bedsegment[0], bedsegment[1],bedsegment[2] )
+			#print intersect[3]
+			totalbases+=intersect[3]
+		return totalbases
+	@staticmethod
+	def readfile(filepath, check='chr', checknum=True, seq=0, start=1, stop=2,
+							 name=3,score=4,orient=5):
+		"""read a tab-delimited bed file and return bed list of lists"""
+
+		lines = open(filepath, "r").readlines()
+		print lines
+		bed= FlexBed.readlist(lines, check=check,checknum=checknum,seq=seq,start=start,
+											stop=stop,name=name,score=score,orient=orient)
+		return bed
+
+	@staticmethod
+	def readlist(textlist, check='chr',checknum=True, seq=0,
+							 start=1, stop=2,	name=3,score=4,orient=5):
+		bed=[]
+		#print "textlist",textlist
+		usedcolumns=[seq,start,stop,name,score,orient]
+		for line in textlist:
+			if line.startswith("#"):
+				continue
+			x=line.strip().split("\t")
+			y=[ x[seq],x[start],x[stop],None,None,None ]
+			if name!=None:
+				y[3]=x[name]
+			if score!=None:
+				y[4]=x[score]
+			if orient!=None:
+				y[5]=x[orient]
+			for i in xrange(0,len(x)):
+				if i in usedcolumns:
+					continue
+				else:
+					y.append(x[i])
+			if checknum:
+				y[1]=int(y[1])
+				y[2]=int(y[2])
+			if not x[0].startswith(check):
+				print >> sys.stderr, x[self.chrom]+ " is not a proper seq name with : ("+check+")"
+				sys.exit()
+			bed.append(y)
+		return bed
+
+	#write a bed
+		#bed.split("\t")
+		#print bed
+	#		bed.check(check='chr',checknum=True)
+	#def bed.readlist(self,tab_delimited_list):
+		#"""parse list of tab-delimited text into bed list of lists"""
+	#tablist.strip()
+		#return
+	#def bed.check(tab_delmited_bed_list):
 
 ###THIS is now used in my code ###
 class	Interval:
