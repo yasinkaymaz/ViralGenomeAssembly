@@ -186,7 +186,7 @@ def Reads2ConcensusGenome(args):
 		else:
 			ConsSeq+='N'
 #			print "N"
-	consseqfile.write(">FixedAssemblySeq"+"\n")
+	consseqfile.write('>'+args.outfilebase +"_Fixed"+ "\n")
 	consseqfile.write(ConsSeq+"\n")
 	consseqfile.close()
 	print round(time.time() - start,1)

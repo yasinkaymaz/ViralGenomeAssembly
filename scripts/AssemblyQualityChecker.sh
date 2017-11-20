@@ -8,6 +8,7 @@ InputAssembly=$1
 fastq_1=$2
 fastq_2=$3
 SAMPLE_NAME=$4
+type=$5
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
@@ -137,16 +138,16 @@ java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
 $PICARDPATH/picard.jar \
 BuildBamIndex \
 INPUT="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam
-
-samtools mpileup -uf $InputAssembly "$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam > $SAMPLE_NAME.AssemblyRawcalls.bcf
-/project/umw_jeffrey_bailey/share/bin_sync/samtools-0.1.19/bcftools/bcftools view -v $SAMPLE_NAME.AssemblyRawcalls.bcf > $SAMPLE_NAME.Assembly.variants.vcf
-
-cat $SAMPLE_NAME.Assembly.variants.vcf| \
-grep -v "#"|awk '($6 > 100)'|awk 'NF { info=$8; gsub(/.*;DP4=|;MQ=.*/, "", info); split(info, a, /,/); print $0 "\t" a[1]"\t"a[2]"\t"a[3]"\t"a[4]}' |\
-awk '{if($NF+$(NF-1) != 0) print $1"_"$2"_"$4"_"$5 "\t" ($(NF)+$(NF-1)+$(NF-2)+$(NF-3)) "\t" ($NF+$(NF-1)) / ($(NF)+$(NF-1)+$(NF-2)+$(NF-3))}'|\
-awk '($2 > 99)'|sed 's/,/_/g' > $SAMPLE_NAME.AssemblyMinorfreq.txt
-
-Rscript $toolDir/bin/MAF_plot.R $SAMPLE_NAME $SAMPLE_NAME.AssemblyMinorfreq.txt
+#
+# samtools mpileup -uf $InputAssembly "$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam > $SAMPLE_NAME.AssemblyRawcalls.bcf
+# /project/umw_jeffrey_bailey/share/bin_sync/samtools-0.1.19/bcftools/bcftools view -v $SAMPLE_NAME.AssemblyRawcalls.bcf > $SAMPLE_NAME.Assembly.variants.vcf
+#
+# cat $SAMPLE_NAME.Assembly.variants.vcf| \
+# grep -v "#"|awk '($6 > 100)'|awk 'NF { info=$8; gsub(/.*;DP4=|;MQ=.*/, "", info); split(info, a, /,/); print $0 "\t" a[1]"\t"a[2]"\t"a[3]"\t"a[4]}' |\
+# awk '{if($NF+$(NF-1) != 0) print $1"_"$2"_"$4"_"$5 "\t" ($(NF)+$(NF-1)+$(NF-2)+$(NF-3)) "\t" ($NF+$(NF-1)) / ($(NF)+$(NF-1)+$(NF-2)+$(NF-3))}'|\
+# awk '($2 > 99)'|sed 's/,/_/g' > $SAMPLE_NAME.AssemblyMinorfreq.txt
+#
+# Rscript $toolDir/bin/MAF_plot.R $SAMPLE_NAME $SAMPLE_NAME.AssemblyMinorfreq.txt
 
 else
 echo "no pileup"
@@ -156,17 +157,16 @@ fi
 if [ "$FixAssemblyWithReads" = "1" ]
 then
 module load python/2.7.5_packages/biopython/1.68
-#fastaName=`head -1 ../JB_ContigMerge_v3/BL614_FNAPairedPlasma_PCRsWGA_EBV_type1_genome.fa|sed 's/>//g'`
-#sed 's/'$EBVgenome'/'$fastaName'/g' ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/NC_007605_repeatMask.bed > tmp.repeatfile.tmp
 
+#Fix the contigs from low coverage regions and mixed genotypes.
 python $toolDir/bin/FixAssembly_With_Reads.py \
 Reads2ConcensusGenome \
--n $EBVgenome \
---regions_to_mask $AnnotationDir/"$EBVgenome"_repeatMask.bed \
--r "$SAMPLE_NAME"_$RegionName.bam \
--f $INDEXGENOMESDIR/"$EBVgenome".fa \
--o "$SAMPLE_NAME"_EBV_"$Type"_$RegionName
+-r "$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam \
+-f $InputAssembly \
+-o ${InputAssembly%.fa}_fixed_assembly
 
+#Map the fixed assembly contigs back to reference genome.
+$toolDir/map_and_index_genomeFasta.sh $type ${InputAssembly%.fa}_fixed_assembly_genome.fa  ${InputAssembly%.fa}_fixed_assembly
 
 else
 echo "no read cons."
