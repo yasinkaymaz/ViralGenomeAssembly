@@ -2,7 +2,6 @@
 
 __requires__='pysam==0.8.1'
 import pkg_resources
-print pysam.__version__
 
 ###standard modules
 import argparse #parse initial arguements from command line
@@ -20,6 +19,8 @@ from collections import defaultdict, Counter
 import collections
 #key science modules
 import pysam #for reading sam files as well as other files
+print pysam.__version__
+
 import numpy as np
 import pybedtools as pybt
 #import numpy.string_
