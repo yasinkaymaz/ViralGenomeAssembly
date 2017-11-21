@@ -124,3 +124,4 @@ Rscript $toolDir/utils/MergeTranscriptsToGenes.R merged.kallisto.expression_"$Ty
 #cat /n/home13/yasinkaymaz/LabSpace/results/test/merged.kallisto.expression_${value}.txt|sed 's/scRNAseq_paired_//g'|sed 's/.genes.results//g'|cut -d "_" -f2- > /n/home13/yasinkaymaz/LabSpace/results/test/Merged.kallisto.Expression_${value}.txt
 echo "...";
 done
+done
