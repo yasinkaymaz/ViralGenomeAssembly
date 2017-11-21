@@ -1,0 +1,679 @@
+113 0
+A73.1
+A73
+NC_007605
++ 1173
+4 156526 156737 156846 156928 158625 158751 159781 160531
+gene_id "A73"; transcript_id "A73.1"; exon_number 1
+A73.2
+A73
+NC_007605
++ 381
+4 156652 156737 156846 156928 158625 158751 159781 159865
+gene_id "A73"; transcript_id "A73.2"; exon_number 1
+BALF1
+BALF1
+NC_007605
+- 598
+1 164387 164984
+gene_id "BALF1"; transcript_id "BALF1"; exon_number 1
+BALF2
+BALF2
+NC_007605
+- 3808
+1 160549 164356
+gene_id "BALF2"; transcript_id "BALF2"; exon_number 1
+BALF3
+BALF3
+NC_007605
+- 4666
+1 156243 160908
+gene_id "BALF3"; transcript_id "BALF3"; exon_number 1
+BALF4
+BALF4
+NC_007605
+- 2670
+1 156243 158912
+gene_id "BALF4"; transcript_id "BALF4"; exon_number 1
+BALF5
+BALF5
+NC_007605
+- 4918
+1 151371 156288
+gene_id "BALF5"; transcript_id "BALF5"; exon_number 1
+BARF0
+BARF0
+NC_007605
++ 1416
+1 159121 160536
+gene_id "BARF0"; transcript_id "BARF0"; exon_number 1
+BARF1
+BARF1
+NC_007605
++ 706
+1 165007 165712
+gene_id "BARF1"; transcript_id "BARF1"; exon_number 1
+BBLF1
+BBLF1
+NC_007605
+- 586
+1 108458 109043
+gene_id "BBLF1"; transcript_id "BBLF1"; exon_number 1
+BBLF2/BBLF3
+BBLF2/BBLF3
+NC_007605
+- 2221
+2 104402 105098 105227 106750
+gene_id "BBLF2/BBLF3"; transcript_id "BBLF2/BBLF3"; exon_number 1
+BBLF4
+BBLF4
+NC_007605
+- 2436
+1 99536 101971
+gene_id "BBLF4"; transcript_id "BBLF4"; exon_number 1
+BBRF1
+BBRF1
+NC_007605
++ 2916
+1 101587 104502
+gene_id "BBRF1"; transcript_id "BBRF1"; exon_number 1
+BBRF2
+BBRF2
+NC_007605
++ 837
+1 103660 104496
+gene_id "BBRF2"; transcript_id "BBRF2"; exon_number 1
+BBRF3
+BBRF3
+NC_007605
++ 1384
+1 106692 108075
+gene_id "BBRF3"; transcript_id "BBRF3"; exon_number 1
+BCLT1
+BCLT1
+NC_007605
+- 305
+1 5867 6171
+gene_id "BCLT1"; transcript_id "BCLT1"; exon 1
+BCRF1.1
+BCRF1
+NC_007605
++ 633
+1 9630 10262
+gene_id "BCRF1"; transcript_id "BCRF1.1"; exon_number 1
+BCRT2
+BCRT2
+NC_007605
++ 340
+1 6136 6475
+gene_id "BCRT2"; transcript_id "BCRT2"; exon 1
+BDLF1
+BDLF1
+NC_007605
+- 3034
+1 118065 121098
+gene_id "BDLF1"; transcript_id "BDLF1"; exon_number 1
+BDLF2
+BDLF2
+NC_007605
+- 2124
+1 118065 120188
+gene_id "BDLF2"; transcript_id "BDLF2"; exon_number 1
+BDLF3
+BDLF3
+NC_007605
+- 752
+1 118065 118816
+gene_id "BDLF3"; transcript_id "BDLF3"; exon_number 1
+BDLF3.5
+BDLF3.5
+NC_007605
+- 3827
+1 113190 117016
+gene_id "BDLF3.5"; transcript_id "BDLF3.5"; exon_number 1
+BDLF4
+BDLF4
+NC_007605
+- 3577
+1 113190 116766
+gene_id "BDLF4"; transcript_id "BDLF4"; exon_number 1
+BFLF1
+BFLF1
+NC_007605
+- 2591
+1 43690 46280
+gene_id "BFLF1"; transcript_id "BFLF1"; exon_number 1
+BFLF2
+BFLF2
+NC_007605
+- 1104
+1 43690 44793
+gene_id "BFLF2"; transcript_id "BFLF2"; exon_number 1
+BFRF1
+BFRF1
+NC_007605
++ 3244
+1 46543 49786
+gene_id "BFRF1"; transcript_id "BFRF1"; exon_number 1
+BFRF1A
+BFRF1A
+NC_007605
++ 3552
+1 46235 49786
+gene_id "BFRF1A"; transcript_id "BFRF1A"; exon_number 1
+BFRF2
+BFRF2
+NC_007605
++ 2268
+1 47519 49786
+gene_id "BFRF2"; transcript_id "BFRF2"; exon_number 1
+BFRF3
+BFRF3
+NC_007605
++ 569
+1 49218 49786
+gene_id "BFRF3"; transcript_id "BFRF3"; exon_number 1
+BGLF1
+BGLF1
+NC_007605
+- 2955
+1 113190 116144
+gene_id "BGLF1"; transcript_id "BGLF1"; exon_number 1
+BGLF2
+BGLF2
+NC_007605
+- 1452
+1 113190 114641
+gene_id "BGLF2"; transcript_id "BGLF2"; exon_number 1
+BGLF3
+BGLF3
+NC_007605
+- 4368
+1 108458 112825
+gene_id "BGLF3"; transcript_id "BGLF3"; exon_number 1
+BGLF3.5
+BGLF3.5
+NC_007605
+- 3372
+1 108458 111829
+gene_id "BGLF3.5"; transcript_id "BGLF3.5"; exon_number 1
+BGLF4
+BGLF4
+NC_007605
+- 2869
+1 108458 111326
+gene_id "BGLF4"; transcript_id "BGLF4"; exon_number 1
+BGLF5
+BGLF5
+NC_007605
+- 1596
+1 108458 110053
+gene_id "BGLF5"; transcript_id "BGLF5"; exon_number 1
+BGRF1/BDRF1
+BGRF1/BDRF1
+NC_007605
++ 2073
+2 112650 113585 116927 118063
+gene_id "BGRF1/BDRF1"; transcript_id "BGRF1/BDRF1"; exon_number 1
+BHLF1
+BHLF1
+NC_007605
+- 2517
+1 38013 40529
+gene_id "BHLF1"; transcript_id "BHLF1"; exon_number 1
+BHRF1
+BHRF1
+NC_007605
++ 1782
+1 41470 43251
+gene_id "BHRF1"; transcript_id "BHRF1"; exon_number 1
+BILF1
+BILF1
+NC_007605
+- 3618
+1 149024 152641
+gene_id "BILF1"; transcript_id "BILF1"; exon_number 1
+BILF2
+BILF2
+NC_007605
+- 820
+1 137463 138282
+gene_id "BILF2"; transcript_id "BILF2"; exon_number 1
+BKRF2
+BKRF2
+NC_007605
++ 1889
+1 97616 99504
+gene_id "BKRF2"; transcript_id "BKRF2"; exon_number 1
+BKRF3
+BKRF3
+NC_007605
++ 1441
+1 98064 99504
+gene_id "BKRF3"; transcript_id "BKRF3"; exon_number 1
+BKRF4
+BKRF4
+NC_007605
++ 660
+1 98846 99505
+gene_id "BKRF4"; transcript_id "BKRF4"; exon_number 1
+BLLF1.1
+BLLF1
+NC_007605
+- 2774
+1 77131 79904
+gene_id "BLLF1"; transcript_id "BLLF1.1"; exon_number 1
+BLLF1.2
+BLLF1
+NC_007605
+- 2184
+2 77131 77774 78365 79904
+gene_id "BLLF1"; transcript_id "BLLF1.2"; exon_number 1
+BLLF2
+BLLF2
+NC_007605
+- 644
+1 77131 77774
+gene_id "BLLF2"; transcript_id "BLLF2"; exon_number 1
+BLLF3
+BLLF3
+NC_007605
+- 913
+1 75319 76231
+gene_id "BLLF3"; transcript_id "BLLF3"; exon_number 1
+BLRF1
+BLRF1
+NC_007605
++ 912
+1 76218 77129
+gene_id "BLRF1"; transcript_id "BLRF1"; exon_number 1
+BLRF2
+BLRF2
+NC_007605
++ 556
+1 76574 77129
+gene_id "BLRF2"; transcript_id "BLRF2"; exon_number 1
+BMRF1
+BMRF1
+NC_007605
++ 2366
+1 67551 69916
+gene_id "BMRF1"; transcript_id "BMRF1"; exon_number 1
+BMRF2
+BMRF2
+NC_007605
++ 1427
+1 68490 69916
+gene_id "BMRF2"; transcript_id "BMRF2"; exon_number 1
+BNLF2a
+BNLF2a
+NC_007605
+- 586
+1 166482 167067
+gene_id "BNLF2a"; transcript_id "BNLF2a"; exon_number 1
+BNLF2b
+BNLF2b
+NC_007605
+- 355
+1 166482 166836
+gene_id "BNLF2b"; transcript_id "BNLF2b"; exon_number 1
+BNRF1.1
+BNRF1
+NC_007605
++ 4167
+1 1690 5856
+gene_id "BNRF1"; transcript_id "BNRF1.1"; exon_number 1
+BOLF1
+BOLF1
+NC_007605
+- 13261
+1 49774 63034
+gene_id "BOLF1"; transcript_id "BOLF1"; exon_number 1
+BORF1
+BORF1
+NC_007605
++ 3873
+1 62728 66600
+gene_id "BORF1"; transcript_id "BORF1"; exon_number 1
+BORF2
+BORF2
+NC_007605
++ 2721
+1 63880 66600
+gene_id "BORF2"; transcript_id "BORF2"; exon_number 1
+BPLF1
+BPLF1
+NC_007605
+- 10131
+1 49774 59904
+gene_id "BPLF1"; transcript_id "BPLF1"; exon_number 1
+BRLF1.1
+BRLF1
+NC_007605
+- 2908
+4 89838 90053 90138 90242 90367 92897 93838 93893
+gene_id "BRLF1"; transcript_id "BRLF1.1"; exon_number 1
+BRLF1.2
+BRLF1
+NC_007605
+- 1818
+1 91078 92895
+gene_id "BRLF1"; transcript_id "BRLF1.2"; exon_number 1
+BRRF1
+BRRF1
+NC_007605
++ 1101
+1 92727 93827
+gene_id "BRRF1"; transcript_id "BRRF1"; exon_number 1
+BRRF2
+BRRF2
+NC_007605
++ 1678
+1 93954 95631
+gene_id "BRRF2"; transcript_id "BRRF2"; exon_number 1
+BSLF1
+BSLF1
+NC_007605
+- 4141
+1 70453 74593
+gene_id "BSLF1"; transcript_id "BSLF1"; exon_number 1
+BSLF2/BMLF1
+BSLF2/BMLF1
+NC_007605
+- 1511
+2 70453 71834 71940 72068
+gene_id "BSLF2/BMLF1"; transcript_id "BSLF2/BMLF1"; exon_number 1
+BSRF1
+BSRF1
+NC_007605
++ 724
+1 74593 75316
+gene_id "BSRF1"; transcript_id "BSRF1"; exon_number 1
+BTRF1
+BTRF1
+NC_007605
++ 1272
+1 127415 128686
+gene_id "BTRF1"; transcript_id "BTRF1"; exon_number 1
+BVLF1
+BVLF1
+NC_007605
+- 997
+1 134631 135627
+gene_id "BVLF1"; transcript_id "BVLF1"; exon_number 1
+BVRF1
+BVRF1
+NC_007605
++ 1875
+1 133012 134886
+gene_id "BVRF1"; transcript_id "BVRF1"; exon_number 1
+BVRF2
+BVRF2
+NC_007605
++ 2025
+1 135431 137455
+gene_id "BVRF2"; transcript_id "BVRF2"; exon_number 1
+BWRF1.1
+BWRF1
+NC_007605
++ 1152
+1 12541 13692
+gene_id "BWRF1"; transcript_id "BWRF1.1"; exon_number 1
+BWRF1.2
+BWRF1
+NC_007605
++ 1152
+1 15613 16764
+gene_id "BWRF1"; transcript_id "BWRF1.2"; exon_number 1
+BWRF1.3
+BWRF1
+NC_007605
++ 1152
+1 18685 19836
+gene_id "BWRF1"; transcript_id "BWRF1.3"; exon_number 1
+BWRF1.4
+BWRF1
+NC_007605
++ 1152
+1 21757 22908
+gene_id "BWRF1"; transcript_id "BWRF1.4"; exon_number 1
+BWRF1.5
+BWRF1
+NC_007605
++ 1152
+1 24829 25980
+gene_id "BWRF1"; transcript_id "BWRF1.5"; exon_number 1
+BWRF1.6
+BWRF1
+NC_007605
++ 1152
+1 27901 29052
+gene_id "BWRF1"; transcript_id "BWRF1.6"; exon_number 1
+BWRF1.7
+BWRF1
+NC_007605
++ 1152
+1 30973 32124
+gene_id "BWRF1"; transcript_id "BWRF1.7"; exon_number 1
+BWRF1.8
+BWRF1
+NC_007605
++ 1152
+1 34045 35196
+gene_id "BWRF1"; transcript_id "BWRF1.8"; exon_number 1
+BXLF1
+BXLF1
+NC_007605
+- 4240
+1 128607 132846
+gene_id "BXLF1"; transcript_id "BXLF1"; exon_number 1
+BXLF2
+BXLF2
+NC_007605
+- 2415
+1 128607 131021
+gene_id "BXLF2"; transcript_id "BXLF2"; exon_number 1
+BXRF1
+BXRF1
+NC_007605
++ 2316
+1 132570 134885
+gene_id "BXRF1"; transcript_id "BXRF1"; exon_number 1
+BZLF1.1
+BZLF1
+NC_007605
+- 861
+3 89838 90053 90138 90242 90367 90906
+gene_id "BZLF1"; transcript_id "BZLF1.1"; exon_number 1
+BZLF1.2
+BZLF1
+NC_007605
+- 738
+3 89922 90053 90138 90242 90367 90867
+gene_id "BZLF1"; transcript_id "BZLF1.2"; exon_number 1
+BZLF2
+BZLF2
+NC_007605
+- 672
+1 89157 89828
+gene_id "BZLF2"; transcript_id "BZLF2"; exon_number 1
+BaRF1
+BaRF1
+NC_007605
++ 3402
+1 66515 69916
+gene_id "BaRF1"; transcript_id "BaRF1"; exon_number 1
+BcLF1
+BcLF1
+NC_007605
+- 4405
+1 121018 125422
+gene_id "BcLF1"; transcript_id "BcLF1"; exon_number 1
+BcRF1
+BcRF1
+NC_007605
++ 3615
+1 125072 128686
+gene_id "BcRF1"; transcript_id "BcRF1"; exon_number 1
+BdRF1
+BdRF1
+NC_007605
++ 1126
+1 136330 137455
+gene_id "BdRF1"; transcript_id "BdRF1"; exon_number 1
+EBER1
+EBER1
+NC_007605
++ 167
+1 6629 6795
+gene_id "EBER1"; transcript_id "EBER1"; exon_number 1
+EBER2
+EBER2
+NC_007605
++ 173
+1 6956 7128
+gene_id "EBER2"; transcript_id "EBER2"; exon_number 1
+EBNA-1.1
+EBNA-1
+NC_007605
++ 4257
+21 11336 11479 11626 11657 14554 14619 14701 14832 17626 17691 17773 17904 20698 20763 20845 20976 23770 23835 23917 24048 26842 26907 26989 27120 29914 29979 30061 30192 32986 33051 33133 33264 35473 35505 35590 35711 55190 55361 86076 86442 95654 97654
+gene_id "EBNA-1"; transcript_id "EBNA-1.1"; exon_number 1
+EBNA-1.2
+EBNA-1
+NC_007605
++ 2210
+3 50134 50170 55190 55361 95654 97654
+gene_id "EBNA-1"; transcript_id "EBNA-1.2"; exon_number 1
+EBNA-1.3
+EBNA-1
+NC_007605
++ 1926
+1 95662 97587
+gene_id "EBNA-1"; transcript_id "EBNA-1.3"; exon_number 1
+EBNA-2.1
+EBNA-2
+NC_007605
++ 3364
+19 11336 11479 11626 11657 14554 14619 14701 14832 17626 17691 17773 17904 20698 20763 20845 20976 23770 23835 23917 24048 26842 26907 26989 27120 29914 29979 30061 30192 32986 33051 33133 33264 35473 35505 35590 35711 36098 37744
+gene_id "EBNA-2"; transcript_id "EBNA-2.1"; exon_number 1
+EBNA-2.2
+EBNA-2
+NC_007605
++ 1464
+1 36216 37679
+gene_id "EBNA-2"; transcript_id "EBNA-2.2"; exon_number 1
+EBNA-3A
+EBNA-3A
+NC_007605
++ 2920
+2 79955 80293 80382 82962
+gene_id "EBNA-3A"; transcript_id "EBNA-3A"; exon_number 1
+EBNA-3B
+EBNA-3B
+NC_007605
++ 6385
+2 83020 83421 83500 89482
+gene_id "EBNA-3B"; transcript_id "EBNA-3B"; exon_number 1
+EBNA-3C
+EBNA-3C
+NC_007605
++ 3333
+2 86076 86442 86517 89482
+gene_id "EBNA-3C"; transcript_id "EBNA-3C"; exon_number 1
+EBNA-LP.1
+EBNA-LP
+NC_007605
++ 1803
+19 14384 14410 14559 14619 14701 14832 17626 17691 17773 17904 20698 20763 20845 20976 23770 23835 23917 24048 26842 26907 26989 27120 29914 29979 30061 30192 32986 33051 33133 33264 35473 35505 35590 35711 36098 36156 37564 37744
+gene_id "EBNA-LP"; transcript_id "EBNA-LP.1"; exon_number 1
+EBNA-LP.2
+EBNA-LP
+NC_007605
++ 1521
+17 14409 14410 14559 14619 14701 14832 17626 17691 17773 17904 20698 20763 20845 20976 23770 23835 23917 24048 26842 26907 26989 27120 29914 29979 30061 30192 32986 33051 33133 33264 35473 35505 35590 35694
+gene_id "EBNA-LP"; transcript_id "EBNA-LP.2"; exon_number 1
+LF1
+LF1
+NC_007605
+- 2671
+1 149024 151694
+gene_id "LF1"; transcript_id "LF1"; exon_number 1
+LF2
+LF2
+NC_007605
+- 1394
+1 149024 150417
+gene_id "LF2"; transcript_id "LF2"; exon_number 1
+LF3
+LF3
+NC_007605
+- 3143
+1 140569 143711
+gene_id "LF3"; transcript_id "LF3"; exon_number 1
+LMP-1.1
+LMP-1
+NC_007605
+- 2420
+3 166483 168507 168584 168670 168749 169056
+gene_id "LMP-1"; transcript_id "LMP-1.1"; exon_number 1
+LMP-1.2
+LMP-1
+NC_007605
+- 1161
+3 167702 168507 168584 168670 168749 169016
+gene_id "LMP-1"; transcript_id "LMP-1.2"; exon_number 1
+LMP-2A.1
+LMP-2A
+NC_007605
++ 419
+1 166040 166458
+gene_id "LMP-2A"; transcript_id "LMP-2A.1"; exon_number 1
+LMP-2A.2
+LMP-2A
+NC_007605
++ 1589
+8 58 272 360 458 540 788 871 951 1026 1196 1280 1495 1574 1682 5408 5856
+gene_id "LMP-2A"; transcript_id "LMP-2A.2"; exon_number 1
+LMP-2A.3
+LMP-2A
+NC_007605
++ 356
+1 166103 166458
+gene_id "LMP-2A"; transcript_id "LMP-2A.3"; exon_number 1
+LMP-2A.4
+LMP-2A
+NC_007605
++ 1138
+7 58 272 360 458 540 788 871 951 1026 1196 1280 1495 1574 1680
+gene_id "LMP-2A"; transcript_id "LMP-2A.4"; exon_number 1
+LMP-2B.1
+LMP-2B
+NC_007605
++ 155
+1 169294 169448
+gene_id "LMP-2B"; transcript_id "LMP-2B.1"; exon_number 1
+LMP-2B.2
+LMP-2B
+NC_007605
++ 1589
+8 58 272 360 458 540 788 871 951 1026 1196 1280 1495 1574 1682 5408 5856
+gene_id "LMP-2B"; transcript_id "LMP-2B.2"; exon_number 1
+LMP-2B.3
+LMP-2B
+NC_007605
++ 1137
+7 59 272 360 458 540 788 871 951 1026 1196 1280 1495 1574 1680
+gene_id "LMP-2B"; transcript_id "LMP-2B.3"; exon_number 1
+RPMS1.1
+RPMS1
+NC_007605
++ 3989
+7 138352 138480 149581 149712 149923 150077 150237 150348 155267 156737 156846 156928 158625 160531
+gene_id "RPMS1"; transcript_id "RPMS1.1"; exon_number 1
+RPMS1.39
+RPMS1
+NC_007605
++ 399
+2 150236 150348 155267 155552
+gene_id "RPMS1"; transcript_id "RPMS1.39"; exon_number 1
