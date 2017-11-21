@@ -14,7 +14,7 @@ do
   if [ "$type" = "1" ]
   then
   echo "Genome is Type I"
-  Type='type1'
+  Type='Type1'
   EBVgenome="NC_007605"
   VfatDIR="$toolDir/resources/Vfat"
   RefDIR="$toolDir/resources/Annotation/Type1/Vfat/EBV"
@@ -22,7 +22,7 @@ do
   EBVINDEX="$toolDir/resources/RNAseq/kallisto/Type1/EBV_transcripts"
   else
   echo "Genome is Type II"
-  Type='type2'
+  Type='Type2'
   EBVgenome="NC_009334"
   VfatDIR="$toolDir/resources/Vfat/Type2"
   RefDIR="$toolDir/resources/Annotation/Type2/Vfat/EBV"
