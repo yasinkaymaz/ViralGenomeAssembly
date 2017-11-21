@@ -3,7 +3,7 @@
 #form=isoforms
 form=genes
 
-toolDir='/home/yk42w/codes/RNAseq_tools'
+toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 
 #Merge RSEM output files:
 utils=/n/home13/yasinkaymaz/codes/utils
