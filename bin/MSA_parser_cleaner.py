@@ -7,7 +7,9 @@ import pandas  as pd
 import sys
 from Bio import AlignIO
 import Bio.Align
-
+dir = os.path.dirname(__file__)
+print os.getcwd()
+print dir
 alndata = []
 #sys.argv[1] -> sample 1
 #sys.argv[2] -> sample 2
@@ -25,10 +27,10 @@ Ref=''
 #Make sure that repeat files are in the same directory
 if sys.argv[4] == '1':
 	Ref='NC_007605'
-	Repeat_inputFile = "NC_007605_miropeat_default_run_repeats.bed"
+	Repeat_inputFile = '%(directory)s/../resources/Annotation/Type1/NC_007605_miropeat_default_run_repeats.bed' %{"directory":dir}
 else:
 	Ref='NC_009334'
-	Repeat_inputFile = "NC_009334_miropeat_default_run_repeats.bed"
+	Repeat_inputFile = '%(directory)s/../resources/Annotation/Type2/NC_009334_miropeat_default_run_repeats.bed' %{"directory":dir}
 
 #Find the genomic locations fall into miropeats repeat regions
 RepeatList = []

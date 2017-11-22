@@ -1,0 +1,10 @@
+#!/bin/bash
+
+toolDir='/home/yk42w/codes/ViralGenomeAssembly'
+
+for genome in `grep ">" sequences.aln.fasta|grep -v NC_|sed 's/>//g'`;
+do
+  echo $genome;
+  $toolDir/bin/MSA_parser_cleaner.py $genome NC_007605 sequences.aln.fasta 1;
+  $toolDir/bin/MSA_parser_cleaner.py $genome NC_009334 sequences.aln.fasta 2;  
+done
