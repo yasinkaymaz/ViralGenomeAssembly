@@ -2,7 +2,7 @@
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 module load python/2.7.5
-
+module load python/2.7.9_packages/pandas/0.17.1
 for genome in `grep ">" sequences.aln.fasta|grep -v NC_|sed 's/>//g'`;
 do
   echo $genome;
