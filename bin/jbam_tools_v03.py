@@ -206,6 +206,10 @@ def ref_merge_contigs(args):
 			for pileupread in readcol.pileups:
 	#		if not pileupread.is_del and not pileupread.is_refskip:
             # query position is None if is_del or is_refskip is set.
+				readdepth=readdepth+1
+				#Use a threshold for depth of coverage for sampling nucleotide composition.
+				if readdepth == 1000:
+					break
 
 				if pileupread.indel > 0:
 #					print pileupread.indel, readcol.reference_pos, pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1]
@@ -229,10 +233,6 @@ def ref_merge_contigs(args):
 				else:
 					ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
 #					print readcol.pos, readnucleotidecomposition.most_common(1)[0]
-				readdepth=readdepth+1
-				#Use a threshold for depth of coverage for sampling nucleotide composition.
-				if readdepth == 1000:
-					break
 			if len(deletedReads) > readcol.n/2:
 #				print len(deletedReads), readcol.reference_pos
 				ConsensusReadBase=''
