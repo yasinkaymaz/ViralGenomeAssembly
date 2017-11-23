@@ -112,7 +112,6 @@ def Reads2ConcensusGenome(args):
 	newref=[None] * (len(refseqs[0].seq)+1)
 
 	###load mask regions ###
-
 	#tmp=FlexBed.readfile(args.regions_to_mask, args.nameChr)
 	#maskbed=FlexBed(tmp)
 	if args.read_bam:
@@ -132,15 +131,20 @@ def Reads2ConcensusGenome(args):
 			else:
 					#else do this:
 					readdepth=0
+					starttime = time.time()
+
 					for pileupread in readcol.pileups:
 			#		if not pileupread.is_del and not pileupread.is_refskip:
 		            # query position is None if is_del or is_refskip is set.
+						readdepth=readdepth+1
+						if readdepth == 1000:
+							break
 						if pileupread.indel > 0:
 		#					print pileupread.indel, readcol.reference_pos, pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1]
 							readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position:pileupread.query_position+pileupread.indel+1])
 						elif pileupread.is_del:
-							print readcol.reference_pos
-							print pileupread.query_position
+					#		print readcol.reference_pos
+					#		print pileupread.query_position
 							deletedReads.append(readcol.reference_pos)
 							readcolnucleotides.append(pileupread.alignment.query_sequence[pileupread.query_position])
 						else:
@@ -157,8 +161,7 @@ def Reads2ConcensusGenome(args):
 						else:
 							ConsensusReadBase=readnucleotidecomposition.most_common(1)[0][0]
 		#					print readcol.pos, readnucleotidecomposition.most_common(1)[0]
-						if readdepth == 1000:
-							break
+
 					if len(deletedReads) > readcol.n/2:
 		#				print len(deletedReads), readcol.reference_pos
 						ConsensusReadBase=''
@@ -167,10 +170,13 @@ def Reads2ConcensusGenome(args):
 		#		print readnucleotidecomposition
 		#		print(readnucleotidecomposition.most_common(1))
 		#		print readcol.reference_pos, readnucleotidecomposition.most_common(1)[0][0]
+		#			print ("coverage at base %s = %s" %(readcol.pos, readcol.n)), ConsensusReadBase, round(time.time() - starttime, 1)
+
 					NucleotidesfromReads[readcol.reference_pos]=ConsensusReadBase
 
 #	print NucleotidesfromReads
 #				print ('\tbase in read %s = %s' %(pileupread.alignment.query_name,pileupread.alignment.query_sequence[pileupread.query_position]))
+	#print round(time.time() - start,1)
 
 	start = time.time()
 	consseqfile = open ( args.outfilebase + "_genome.fa", 'w')
