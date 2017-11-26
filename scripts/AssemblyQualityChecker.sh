@@ -20,8 +20,8 @@ module load java/1.8.0_77
 ################################################
 ############# Main Control Panel: ##############
 ################################################
-Reads2Assembly=0
-FixAssemblyWithReads=1
+Reads2Assembly=1
+FixAssemblyWithReads=0
 
 ##########################################
 ######### NO NEED TO MODIFY ! ############
