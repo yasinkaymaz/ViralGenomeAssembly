@@ -212,7 +212,7 @@ def PushSecondMajorGenome(args):
 	aparser.add_argument("--verbose", required=False, action="store_true",help='provide additional output for debugging')
 	aparser.add_argument("-o","--outfilebase", help='output base path and filename for generated data')
 	##fix need to change the program name##
-	fullname= aparser.prog + " Reads2ConcensusGenome"
+	fullname= aparser.prog + " PushSecondMajorGenome"
 	aparser.prog=fullname
 	args=aparser.parse_args(args=args)
 
