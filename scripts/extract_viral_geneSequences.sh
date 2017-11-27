@@ -52,14 +52,14 @@ then
 echo "Genome is Type I"
 Type='type1'
 EBVgenome="NC_007605"
-VfatDIR="$toolDir/resources/Vfat"
+VfatDIR="$toolDir/bin/Vfat"
 RefDIR="$toolDir/resources/Annotation/Type1/Vfat/EBV"
 AnnotationDir="$toolDir/resources/Annotation/Type1/"
 else
 echo "Genome is Type II"
 Type='type2'
 EBVgenome="NC_009334"
-VfatDIR="$toolDir/resources/Vfat/Type2"
+VfatDIR="$toolDir/bin/Vfat/Type2"
 RefDIR="$toolDir/resources/Annotation/Type2/Vfat/EBV"
 AnnotationDir="$toolDir/resources/Annotation/Type2/"
 fi
