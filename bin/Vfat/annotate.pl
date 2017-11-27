@@ -1,6 +1,6 @@
 #!/share/pkg/perl/5.18.1/bin/ perl -w
 
-# Copyright © 2012 The Broad Institute, Inc.
+# Copyright ï¿½ 2012 The Broad Institute, Inc.
 # SOFTWARE COPYRIGHT NOTICE
 # This software and its documentation are the copyright of the
 # Broad Institute, Inc. All rights are reserved.
@@ -43,7 +43,7 @@ my %geneticcode = (
 'TTT'=>'F','TTC'=>'F',
 'TTA'=>'L','TTG'=>'L','CTT'=>'L','CTC'=>'L','CTA'=>'L','CTG'=>'L', 'CTN'=>'L',
 'ATT'=>'I','ATC'=>'I','ATA'=>'I',
-'ATG'=>'M',	
+'ATG'=>'M',
 'TCT'=>'S','TCC'=>'S','TCA'=>'S','TCG'=>'S','AGT'=>'S','AGC'=>'S', 'TCN'=>'S',
 'CCT'=>'P','CCC'=>'P','CCA'=>'P','CCG'=>'P', 'CCN'=>'P',
 'ACT'=>'T','ACC'=>'T','ACA'=>'T','ACG'=>'T', 'ACN'=>'T',
@@ -67,6 +67,7 @@ my $genewisepath = "/project/umw_jeffrey_bailey/share/bin_sync/wise2.2.0/src/bin
 my $genewisecfgpath = "/project/umw_jeffrey_bailey/share/bin_sync/wise2.2.0/wisecfg/";
 #my $musclepath = "/project/umw_jeffrey_bailey/share/bin_sync/Muscle/";
 my $clustalpath = "/project/umw_jeffrey_bailey/share/bin_sync/clustalw-2.1/bin/";
+my $mafftpath = "/project/umw_jeffrey_bailey/share/bin_sync/mafft-7.215-with-extensions/scripts/";
 
 $ENV{WISECONFIGDIR} = $genewisecfgpath;
 
@@ -125,7 +126,7 @@ for(my $pos = 0; $pos < length($consseq) - 1; $pos++)
 {
 	my $ntpair = substr($consseq, $pos, 2);
 	my $curnt = substr($consseq, $pos, 1);
-		
+
 	if($ntpair eq 'NN')
 	{
 		print NCBIFA "\n>?";
@@ -160,13 +161,13 @@ while(my $line = <GENELIST>)
 		my $startpos = $2;
 		my $stoppos = $3;
 		my $exonno = 1;
-		
+
 		if($genename =~ /(.+)\_exon(.+)/)
 		{
 			$genename = $1;
 			$exonno = $2;
 		}
-		
+
 		if($exonno == 1){push(@geneorder, $1)};
 		$genelist{$genename}{nbexon}++;
 		$genelist{$genename}{'ex'.$exonno}{start} = $startpos;
@@ -187,7 +188,7 @@ foreach my $gene (keys %genelist)
 			{
 				if($compexon eq 'nbexon'){next;}
 				if($compgene eq $gene && $compexon eq $exon){next;}
-	
+
 				$refGeneorder{$gene}{$exon}{$compgene}{$compexon}{startvstart} = compValue($genelist{$gene}{$exon}{start}, $genelist{$compgene}{$compexon}{start});
 				$refGeneorder{$gene}{$exon}{$compgene}{$compexon}{startvstop} = compValue($genelist{$gene}{$exon}{start}, $genelist{$compgene}{$compexon}{stop});
 				$refGeneorder{$gene}{$exon}{$compgene}{$compexon}{stopvstart} = compValue($genelist{$gene}{$exon}{stop}, $genelist{$compgene}{$compexon}{start});
@@ -237,7 +238,7 @@ while(my $file = readdir(AAS))
 	{
 		my $gene = $1;
 		open(GENE, $inputFolder."/".$file);
-		
+
 		my $aastr = '';
 		while(my $line = <GENE>)
 		{
@@ -320,18 +321,18 @@ foreach my $gene (@geneorder)
 	my $complete = 'Full';
 	if($geneFlags{$gene}{completeness} == 0){$complete = 'Partial';}
 	elsif($geneFlags{$gene}{completeness} == -1){$complete = 'Missing';}
-	
+
 	if($complete eq 'Missing')
 	{
 		print SUMMARY $gene."\t0\t".$complete."\tN/A\tN/A\t0\t0\t0\t0\t0\t0\n";
 	}else{
-	
+
 		my $start = 'N/A';
 		my $stop = 'N/A';
-		
+
 		if($genes{$gene}{ex1}{start}){$start = $genes{$gene}{ex1}{start};}
 			if($genes{$gene}{'ex'.$genes{$gene}{nbexon}}{stop}){$stop = $genes{$gene}{ex1}{stop};}
-		
+
 		print SUMMARY $gene."\t".$genes{$gene}{nbexon}."\t".$complete."\t".$start."\t".$stop."\t".$geneFlags{$gene}{size}."\t".$geneFlags{$gene}{startstop}."\t".$geneFlags{$gene}{frameshift}."\t".$geneFlags{$gene}{Nstr}."\t".$geneFlags{$gene}{exons}."\t".$genes{$gene}{flags}."\n";
 	}
 }
@@ -453,7 +454,7 @@ if($cdsstat eq 'Single')
 			if($genes{$gene}{partstop} == 1){$ncbistop = ">".$ncbistop;}
 			print NCBI $ncbistart."\t".$ncbistop."\tgene\n";
 			print NCBI "\t\t\tgene\t".$gene."\n";
-			
+
 			foreach my $exon (sort keys %{$genes{$gene}})
 			{
 				unless($exon =~ /^ex[0-9]+/){next;}
@@ -487,7 +488,7 @@ if($geneFlags{$geneorder[scalar(@geneorder) - 1]}{completeness} == 1 && $genes{$
 sub checkGeneorder
 {
 	my $goodorder = 1;
-	
+
 	foreach my $gene (keys %genes)
 	{
 		if($genes{$gene}{flags} == 0){next;}
@@ -529,16 +530,16 @@ sub checkGeneFlags
 {
 	my $gene = shift;
 	my $completegene = shift;
-	
+
 	my $allgood = 1;
-	
+
 	# Check if size is within 10% of original gene
 	$geneFlags{$gene}{size} = checkGeneSize($genelist{$gene}{seq}, $finalGeneStrings{$gene}{aa});
 	if($geneFlags{$gene}{size} == 0){$allgood = 0;}
-	
+
 	$geneFlags{$gene}{Nstr} = checkNString($gene);
 	if($geneFlags{$gene}{Nstr} == 0){$allgood = 0;}
-	
+
 	# Check if gene has start and stop codon (if required)
 	$geneFlags{$gene}{startstop} = checkStartStop($gene, $finalGeneStrings{$gene}{aa});
 	if($geneFlags{$gene}{startstop} == 0){$allgood = 0;}
@@ -546,7 +547,7 @@ sub checkGeneFlags
 	# Check if gene has full coverage
 	$geneFlags{$gene}{completeness} = $completegene;
 	if($geneFlags{$gene}{completeness} != 1){$allgood = 0;}
-	
+
 	# Check if gene has good number of exons
 	if($genes{$gene}{nbexon} == $genelist{$gene}{nbexon})
 	{
@@ -559,7 +560,7 @@ sub checkGeneFlags
 	# Check if gene has frameshift; 1 = no, 0 = yes
 	$geneFlags{$gene}{frameshift} = abs(1-$genes{$gene}{frameshifted});
 	if($geneFlags{$gene}{frameshift} == 0){$allgood = 0;}
-	
+
 	return $allgood;
 }
 
@@ -569,11 +570,11 @@ sub readGene
 	my $genefile = shift;
 	my $gene = shift;
 	my $expectedExons = shift;
-		
+
 	open(GENEOUT, $genefile);
 	my @exons;
 	my $nbExon = 0;
-	
+
 	my $nbGenes = 0;
 	while(my $line = <GENEOUT>)
 	{
@@ -589,13 +590,13 @@ sub readGene
 		}
 	}
 	close GENEOUT;
-	
+
 	$genes{$gene}{frameshifted} = 0;
-	
+
 	if($nbGenes > 1){
 		$genes{$gene}{frameshifted} = 1;
 	}
-	
+
 	if($nbExon == 1 && $expectedExons == 1)
 	{
 		$genes{$gene}{ex1}{start} = $exons[0]{start};
@@ -622,7 +623,7 @@ sub readGene
 			}
 			$prevstop = $$curexon{stop};
 		}
-		
+
 		if(scalar(@longExons) == 1)
 		{
 			$genes{$gene}{ex1}{start} = $longExons[0]{start};
@@ -646,20 +647,20 @@ sub readGenewise
 {
 	my $inputfile = shift;
 	my $gene = shift;
-	
+
 	my $minpctid = $option{minpctid};
 	my $minpctlen = $option{minpctlen};
 	my $diffForCompletion = 10;
-	
+
 	open(GENEWISE, $inputfile);
-	
+
 	my $firstpos = 0;
 	my $lastpos = 0;
 	my $fullgene = 1;
 	my $matchstr = '';
 	my $firstnt = $genes{$gene}{ex1}{start};
 	my $lastnt = $genes{$gene}{'ex'.$genes{$gene}{nbexon}}{stop};
-	
+
 	$genes{$gene}{partstart} = 0;
 	$genes{$gene}{partstop} = 0;
 
@@ -710,11 +711,11 @@ sub readGenewise
 		$lastnt += 3;
 		$genes{$gene}{'ex'.$genes{$gene}{nbexon}}{stop} += 3;
 	}
-	
-	
+
+
 	### Check if you can fill the ends in case the nt-based alignment disagree
 #	print "alignStart : ".$alignGenelist{$gene}{'ex1'}{start}."\t$firstnt\n";
-	
+
 	if($firstpos > 1 && $firstpos < $diffForCompletion && $alignGenelist{$gene}{'ex1'}{start} < $firstnt)
 	{
 #		print "TRYING TO EXTEND START ".$gene."\t".$firstpos."\n";
@@ -728,7 +729,7 @@ sub readGenewise
 		{
 			my $curass = substr($alignass, $alnpos, 1);
 			my $curref = substr($alignref, $alnpos, 1);
-			
+
 			if($curass ne '-'){$asspos++;}
 			if($asspos >= $alignGenelist{$gene}{'ex1'}{start} && $asspos <= $firstnt)
 			{
@@ -744,12 +745,12 @@ sub readGenewise
 			}
 		}
 		$aaposdiff = $posdiff/3;
-		
+
 #		print $assemstr."\n";
 #		print $refstr."\n";
 #		print $posdiff."\n";
 #		print $aaposdiff."\n";
-		
+
 		my $tmpfirstpos = $firstpos;
 		my $tmpfirstnt = $firstnt;
 		while($tmpfirstpos > 1 && $tmpfirstnt > 0)
@@ -769,7 +770,7 @@ sub readGenewise
 			}
 		}
 	}
-	
+
 	if($lastpos < $genelist{$gene}{size} && $lastpos > ($genelist{$gene}{size} - $diffForCompletion) && $alignGenelist{$gene}{'ex'.$genes{$gene}{nbexon}}{stop} > $lastnt)
 	{
 #		print "TRYING TO EXTEND ".$gene."\t".$lastpos."\n";
@@ -783,7 +784,7 @@ sub readGenewise
 		{
 			my $curass = substr($alignass, $alnpos, 1);
 			my $curref = substr($alignref, $alnpos, 1);
-			
+
 			if($curass ne '-'){$asspos++;}
 			if($asspos >= $lastnt && $asspos <= $alignGenelist{$gene}{'ex'.$genes{$gene}{nbexon}}{stop})
 			{
@@ -827,8 +828,8 @@ sub readGenewise
 	{
 		$finalGeneStrings{$gene}{nt} .= substr($consseq, $genes{$gene}{'ex'.$i}{start}-1, $genes{$gene}{'ex'.$i}{stop}-$genes{$gene}{'ex'.$i}{start}+1);
 	}
-	
-	
+
+
 	$finalGeneStrings{$gene}{aa} = translateDnaString($finalGeneStrings{$gene}{nt});
 #	print "\t".$firstnt."\t".$lastnt."\t".$firstpos."\t".$lastpos."\t".$genelist{$gene}{size}."\n";#.$genefeat{$gene}{stop}."\t".substr($consseq, $lastnt, 3)."\n";
 
@@ -878,7 +879,7 @@ sub genelistFromAlignment
 	{
 		my $curref = substr($refseq, $seqpos, 1);
 		my $curother = substr($otherseq, $seqpos, 1);
-		
+
 		if($curref eq "-")
 		{
 			$otherpos++;
@@ -894,7 +895,7 @@ sub genelistFromAlignment
 			}
 		}
 	}
-	
+
 	my $lastotherpos = $otherpos;
 
 #	open(OUTPUT, ">$output");
@@ -906,7 +907,7 @@ sub genelistFromAlignment
 			unless($exon =~ /^ex.+/){next;}
 			my $start = $posconversion{$genelist{$gene}{$exon}{start}};
 			my $end = $posconversion{$genelist{$gene}{$exon}{stop}};
-			
+
 			my $exact = 1;
 			my $startplus = 0;
 			if($start =~ /(.+)\+/)
@@ -924,9 +925,9 @@ sub genelistFromAlignment
 				$endplus = 1;
 				$exact = 0;
 			}
-			
+
 			my $full = 1;
-	
+
 			if($start == 0)
 			{
 				$start = "BeforeStart";
@@ -936,7 +937,7 @@ sub genelistFromAlignment
 				$start = "AfterEnd";
 				$full = 0;
 			}
-			
+
 			if($end == 0)
 			{
 				$end = "BeforeStart";
@@ -946,7 +947,7 @@ sub genelistFromAlignment
 				$end = "AfterEnd";
 					$full = 0;
 			}
-			
+
 			$alignGenelist{$gene}{$exon}{start} = $start;
 			$alignGenelist{$gene}{$exon}{stop} = $end;
 			$alignGenelist{$gene}{$exon}{full} = $full;
@@ -956,17 +957,17 @@ sub genelistFromAlignment
 		}
 	}
 }
-	
-	
+
+
 
 
 sub checkGeneSize
 {
 	my $refaa = shift;
 	my $assaa = shift;
-	
+
 	my $lengthFactor = 0.1;
-	
+
 	if(abs(length($refaa) - length($assaa))/max(length($refaa), length($assaa)) <= $lengthFactor)
 	{
 		return 1;
@@ -980,7 +981,7 @@ sub checkNString
 	for(my $exon = 1; $exon <= $genes{$gene}{nbexon}; $exon++)
 	{
 		my $dnastring = substr($consseq, $genes{$gene}{'ex'.$exon}{start} - 1, $genes{$gene}{'ex'.$exon}{stop} - $genes{$gene}{'ex'.$exon}{start} + 1);
-		
+
 		for(my $pos = 0; $pos < length($dnastring) - 1; $pos++)
 		{
 			if(substr($dnastring, $pos, 1) eq 'N' && substr($dnastring, $pos + 1, 1) eq 'N')
@@ -996,7 +997,7 @@ sub checkStartStop
 {
 	my $gene = shift;
 	my $aaseq = shift;
-	
+
 	# Check if starts with M
 	if($genefeat{$gene}{start} == 1 && substr($aaseq, 0, 1) ne 'M')
 	{
@@ -1008,7 +1009,7 @@ sub checkStartStop
 	{
 		return 0;
 	}
-	
+
 	return 1;
 }
 
@@ -1018,14 +1019,15 @@ sub alignPair
 	my $seq1 = shift;
 	my $seq2 = shift;
 	my $alignPairOut = shift;
-	
+
 	open(MFA, ">$alignPairOut.mfa");
 	print MFA ">Ref\n$seq1\n>Assembly\n$seq2\n";
 	close MFA;
-	
-#	system($musclepath."muscle -in $alignPairOut.mfa -out $alignPairOut.afa  -quiet");
-	system($clustalpath."clustalw2 -INFILE=$alignPairOut.mfa -OUTFILE=$alignPairOut.afa -ALIGN -TYPE=DNA -OUTPUT=FASTA");
 
+#	system($musclepath."muscle -in $alignPairOut.mfa -out $alignPairOut.afa  -quiet");
+#	system($clustalpath."clustalw2 -INFILE=$alignPairOut.mfa -OUTFILE=$alignPairOut.afa -ALIGN -TYPE=DNA -OUTPUT=FASTA");
+	system($mafftpath."mafft --thread 4 --clustalout --auto $alignPairOut.mfa > $alignPairOut.afa");
+	
 	(my $alignseq1, my $alignseq2) = readAlign("$alignPairOut.afa");
 	return $alignseq1, $alignseq2;
 }
@@ -1084,7 +1086,7 @@ sub translateDnaString
 {
 	my $dnastring = shift;
 	my $aastring = "";
-	
+
 	while(length($dnastring) > 2)
 	{
 		my $curcod = substr($dnastring, 0, 3);
@@ -1092,7 +1094,7 @@ sub translateDnaString
 		if($geneticcode{$curcod}){$curaa = $geneticcode{$curcod};}
 		elsif($curcod =~ /\-/){$curaa = "-";}
 		else{$curaa = "X";}
-		
+
 		$aastring .= $curaa;
 		if(length($dnastring) == 3){$dnastring = "";}
 		else{$dnastring = substr($dnastring, 3);}
@@ -1112,7 +1114,7 @@ sub compValue
 {
 	my $val1 = shift;
 	my $val2 = shift;
-	
+
 	if($val1 > $val2){return 1;}
 	if($val1 == $val2){return 0;}
 	if($val1 < $val2){return -1;}
