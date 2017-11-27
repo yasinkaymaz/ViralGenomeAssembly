@@ -1026,8 +1026,8 @@ sub alignPair
 
 #	system($musclepath."muscle -in $alignPairOut.mfa -out $alignPairOut.afa  -quiet");
 #	system($clustalpath."clustalw2 -INFILE=$alignPairOut.mfa -OUTFILE=$alignPairOut.afa -ALIGN -TYPE=DNA -OUTPUT=FASTA");
-	system($mafftpath."mafft --thread 4 --clustalout --auto $alignPairOut.mfa > $alignPairOut.afa");
-	
+	system($mafftpath."mafft --thread 4 --auto $alignPairOut.mfa > $alignPairOut.afa");
+
 	(my $alignseq1, my $alignseq2) = readAlign("$alignPairOut.afa");
 	return $alignseq1, $alignseq2;
 }
