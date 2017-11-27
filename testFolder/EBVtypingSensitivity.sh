@@ -5,9 +5,19 @@ module unload python/2.7.5
 module load python/2.7.9
 module load python/2.7.9_packages/pandas/0.17.1
 #for genome in `grep ">" sequences.aln.fasta|grep -v NC_|sed 's/>//g'`;
-for genome in Jijoye_CP_genome_fixed_assembly_Fixed Jijoye_J100_PCRsWGA_genome_fixed_assembly_Fixed LN827800.1_Jijoye;
+# for genome in Jijoye_CP_genome_fixed_assembly_Fixed Jijoye_J100_PCRsWGA_genome_fixed_assembly_Fixed LN827800.1_Jijoye;
+# do
+#   echo $genome;
+#   python $toolDir/bin/MSA_parser_cleaner.py $genome NC_007605 sequences.aln.fasta 1;
+#   python $toolDir/bin/MSA_parser_cleaner.py $genome NC_009334 sequences.aln.fasta 2;
+# done
+
+for genome in Daudi_CellLine_genome_fixed_assembly_Fixed Daudi_D100_PCRsWGA_genome_fixed_assembly_Fixed;
 do
-  echo $genome;
-  python $toolDir/bin/MSA_parser_cleaner.py $genome NC_007605 sequences.aln.fasta 1;
-  python $toolDir/bin/MSA_parser_cleaner.py $genome NC_009334 sequences.aln.fasta 2;
+  python $toolDir/bin/MSA_parser_cleaner.py $genome LN827545.1_Daudi sequences.aln.fasta 1;
+done
+
+for genome in Jijoye_CellLine_genome_fixed_assembly_Fixed Jijoye_CP_genome_fixed_assembly_Fixed Jijoye_J100_PCRsWGA_genome_fixed_assembly_Fixed;
+do
+  python $toolDir/bin/MSA_parser_cleaner.py $genome LN827800.1_Jijoye sequences.aln.fasta 2;
 done
