@@ -3,8 +3,8 @@
 
 dir=`pwd`
 InputAssembly=$1
-SAMPLE_NAME=$4
-type=$5
+SAMPLE_NAME=$2
+type=$3
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
