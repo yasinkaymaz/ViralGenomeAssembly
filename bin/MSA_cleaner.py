@@ -8,6 +8,9 @@ import sys
 import collections
 from Bio import AlignIO
 import Bio.Align
+dir = os.path.dirname(__file__)
+print os.getcwd()
+print dir
 
 alndata = []
 #sys.argv[1] -> Alignment File
@@ -22,10 +25,11 @@ Ref=''
 #Make sure that repeat files are in the same directory
 if sys.argv[2] == '1':
 	Ref='NC_007605'
-	Repeat_inputFile = "NC_007605_miropeat_default_run_repeats.bed"
+	Repeat_inputFile = '%(directory)s/../resources/Annotation/Type1/NC_007605_miropeat_default_run_repeats.bed' %{"directory":dir}
+
 else:
 	Ref='NC_009334'
-	Repeat_inputFile = "NC_009334_miropeat_default_run_repeats.bed"
+	Repeat_inputFile = '%(directory)s/../resources/Annotation/Type2/NC_009334_miropeat_default_run_repeats.bed' %{"directory":dir}
 
 if sys.argv[3] == "RepeatFilter":
 
@@ -87,7 +91,7 @@ for i in range(alignment.get_alignment_length()):
 		#print record.seq[i], record.id
 		pass
 	else:
-		edited = edited + alignment[:,i:i+1]		
+		edited = edited + alignment[:,i:i+1]
 
 
 edited = edited[:,1:]
