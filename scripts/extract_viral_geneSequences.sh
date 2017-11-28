@@ -5,7 +5,7 @@ dir=`pwd`
 InputAssembly=$1
 SAMPLE_NAME=$2
 type=$3
-
+#bsub -q long -n 24 -R rusage[mem=12000] -R "span[hosts=1]" -R "select[tmp>1000]" -W 240:00 -e err.%J.txt -o out.%J.txt
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
 Bowtie2PATH="$toolDir/bin/linux/bowtie2-2.3.3.1-linux-x86_64"
@@ -15,6 +15,8 @@ module load java/1.8.0_77
 
 
 ExtractGeneSequences=1
+ExtractInfo=1
+
 
 module unload openssl/1.0.1g
 module load samtools/1.4.1
@@ -77,4 +79,33 @@ perl $VfatDIR/annotate.pl \
 
 else
 echo "No gene extraction"
+fi
+
+
+if [ "$ExtractInfo" = "1" ]
+then
+
+export PATH=/project/umw_jeffrey_bailey/share/bin_sync/wise2.2.0/wisecfg/:$PATH
+
+cd "$SAMPLE_NAME"_vfat_annotation/
+
+#Parse GeneWise DNA output
+for file in `ls -1|grep DNA`;\
+do gene=${file%_genewiseDNA.txt}; \
+sed 's,//,*,p' $file |\
+sed -n '/].sp/,/*/p'|\
+sed 's,*,,p'|\
+sed ':a;N;$!ba;s/\n\n//g'|\
+sed "s,>1,>$SAMPLE_NAME,p"|\
+uniq|sed "s,sp,$gene.dna,p"|\
+uniq|awk '!/^>/ { printf "%s", $0; n = "\n" }/^>/{ print n $0; n = "" }END{ printf "%s", n }'|\
+sed ':a;N;$!ba;s/.dna\n/.dna\t/g'|\
+awk '{print $1"\t"$2"\t"length($2)}'|\
+sort -k3,3gr|head -1|\
+awk '{print $1"\n"$2}' > $gene.dna.fa; \
+done
+
+
+else
+echo "Skipping Extract info!!!"
 fi
