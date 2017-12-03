@@ -88,7 +88,7 @@ for i in range(alignment.get_alignment_length()):
 		apbc.append(record.seq[i])
 
 	if compare(set(apbc), set(['-','n']) ) or compare(set(apbc), set(['-']) ) or compare(set(apbc), set(['n']) ) or (i in set(bap)):
-		#print record.seq[i], record.id
+		print record.seq[i], record.id, set(apbc)
 		pass
 	else:
 		edited = edited + alignment[:,i:i+1]
