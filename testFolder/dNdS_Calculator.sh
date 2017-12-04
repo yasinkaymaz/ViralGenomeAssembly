@@ -8,6 +8,7 @@ module load python/2.7.9_packages/pandas/0.17.1
 #Alignment file has to end with ".aln.fasta"
 AlignmentFile=$1
 RefGenesDir=$toolDir/resources/Annotation/Type1/
+mkdir tmp.summary.files
 
 #for gene in `ls -1 $RefGenesDir|sed 's/.bed//g'`;
 for gene in `cut -f4 $RefGenesDir/EBV_Reference_genelist_Genenames_stranded.txt|uniq`;
@@ -39,7 +40,8 @@ do
 
   perl $toolDir/bin/SNAP.pl "$testalignmentFile";
   grep all summary.* |awk -v gene="$gene" '{print gene"\t"$0 }' >> EBV_Genes_dNdS_summary_"${AlignmentFile%.aln.fasta}".txt;
-  rm summary.*;
+  mv summary.* "$gene".summary;
+  mv "$gene".summary tmp.summary.files/;
 done
 
 
