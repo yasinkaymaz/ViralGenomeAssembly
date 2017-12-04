@@ -41,3 +41,19 @@ do
   grep all summary.* |awk -v gene="$gene" '{print gene"\t"$0 }' >> EBV_Genes_dNdS_summary_"${AlignmentFile%.aln.fasta}".txt;
   rm summary.*;
 done
+
+
+# for gene in `cut -f4 ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/EBV_Reference_genelist_Genenames_stranded.txt |uniq`;
+# do
+#   strand=`cut -f5 "$gene".bed|uniq`;
+#   echo "$gene is $strand";
+#
+#   if [ "$strand" = "-" ]
+#   then
+#     grep -w NC_007605 "$gene".aln.filtered.rc.tab|sed 's/NC_007605/"'$gene'"/g';
+#     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
+#   else
+#     grep -w NC_007605 "$gene".aln.filtered.tab|sed 's/NC_007605/"'$gene'"/g';
+#     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
+#   fi
+# done
