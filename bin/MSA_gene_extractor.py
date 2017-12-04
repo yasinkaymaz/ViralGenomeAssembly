@@ -57,7 +57,7 @@ def PullLoci(BedFile):
 		for line in bfile:
 			start = int(line.strip().split("\t")[1])
 			end = int(line.strip().split("\t")[2])
-			for i in range(start,end):
+			for i in range(start,end+1):
 				PositionList.append(i)
 	PositionList = set(PositionList)
 
