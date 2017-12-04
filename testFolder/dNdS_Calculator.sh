@@ -15,12 +15,13 @@ do
   echo $gene;
   grep -w $gene $RefGenesDir/EBV_Reference_genelist_Genenames_stranded.txt > "$gene".bed;
   strand=`cut -f5 "$gene".bed|uniq`;
+  echo -e "Strand is $strand";
   python $toolDir/bin/MSA_gene_extractor.py $AlignmentFile 1 "$gene".bed;
   perl $toolDir/bin/fasta_to_tab.pl "$gene".bed.aln.fasta > "$gene".aln.tab;
   RefORFlen=`grep NC_007605 "$gene".aln.tab |sed 's/[n|-]//g'|awk '{print length($2)}'`;
   #Exclude genome samples if the given gene is not covered more than %50:
   awk -v RefORFlen="$RefORFlen" '{seq=$2;gsub(/n|-/,"",seq); if ( 100*length(seq)/RefORFlen > 50) print}' "$gene".aln.tab > "$gene".aln.filtered.tab
-  if $strand == "-";
+  if [ "$strand" = "-" ]
   then
     #if gene is from reverse strand:
     while read line;
@@ -29,7 +30,7 @@ do
       seq=`echo $line|cut -d " " -f2`;
       rcseq=`echo $seq|rev | tr "ATGCNatgcn" "TACGNtacgn"`;
       echo -e "$sample_name $rcseq";
-    done < "$gene".aln.filtered.tab > "$gene".aln.filtered.rc.tab
+    done < "$gene".aln.filtered.tab > "$gene".aln.filtered.rc.tab;
     testalignmentFile="$gene".aln.filtered.rc.tab
   else
     #else
