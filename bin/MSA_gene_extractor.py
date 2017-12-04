@@ -128,7 +128,7 @@ print edited
 #>>> align.add_sequence("Gamma", "ACTGCTAGATAG")
 
 #AlignIO.write(edited, "my_TargetGeneAlignment_"+sys.argv[1], "fasta")
-AlignIO.write(edited, GeneBedfile+".aln.fasta", "fasta")
+AlignIO.write(edited, sys.argv[3]+".aln.fasta", "fasta")
 
 #print len(bap)
 #print len(gap)
