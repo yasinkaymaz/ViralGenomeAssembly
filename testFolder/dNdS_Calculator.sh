@@ -44,7 +44,7 @@ do
   mv "$gene".summary tmp.summary.files/;
 done
 
-
+# 
 # for gene in `cut -f4 ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/EBV_Reference_genelist_Genenames_stranded.txt |uniq`;
 # do
 #   strand=`cut -f5 "$gene".bed|uniq`;
@@ -52,9 +52,11 @@ done
 #
 #   if [ "$strand" = "-" ]
 #   then
+#     awk '{print ">"$1"\n"$2}' "$gene".aln.filtered.rc.tab > "$gene".aln.filtered.rc.fasta
 #     grep -w NC_007605 "$gene".aln.filtered.rc.tab|sed 's/NC_007605/"'$gene'"/g';
 #     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
 #   else
+#     awk '{print ">"$1"\n"$2}' "$gene".aln.filtered.tab > "$gene".aln.filtered.fasta
 #     grep -w NC_007605 "$gene".aln.filtered.tab|sed 's/NC_007605/"'$gene'"/g';
 #     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
 #   fi
