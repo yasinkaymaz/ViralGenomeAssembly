@@ -10,3 +10,4 @@ TR=$2
 
 #This is how to run this script: Fasta file has to end with .fasta
 #bsub -q long -n 24 -R rusage[mem=12000] -R "span[hosts=1]" -R "select[tmp>1000]" -W 240:00 -e err.%J.txt -o out.%J.txt ~/codes/EBVseq/msa_mafft.sh All.Jijoye.fasta TR
+#bsub -q long -n 24 -R rusage[mem=12000] -R "select[tmp>1000]" -W 240:00 -e err.%J.txt -o out.%J.txt
