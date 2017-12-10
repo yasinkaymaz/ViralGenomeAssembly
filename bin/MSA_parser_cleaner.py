@@ -91,7 +91,7 @@ with open(sys.argv[3]+".tmp.file.aln", "r") as alnfile:
 	set_pair = set(new_df.loc[ [sys.argv[1],sys.argv[2] ],i  ])
 
 	#skip indels and Ns in the alignment
-        if 'n' in set_pair or '-' in set_pair:
+    if 'n' in set_pair or '-' in set_pair:
 		pass
 	#if there is a mismatch error and this position is not in repeat regions, count as sequencing error.
 	elif len(set_pair)>1 and Ref_pos not in RepeatList:

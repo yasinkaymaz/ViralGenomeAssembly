@@ -44,20 +44,5 @@ do
   mv "$gene".summary tmp.summary.files/;
 done
 
-# 
-# for gene in `cut -f4 ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/EBV_Reference_genelist_Genenames_stranded.txt |uniq`;
-# do
-#   strand=`cut -f5 "$gene".bed|uniq`;
-#   echo "$gene is $strand";
-#
-#   if [ "$strand" = "-" ]
-#   then
-#     awk '{print ">"$1"\n"$2}' "$gene".aln.filtered.rc.tab > "$gene".aln.filtered.rc.fasta
-#     grep -w NC_007605 "$gene".aln.filtered.rc.tab|sed 's/NC_007605/"'$gene'"/g';
-#     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
-#   else
-#     awk '{print ">"$1"\n"$2}' "$gene".aln.filtered.tab > "$gene".aln.filtered.fasta
-#     grep -w NC_007605 "$gene".aln.filtered.tab|sed 's/NC_007605/"'$gene'"/g';
-#     grep -w "$gene" ~/codes/ViralGenomeAssembly/resources/Annotation/Type1/genes.tab|cut -f1,2;
-#   fi
-# done
+#for gene in `ls -1|sed 's/.aln.filtered.fasta//g'`;do echo $gene.aln.filtered.fasta; perl $toolDir/bin/fasta_to_tab.pl $gene.aln.filtered.fasta > $gene.aln.filtered.tab;     perl $toolDir/bin/SNAP.pl $gene.aln.filtered.tab; mv summary.* "$gene".summary; mv "$gene".summary tmp.summary.files/; done
+#for i in `ls -1|sed 's/.summary//g'|grep -v "EBNA-LP"|grep -v LF3|grep -v BWRF1|grep -v BCRF2`;do grep NC_007605 $i.summary|awk '($13 != "NA")'|awk -v gene=$i '{sumSd+=$5;sumdN+=$6; sumdSdN+=$13;} END {print gene"\t"NR"\t"sumSd/NR"\t"sumdN/NR   "\t"1/(sumdSdN/NR)}';done

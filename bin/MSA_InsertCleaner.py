@@ -18,7 +18,7 @@ alndata = []
 
 if len(sys.argv) < 3:
 	print "Please provide required arguments in proper order:"
-	print "MSA_parser_cleaner.py AlignmentFile TypeOfEBV [RepeatFilter]"
+	print "MSA_InsertCleaner.py AlignmentFile TypeOfEBV"
 	sys.exit(1)
 
 Ref=''
@@ -31,22 +31,6 @@ else:
 	Ref='NC_009334'
 	Repeat_inputFile = '%(directory)s/../resources/Annotation/Type2/NC_009334_miropeat_default_run_repeats.bed' %{"directory":dir}
 
-if sys.argv[3] == "RepeatFilter":
-
-#Find the genomic locations fall into miropeats repeat regions
-	RepeatList = []
-	with open(Repeat_inputFile) as repeatFile:
-		for line in repeatFile:
-			repstart = int(line.strip().split("\t")[1])
-			repend = int(line.strip().split("\t")[2])
-			for i in range(repstart,repend):
-				RepeatList.append(i)
-	RepeatList = set(RepeatList)
-	print len(set(RepeatList))
-else:
-	RepeatList = []
-	pass
-
 
 compare = lambda x, y: collections.Counter(x) == collections.Counter(y)
 
@@ -56,8 +40,6 @@ for record in alignment :
 #    print(record.seq + " " + record.id)
     print(record.id), record.seq.count('-'), record.seq.count('n')
 
-#good alignment positions = gap
-gap = []
 #bad alignment positions = bap
 bap = []
 
@@ -67,17 +49,15 @@ print edited
 
 Ref_pos = 0
 for record in alignment:
-	if record.id == Ref:
-		for i in range(len(record.seq)):
-			if record.seq[i] == '-':
-				Ref_pos = Ref_pos
-			else:
+    if record.id == Ref:
+        for i in range(len(record.seq)):
+            if record.seq[i] == '-':
+                Ref_pos = Ref_pos
+                bap.append(i)
+            else:
 				Ref_pos = Ref_pos + 1
-			if Ref_pos not in RepeatList:
-				gap.append(i)
-			else:
-				bap.append(i)
-print "GAP:", len(gap), "BAP:", len(bap)
+
+print "BAP:", len(bap)
 
 for i in range(alignment.get_alignment_length()):
 
@@ -88,7 +68,7 @@ for i in range(alignment.get_alignment_length()):
 		apbc.append(record.seq[i])
 
 	if compare(set(apbc), set(['-','n']) ) or compare(set(apbc), set(['-']) ) or compare(set(apbc), set(['n']) ) or (i in set(bap)):
-#		print record.seq[i], record.id, set(apbc)
+		print record.seq[i], record.id, set(apbc)
 		pass
 	else:
 		edited = edited + alignment[:,i:i+1]
@@ -97,15 +77,9 @@ for i in range(alignment.get_alignment_length()):
 edited = edited[:,1:]
 print edited
 
-#>>> align.add_sequence("Gamma", "ACTGCTAGATAG")
-
-AlignIO.write(edited, "my_edited_"+sys.argv[1], "fasta")
+AlignIO.write(edited, "my_ICed_"+sys.argv[1], "fasta")
 
 print len(bap)
-print len(gap)
-#outfile1 = open(sys.argv[1]+sys.argv[2]+"_Mismatch_error_positions.bed","w")
-#outfile2 = open(sys.argv[1]+sys.argv[2]+"_Mismatch_error_rates.txt","w")
-
 
 
 
