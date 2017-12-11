@@ -38,7 +38,7 @@ do
     testalignmentFile="$gene".aln.filtered.tab
   fi
   awk '{print ">"$1"\n"$2}' "$testalignmentFile" > $gene.aln.filtered.fasta;
-  python $toolDir/bin/MSA_InsertCleaner $gene.aln.filtered.fasta 1;
+  python $toolDir/bin/MSA_InsertCleaner.py $gene.aln.filtered.fasta 1;
   perl $toolDir/bin/fasta_to_tab.pl my_ICed_"$gene".aln.filtered.fasta > my_ICed_"$gene".aln.filtered.tab;
   perl $toolDir/bin/SNAP.pl my_ICed_"$gene".aln.filtered.tab;
   grep all summary.* |awk -v gene="$gene" '{print gene"\t"$0 }' >> EBV_Genes_dNdS_summary_"${AlignmentFile%.aln.fasta}".txt;
