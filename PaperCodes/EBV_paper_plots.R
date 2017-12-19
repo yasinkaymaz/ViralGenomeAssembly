@@ -2,6 +2,44 @@ library(cowplot)# cowplot enables side-by-side ggplots
 library(reshape2)
 library(dplyr)
 library(ggplot2)
+library(gridExtra)
+
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+  
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  
+  numPlots = length(plots)
+  
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  
+  if (numPlots==1) {
+    print(plots[[1]])
+    
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
 #Figure 1-B
 
 data <- read.delim("~/Documents/EBV/fixed_assembly_genome_CoveredLen.txt",header = TRUE,row.names = 3)
@@ -66,6 +104,8 @@ ggplot(data=viral)+
   labs(colour="Viral Type",x='',y="Viral Load (copy/ng DNA)")
 dev.off()
 
+
+
 #Figure 2-C
 data <- read.delim("~/Documents/EBV/type.genomes.txt",header = TRUE,row.names = 1)
 
@@ -78,3 +118,79 @@ p <- ggplot(data, aes(x=as.factor(SampleType),group=as.factor(EBVtype),fill=as.f
 pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EBVtypeTest.pdf")
 p
 dev.off()
+
+
+data <- read.delim("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/dnds_2.txt", row.names = 1, header = TRUE)
+head(data)
+subdata <- data[,c("gene","SynPerGenomePerKb","NonsynPerGenomePerKb")]
+#subdata$genes <- rownames(data)
+subdata <- melt(subdata)
+subdata$lineorder <- rep(seq(1,87),2)
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/Syn-NonSyn_Profiles.pdf",width = 18,height = 5)
+ggplot(subdata, aes(x=reorder(gene,lineorder), value,fill=variable))+
+  geom_bar(stat="identity", position=position_dodge())+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5))+
+  ylab("Number of variant per Genome per Kb")+
+  xlab("Viral Genes (in genomic order)")
+dev.off() 
+
+
+
+i=0
+plots <- list() 
+for (genome in c("eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tumor-0012","LN827563.2_sLCL-1.18")){
+  print(genome)
+  i=i+1
+  data1 <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_Mismatch_positions_with_type1_smooth.bed",sep = ""),header = TRUE)
+  data2 <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_Mismatch_positions_with_type2_smooth.bed",sep = ""),header = TRUE)
+  data <- data.frame(Pos=data1$start,Sim2Type1=data1$Sim2Type1,Sim2Type2=data2$Sim2Type2)
+  mdata <- melt(data, id=c("Pos"))
+  
+  p1 <- ggplot(mdata, aes(Pos/1000, y=value, colour=variable))+geom_line(size=1)+
+    scale_colour_manual(labels = c("Similarity to Type 1", "Similarity to Type 2"), values=c("blue", "red"))+
+    xlab("Genomic Postion (kb)")+
+    ylab("Percent Similarity")+
+    scale_x_continuous(breaks = round(seq(min(mdata$Pos/1000), max(mdata$Pos/1000), by = 20) ),expand = c(0, 0))+
+    theme(axis.text.x = element_text(angle = 0, hjust = .5,vjust=0.5))
+
+plots[[i]] <- p1
+}
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-2.pdf",width = 18,height = 16)
+multiplot(plotlist = plots)
+dev.off()
+
+#Deleted Genome CoveragePlot
+i=0
+plots <- list()
+for (genome in c("eBL-Tumor-0031", "Raji_CellLine_longRead","Daudi_CellLine")){
+  i=i+1
+  print(genome)
+  cov <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_alignment_NC_007605.sorted_DepthofCoverage",sep=""),row.names = 1, header=TRUE)
+  rownames(cov) <- gsub("NC_007605:","",rownames(cov))
+  d <- data.frame(Pos=NULL,Cov=NULL)
+  wind=1000
+  slid=500
+
+  for (x in seq(0,max(as.numeric(rownames(cov)))-wind,slid ) ){
+    d <- rbind(d, data.frame(Pos=x, Cov=sum(cov[x:x+wind, ]$Total_Depth) ))
+  }
+
+  p1 <- ggplot(d, aes(x=Pos/wind,y=Cov))+
+    geom_area(size=1,fill="turquoise2",color="brown")+
+    scale_y_continuous(expand = c(0, 0))+
+    scale_x_continuous(breaks = round(seq(min(d$Pos/wind), max(d$Pos/wind), by = 20) ),expand = c(0, 0))+
+    theme(axis.text.x = element_text(angle = 0, hjust = .5,vjust=0.5))+
+    xlab("Genomic Postion (kb)")+
+    ylab("Depth of Coverage")
+
+  plots[[i]] <- p1
+
+}
+#geom_line(size=1,color="brown")
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/DeletedGenomes2.pdf",width = 18,height = 12)
+multiplot(plotlist = plots)
+dev.off()
+

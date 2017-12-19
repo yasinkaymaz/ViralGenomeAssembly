@@ -57,8 +57,14 @@ done
 #   mv "$gene".summary tmp.summary.files/;
 # done
 #
-# for i in `ls -1|sed 's/.summary//g'|grep -v "EBNA-LP"|grep -v LF3|grep -v BWRF1|grep -v BCRF2`;
-# do
-#   grep NC_007605 $i.summary|awk '($13 != "NA")'|\
-#   awk -v gene=$i '{sumSd+=$5;sumdN+=$6; sumdSdN+=$13;} END {print gene"\t"NR"\t"sumSd/NR"\t"sumdN/NR"\t"1/(sumdSdN/NR)}';
-# done
+for i in `ls -1|sed 's/.summary//g'|grep -v "EBNA-LP"|grep -v BWRF1|grep -v BCRF2`;
+do
+  grep NC_007605 $i.summary|awk '($13 != "NA")'|\
+  awk -v gene=$i '{sumSd+=$5;sumdN+=$6; sumdSdN+=$13;} END {print gene"\t"NR"\t"sumSd/NR"\t"sumdN/NR"\t"1/(sumdSdN/NR)}';
+done
+
+for i in `ls -1|sed 's/.summary//g'|grep -v "EBNA-LP"|grep -v BWRF1|grep -v BCRF2`;
+do
+  genelen=`grep NC_007605 ../my_ICed_"$i".aln.filtered.tab|awk '{print length($2)}'`;
+  echo -e "$i $genelen";
+done
