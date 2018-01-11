@@ -139,7 +139,7 @@ dev.off()
 
 i=0
 plots <- list() 
-for (genome in c("eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tumor-0012","LN827563.2_sLCL-1.18")){
+for (genome in c("Jijoye","Namalwa","eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tumor-0012","LN827563.2_sLCL-1.18")){
   print(genome)
   i=i+1
   data1 <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_Mismatch_positions_with_type1_smooth.bed",sep = ""),header = TRUE)
@@ -157,9 +157,36 @@ for (genome in c("eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tumor-0012","LN827563.
 plots[[i]] <- p1
 }
 
-pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-2.pdf",width = 18,height = 16)
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-3.pdf",width = 18,height = 16)
 multiplot(plotlist = plots)
 dev.off()
+
+#Hybrid genome similarity for control. Supp Figure
+
+i=0
+plots <- list() 
+for (genome in c("Jijoye","Daudi","Namalwa","Raji","eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tumor-0012","LN827563.2_sLCL-1.18")){
+  print(genome)
+  i=i+1
+  data1 <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_Mismatch_positions_with_type1_smooth.bed",sep = ""),header = TRUE)
+  data2 <- read.delim(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/",genome,"_Mismatch_positions_with_type2_smooth.bed",sep = ""),header = TRUE)
+  data <- data.frame(Pos=data1$start,Sim2Type1=data1$Sim2Type1,Sim2Type2=data2$Sim2Type2)
+  mdata <- melt(data, id=c("Pos"))
+  
+  p1 <- ggplot(mdata, aes(Pos/1000, y=value, colour=variable))+geom_line(size=1)+
+    scale_colour_manual(labels = c("Similarity to Type 1", "Similarity to Type 2"), values=c("blue", "red"))+
+    xlab("Genomic Postion (kb)")+
+    ylab("Percent Similarity")+
+    scale_x_continuous(breaks = round(seq(min(mdata$Pos/1000), max(mdata$Pos/1000), by = 20) ),expand = c(0, 0))+
+    theme(axis.text.x = element_text(angle = 0, hjust = .5,vjust=0.5))
+  
+  plots[[i]] <- p1
+}
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-Supplementary.pdf",width = 18,height = 16)
+multiplot(plotlist = plots)
+dev.off()
+
 
 #Deleted Genome CoveragePlot
 i=0
@@ -194,3 +221,25 @@ pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/Delete
 multiplot(plotlist = plots)
 dev.off()
 
+#PCA with MSA
+#library(bios2mds)
+#aln <- import.fasta(system.file("/Users/yasinkaymaz/Documents/EBV/ourbatch/CorrectFastas/my_ICed_A73.aln.filtered.fasta", package = "bios2mds"))
+
+
+
+
+df <- data.frame(date=c("12Ar","13Ar","13Ar"),
+                 Mtype=c("m1","m2","m3"),
+                 Count=c(3,1,1))
+df
+library(reshape)
+
+udf <- untable(df[,c(1,2)], num=df[,3])
+
+tdf <- as.data.frame(table(udf[,c(1,2)]))
+tdf
+
+
+for (day in seq(1,28,7) ){
+  print(day)
+}

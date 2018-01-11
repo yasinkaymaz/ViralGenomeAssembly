@@ -57,6 +57,8 @@ for record in alignment:
 tmpoutfile.close()
 #
 #
+UncoveredPos_1=[]
+UncoveredPos_2=[]
 with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 	df = pd.read_csv(alnfile,sep="\t",header=None)
 	dfseq = []
@@ -68,7 +70,6 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 	columns = list(range(len(str_seq1)))
 #     #new data frame
 	new_df = pd.DataFrame(index=index, columns= columns)
-#     #print new_df
     #create new dataframe
 	for i in range(len(df)):
 #         # change a string of sequence to a list of sequence
@@ -77,6 +78,7 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 #         # df.loc[<row selection>, <column selection>]
 #         # place the list of sequence to the row that it belongs to in the new data frame
 		new_df.loc[i:,:] = dfseq
+
 #
 #     # for each row:
 	Ref_pos = 0
@@ -85,33 +87,30 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 	for i in range(len(str_seq1)):
 #         # place the the sequence in a position to a set
 		set_seq = set(new_df.loc[:,i])
-#
+
 		if new_df.loc[Ref1,i] != '-':
 			Ref_pos = Ref_pos +1
 		else:
 			pass
 # 		#put the bases at the location of the query sequence 1 and 2 into a set
 		set_pair = set(new_df.loc[ [sys.argv[1],Ref1 ],i  ])
-#
-# 		#skip indels and Ns in the alignment
-		if 'n' in set_pair or '-' in set_pair:
-			pass
+
+		if 'n' in set_pair:
+			UncoveredPos_1.append(Ref_pos)
+			print set_pair
 		#if there is a mismatch error and this position is not in repeat regions, count as sequencing error.
-#
-		elif len(set_pair)>1 and Ref_pos not in RepeatList:
+		elif len(set_pair)>1 and Ref_pos not in RepeatList and '-' not in set_pair:
 			print set_pair, Ref_pos
 			MissMatchCount = MissMatchCount +1
 			outfile1.write(str(Ref1)+"\t"+str(Ref_pos)+"\t"+str(Ref_pos+1)+"\n")
-#
-        ####### Do the same things for Ref2, which is type 2 reference genome.
+
+		######## Do the same things for Ref2, which is type 2 reference genome.
 		set_pair = set(new_df.loc[ [sys.argv[1],Ref2 ],i  ])
-#
-# 		#skip indels and Ns in the alignment
-		if 'n' in set_pair or '-' in set_pair:
-			pass
+		if 'n' in set_pair:
+			UncoveredPos_2.append(Ref_pos)
+			print set_pair
 		#if there is a mismatch error and this position is not in repeat regions, count as sequencing error.
-#
-		elif len(set_pair)>1 and Ref_pos not in RepeatList:
+		elif len(set_pair)>1 and Ref_pos not in RepeatList and '-' not in set_pair:
 			print set_pair, Ref_pos
 			MissMatchCount = MissMatchCount +1
 			outfile2.write(str(Ref1)+"\t"+str(Ref_pos)+"\t"+str(Ref_pos+1)+"\n")
@@ -119,7 +118,7 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 
 outfile1.close()
 outfile2.close()
-
+print "Now smoothing"
 outfile1 = open(sys.argv[1]+"_Mismatch_positions_with_type1_smooth.bed","w")
 outfile2 = open(sys.argv[1]+"_Mismatch_positions_with_type2_smooth.bed","w")
 
@@ -142,8 +141,11 @@ for i in range(0,genomeLen-win+sm,sm):
     windowPoss = range(i, i+win)
     #print windowPoss
     dissim=len(set(windowPoss)&set(MismatchPositions))
-    print i, dissim
-    outfile1.write("NC_007605"+"\t"+str(i)+"\t"+str(i+sm)+"\t"+str(100-dissim/10)+"\n")
+    CoveredLen=win-len(set(windowPoss)&set(UncoveredPos_1))+1
+    PercentSim=100-(100*dissim/CoveredLen)
+    #print i, dissim
+#    outfile1.write("NC_007605"+"\t"+str(i)+"\t"+str(i+sm)+"\t"+str(100-dissim/10)+"\n")
+    outfile1.write("NC_007605"+"\t"+str(i)+"\t"+str(i+sm)+"\t"+str(PercentSim)+"\n")
 
 ###### ----- ######
 #Do the same things for Ref2, which is type 2 reference genome.
@@ -158,8 +160,10 @@ for i in range(0,genomeLen-win+sm,sm):
     windowPoss = range(i, i+win)
     #print windowPoss
     dissim=len(set(windowPoss)&set(MismatchPositions))
-    print i, dissim
-    outfile2.write("NC_007605"+"\t"+str(i)+"\t"+str(i+sm)+"\t"+str(100-dissim/10)+"\n")
+    CoveredLen=win-len(set(windowPoss)&set(UncoveredPos_1))+1
+    PercentSim=100-(100*dissim/CoveredLen)
+    #print i, dissim
+    outfile2.write("NC_007605"+"\t"+str(i)+"\t"+str(i+sm)+"\t"+str(PercentSim)+"\n")
 
 
 outfile1.close()
