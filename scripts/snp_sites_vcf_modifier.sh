@@ -12,7 +12,7 @@ do
     :
   elif [[ $line =~ "*" ]];
     then
-    First5cols=`echo "$line"|cut -f1-5|sed 's/*/N/g'`
+    First5cols=`echo "$line"|cut -f1-5|sed 's/*/N/g'|sed 's/N,//g'|sed 's/,N//g'`
 
   #  alt=`echo "$line"|cut -f6`
     index=`echo "$line"|cut -f5|awk '{ gsub(/\,/,"",$1); print index($1, "*") }'`
