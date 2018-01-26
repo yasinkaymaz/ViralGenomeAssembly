@@ -243,3 +243,29 @@ tdf
 for (day in seq(1,28,7) ){
   print(day)
 }
+
+
+#Figure 5C
+
+library(devtools)
+#install_github("drveera/ggman")
+library(ggman)
+
+#assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.bed",header = TRUE, row.names = 4)
+#assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm.bed",header = TRUE, row.names = 4)
+#assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm-strata.bed",header = TRUE, row.names = 4)
+assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.combined1.bed",header = TRUE, row.names = 4)
+
+assoc <- assoc[assoc$P < 0.75,]
+assoc.ebna3c <- assoc[ which(89135 > assoc$position & assoc$position > 86083),]$position
+assoc[ -log10(assoc$P) > 3,]
+write.table(assoc[ -log10(assoc$P) > 2,], file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t")
+
+p1 <- ggman(assoc, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
+
+p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
+
+ggsave(plot=p1,width = 10,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc3.pdf", useDingbats=FALSE )
+
+
+ggman(assoc, snp = "snp", bp = "position", chrom = "chrom", pvalue = "OR",relative.positions = TRUE,pointSize = 0.5, logTransform = FALSE, ymax = 100)

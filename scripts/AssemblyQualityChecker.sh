@@ -20,8 +20,9 @@ module load java/1.8.0_77
 ################################################
 ############# Main Control Panel: ##############
 ################################################
-Reads2Assembly=1
-FixAssemblyWithReads=0
+Reads2Assembly=0
+TrimEdges=1
+FixAssemblyWithReads=1
 
 ##########################################
 ######### NO NEED TO MODIFY ! ############
@@ -143,6 +144,44 @@ else
 echo "no pileup"
 fi
 
+INPUTBAM="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam
+
+if [ "$TrimEdges" = "1" ]
+then
+  export PATH=/project/umw_jeffrey_bailey/share/bin_sync/bamUtil-1.0.14/:$PATH
+  #Trim low base quality mismatch high edges of reads
+#  bam filter --in $INPUTBAM \
+#  --refFile $InputAssembly \
+#  --out ${INPUTBAM%.bam}_BUP.bam
+
+  #Sort sam file and output as bam
+  java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
+  $PICARDPATH/picard.jar \
+  SortSam \
+  INPUT=${INPUTBAM%.bam}_BUP.bam \
+  OUTPUT=${INPUTBAM%.bam}_BUP_sorted.bam \
+  SORT_ORDER=coordinate
+
+
+  #Fix pair information, sort, and index.
+  java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
+  $PICARDPATH/picard.jar \
+  FixMateInformation \
+  INPUT=${INPUTBAM%.bam}_BUP_sorted.bam \
+  OUTPUT=${INPUTBAM%.bam}_BUP_sorted_fixed.bam \
+  SORT_ORDER=coordinate \
+  VALIDATION_STRINGENCY=LENIENT
+
+  #Index bam file
+  java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
+  $PICARDPATH/picard.jar \
+  BuildBamIndex \
+  INPUT=${INPUTBAM%.bam}_BUP_sorted_fixed.bam
+else
+  echo "No base fix!"
+fi
+
+
 #*********************************************************************************************************#
 if [ "$FixAssemblyWithReads" = "1" ]
 then
@@ -151,7 +190,7 @@ module load python/2.7.5_packages/biopython/1.68
 #Fix the contigs from low coverage regions and mixed genotypes.
 python $toolDir/bin/FixAssembly_With_Reads.py \
 Reads2ConcensusGenome \
--r "$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam \
+-r ${INPUTBAM%.bam}_BUP_sorted_fixed.bam \
 -f $InputAssembly \
 -o ${InputAssembly%.fa}_fixed_assembly
 
