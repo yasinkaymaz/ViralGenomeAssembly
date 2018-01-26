@@ -149,10 +149,11 @@ INPUTBAM="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam
 if [ "$TrimEdges" = "1" ]
 then
   export PATH=/project/umw_jeffrey_bailey/share/bin_sync/bamUtil-1.0.14/:$PATH
-  #Trim low base quality mismatch high edges of reads
-#  bam filter --in $INPUTBAM \
-#  --refFile $InputAssembly \
-#  --out ${INPUTBAM%.bam}_BUP.bam
+  Trim low base quality mismatch high edges of reads
+  bam filter --in $INPUTBAM \
+  --qualityThreshold 800 \
+  --refFile $InputAssembly \
+  --out ${INPUTBAM%.bam}_BUP.bam
 
   #Sort sam file and output as bam
   java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
