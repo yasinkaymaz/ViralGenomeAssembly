@@ -149,9 +149,10 @@ INPUTBAM="$SAMPLE_NAME"_readsBack2assembly_MQ30_DD_fixed.bam
 if [ "$TrimEdges" = "1" ]
 then
   export PATH=/project/umw_jeffrey_bailey/share/bin_sync/bamUtil-1.0.14/:$PATH
-  Trim low base quality mismatch high edges of reads
+  #Trim low base quality mismatch high edges of reads
   bam filter --in $INPUTBAM \
   --qualityThreshold 800 \
+  --mismatchThreshold 15 \
   --refFile $InputAssembly \
   --out ${INPUTBAM%.bam}_BUP.bam
 
