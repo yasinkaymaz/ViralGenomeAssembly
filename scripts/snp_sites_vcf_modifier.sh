@@ -1,14 +1,19 @@
 #!/bin/bash
+#An alignment file is an input.
+InputFastaAlignment=$1
+inputvcfFile=${InputFastaAlignment%.fasta}.vcf
 
-inputvcfFile=$1
-rm "${inputvcfFile%.vcf}"_outfile.vcf
+rm "${inputvcfFile%.vcf}"_modified.vcf
+
+#snp-sites needs to be installed.
+snp-sites -v -o $inputvcfFile $InputFastaAlignment
 
 while read line
 do
   #if line starts with #, don't do anything other than passing line to output
   if [[ $line =~ "#" ]];
     then
-    echo "$line" >> "${inputvcfFile%.vcf}"_outfile.vcf
+    echo "$line" >> "${inputvcfFile%.vcf}"_modified.vcf
     :
   elif [[ $line =~ "*" ]];
     then
@@ -21,9 +26,9 @@ do
     echo -e "$index"
     echo "$line"
     echo -e "$First5cols\t$fixed6toRestcols"
-    echo -e "$First5cols\t$fixed6toRestcols" >> "${inputvcfFile%.vcf}"_outfile.vcf
+    echo -e "$First5cols\t$fixed6toRestcols" >> "${inputvcfFile%.vcf}"_modified.vcf
   else
-    echo "$line" >> "${inputvcfFile%.vcf}"_outfile.vcf
+    echo "$line" >> "${inputvcfFile%.vcf}"_modified.vcf
 
   fi
 
