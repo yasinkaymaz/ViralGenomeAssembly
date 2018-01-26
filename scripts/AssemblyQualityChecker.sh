@@ -152,7 +152,7 @@ then
   #Trim low base quality mismatch high edges of reads
   bam filter --in $INPUTBAM \
   --qualityThreshold 800 \
-  --mismatchThreshold 15 \
+  --mismatchThreshold .15 \
   --refFile $InputAssembly \
   --out ${INPUTBAM%.bam}_BUP.bam
 
