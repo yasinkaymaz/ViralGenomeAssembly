@@ -258,7 +258,7 @@ assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.combined
 
 assoc <- assoc[assoc$P < 0.75,]
 assoc.ebna3c <- assoc[ which(89135 > assoc$position & assoc$position > 86083),]$position
-assoc[ -log10(assoc$P) > 3,]
+assoc[ -log10(assoc$P) > 2,]
 write.table(assoc[ -log10(assoc$P) > 2,], file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t")
 
 p1 <- ggman(assoc, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
