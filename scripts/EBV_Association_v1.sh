@@ -167,10 +167,17 @@ pseq proj load-pheno --file pop.phe
 pseq proj v-assoc --phenotype phe1 --perm 10000 --vmeta > Plink.all
 awk 'FNR==NR{a[$1]=$0;next}{print $0"\t", a[$1]}' Plink.all|awk '{if(NF >2)print}'|gcol VAR REF ALT OR P > Plink.covered.out.$EBVgenome.txt
 
+module load plinkseq/0.08
+module load bedtools/2.22.0
 
 header=`pseq proj v-assoc --phenotype phe1|head -1`
 echo -e "chrom\tposition\tend\t$header" > assocP.filtered.bed
 pseq proj v-assoc --phenotype phe1 --fix-null|grep -v VAR|awk '{OFS="\t";gsub("chr1:","",$1); print "NC_007605""\t"$1"\t"$1+1"\t"$0}'|bedtools subtract -a - -b filter.regions.bed >> assocP.filtered.bed
+
+
+header=`pseq proj v-assoc --phenotype phe1 --perm 10|head -1`
+echo -e "chrom\tposition\tend\t$header" > assocP.filtered.bed
+pseq proj v-assoc --phenotype phe1 --fix-null --perm 10000000|grep -v VAR|awk '{OFS="\t";gsub("chr1:","",$1); print "NC_007605""\t"$1"\t"$1+1"\t"$0}'|bedtools subtract -a - -b filter.regions.bed >> assocP.filtered.bed
 
 
 ##phe1,Integer,-9,1/2=eBLs/Controls
