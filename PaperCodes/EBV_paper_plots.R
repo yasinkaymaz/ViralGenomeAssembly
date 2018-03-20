@@ -254,18 +254,57 @@ library(ggman)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.bed",header = TRUE, row.names = 4)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm.bed",header = TRUE, row.names = 4)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm-strata.bed",header = TRUE, row.names = 4)
-assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.combined1.bed",header = TRUE, row.names = 4)
+#assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.combined1.bed",header = TRUE, row.names = 4)
 
 assoc <- assoc[assoc$P < 0.75,]
 assoc.ebna3c <- assoc[ which(89135 > assoc$position & assoc$position > 86083),]$position
+assoc.sig <- assoc[ which(assoc$P < 0.001),]$position
+
 assoc[ -log10(assoc$P) > 2,]
 write.table(assoc[ -log10(assoc$P) > 2,], file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t")
 
 p1 <- ggman(assoc, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
 
-p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
+#p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
+p1 <- ggmanHighlight(p1,highlight = assoc.sig)+ theme_bw()
 
-ggsave(plot=p1,width = 10,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc3.pdf", useDingbats=FALSE )
+ggsave(plot=p1,width = 10,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc4.pdf", useDingbats=FALSE )
 
 
 ggman(assoc, snp = "snp", bp = "position", chrom = "chrom", pvalue = "OR",relative.positions = TRUE,pointSize = 0.5, logTransform = FALSE, ymax = 100)
+
+
+#Figure for Pre-amp dNTP optimization:
+dntp <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/dNTP_optimization.txt", header = TRUE)
+dntp
+mdntp <- melt(dntp)
+
+ggplot(mdntp, aes(x=variable, y=value,group=as.factor(Input_EBV_copy.uL)))+geom_bar(stat="identity",position = "dodge")+
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.minor = element_blank(),
+        plot.background =element_blank())+theme_bw()+scale_fill_gradient()
+
+
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/dNTPOptimization0.pdf",width = 8,height = 4)
+ggplot(mdntp, aes(x=variable, y=value, group=as.factor(Input_EBV_copy.uL),fill=as.factor(Input_EBV_copy.uL)))+geom_bar(stat="identity",position = "dodge")+
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.minor = element_blank(),
+        plot.background =element_blank())+theme_bw()
+dev.off()
+
+#Figure for Incubation optimization:
+incdata <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/Incubation_optimization.txt",header = TRUE)
+incdata
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/incubationOptimization0.pdf",width = 8,height = 4)
+ggplot(incdata, aes(x=Incubation, y=EBVincrease,group=as.factor(Denaturation.Buffer),fill=as.factor(Denaturation.Buffer)))+
+  geom_bar(stat="identity",position = "dodge")+
+  theme(axis.line = element_line(colour = "black"),
+        panel.grid.minor = element_blank(),
+        plot.background =element_blank())+theme_bw()+scale_fill_manual(values=c("#E69F00", "#56B4E9"))
+dev.off()
+
+
+
+
