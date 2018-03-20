@@ -3,6 +3,8 @@ dir=`pwd`
 
 toolDir='/home/yk42w/codes/ViralGenomeAssembly'
 type=1
+nt=2
+CreateAlternateFasta=1
 #EBV genome type
 if [ "$type" = "1" ]
 then
