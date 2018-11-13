@@ -1,0 +1,245 @@
+BL120_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0050
+BL204_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0051
+BL234_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0052
+BL247_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0053
+BL251_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0054
+BL392_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0055
+BL534_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0019
+BL539_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0003
+BL541_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0035
+BL546_eBLFNAtumorDNA_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Tumor-0004
+BL552_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0020
+BL556_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0005
+BL557_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0021
+BL558_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0006
+BL560_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0007
+BL564_eBLFNAtumorDNA_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Tumor-0008
+BL565_eBLFNAtumorDNA_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Tumor-0036
+BL573_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0022
+BL574_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0023
+BL576_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0024
+BL577_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0025
+BL578_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0026
+BL579_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0027
+BL587_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0028
+BL590_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0037
+BL606_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0029
+BL607_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0038
+BL609_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0039
+BL611_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0040
+BL614_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0041
+BL620_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0030
+BL624_eBLFNAtumorDNA_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Tumor-0009
+BL627_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0031
+BL628_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0032
+BL629_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0033
+BL635_eBLFNAtumorDNA_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Tumor-0010
+BL642_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0011
+BL643_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0012
+BL644_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0013
+BL645_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0034
+BL646_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0014
+BL647_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0015
+BL648_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0016
+BL717_CellLine_genome_fixed_assembly_Fixed	eBL_CL-01
+BL719_CellLine_genome_fixed_assembly_Fixed	eBL_CL-02
+BL720_CellLine_genome_fixed_assembly_Fixed	eBL_CL-03
+Daudi_CellLine_genome_fixed_assembly_Fixed	Daudi
+EC-C005-31V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0001
+EC-C008-50V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0002
+EC-C013-40V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0003
+EC-C018-39V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0004
+EC-C023-30V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0005
+EC-C032-30V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0006
+EC-C042-39V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0007
+EC-C086-54V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0008
+EC-C087-72V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0009
+EC-C091-38V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0010
+EC-C095-41V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0011
+EC-C101-30V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0012
+EC-C102-29V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0013
+EC-C105-28V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0014
+gi|1034220039|gb|KT823506.1| Human herpesvirus 4 isolate LC1, partial genome	LC1
+gi|1034220119|gb|KT823507.1| Human herpesvirus 4 isolate LC2, partial genome	LC2
+gi|1034220201|gb|KT823508.1| Human herpesvirus 4 isolate LC3, partial genome	LC3
+gi|1034220278|gb|KT823509.1| Human herpesvirus 4 isolate LC4, partial genome	LC4
+gi|139424470|ref|NC_009334.1| Human herpesvirus 4, complete genome	Type2_Ref
+gi|343177302|gb|HQ020558.1| Human herpesvirus 4 strain GD2, complete genome	GD2
+gi|428161017|gb|KC207813.1| Human herpesvirus 4 strain Akata, complete genome	Akata
+gi|428161102|gb|KC207814.1| Human herpesvirus 4 strain Mutu, complete genome	Mutu
+gi|500154724|gb|KC617875.1| Human herpesvirus 4 strain C666-1, partial genome	strainC666-1
+gi|557368242|gb|KF373730.1| Human herpesvirus 4 strain M81, complete genome	M81
+gi|582051068|gb|JQ009376.2| Human herpesvirus 4 strain HKNPC1, genome	HKNPC1
+gi|663082492|gb|KF992564.1| Human herpesvirus 4 isolate HKNPC2, partial genome	HKNPC2
+gi|663082571|gb|KF992565.1| Human herpesvirus 4 isolate HKNPC3, partial genome	HKNPC3
+gi|663082648|gb|KF992566.1| Human herpesvirus 4 isolate HKNPC4, partial genome	HKNPC4
+gi|663082725|gb|KF992567.1| Human herpesvirus 4 isolate HKNPC5, partial genome	HKNPC5
+gi|663082802|gb|KF992568.1| Human herpesvirus 4 isolate HKNPC6, partial genome	HKNPC6
+gi|663082879|gb|KF992569.1| Human herpesvirus 4 isolate HKNPC7, partial genome	HKNPC7
+gi|663082958|gb|KF992570.1| Human herpesvirus 4 isolate HKNPC8, partial genome	HKNPC8
+gi|663083037|gb|KF992571.1| Human herpesvirus 4 isolate HKNPC9, partial genome	HKNPC9
+gi|663083114|gb|KJ411974.1| Human herpesvirus 4 isolate C666-1, partial genome	isolateC666-1
+gi|681961025|gb|KF717093.1| Human herpesvirus 4 strain Raji, complete genome	Raji
+gi|731173847|dbj|AB828190.1| Human herpesvirus 4 DNA, complete genome, strain: 1 LGY-C666-1	LGY-C666-1
+gi|747017151|dbj|AB850643.1| Human herpesvirus 4 DNA, complete genome, strain: HN1	HN1
+gi|747017196|dbj|AB850644.1| Human herpesvirus 4 DNA, complete genome, strain: HN2	HN2
+gi|747017239|dbj|AB850645.1| Human herpesvirus 4 DNA, complete genome, strain: HN10	HN10
+gi|747017248|dbj|AB850646.1| Human herpesvirus 4 DNA, complete genome, strain: HN11	HN11
+gi|747017265|dbj|AB850647.1| Human herpesvirus 4 DNA, complete genome, strain: HN12	HN12
+gi|747017309|dbj|AB850648.1| Human herpesvirus 4 DNA, complete genome, strain: HN3	HN3
+gi|747017336|dbj|AB850649.1| Human herpesvirus 4 DNA, complete genome, strain: HN4	HN4
+gi|747017362|dbj|AB850650.1| Human herpesvirus 4 DNA, complete genome, strain: HN13	HN13
+gi|747017380|dbj|AB850651.1| Human herpesvirus 4 DNA, complete genome, strain: HN14	HN14
+gi|747017415|dbj|AB850652.1| Human herpesvirus 4 DNA, complete genome, strain: HN5	HN5
+gi|747017423|dbj|AB850653.1| Human herpesvirus 4 DNA, complete genome, strain: HN6	HN6
+gi|747017440|dbj|AB850654.1| Human herpesvirus 4 DNA, complete genome, strain: HN15	HN15
+gi|747017513|dbj|AB850655.1| Human herpesvirus 4 DNA, complete genome, strain: HN7	HN7
+gi|747017529|dbj|AB850656.1| Human herpesvirus 4 DNA, complete genome, strain: HN16	HN16
+gi|747017541|dbj|AB850657.1| Human herpesvirus 4 DNA, complete genome, strain: HN8	HN8
+gi|747017565|dbj|AB850658.1| Human herpesvirus 4 DNA, complete genome, strain: HN17	HN17
+gi|747017578|dbj|AB850659.1| Human herpesvirus 4 DNA, complete genome, strain: HN9	HN9
+gi|747017592|dbj|AB850660.1| Human herpesvirus 4 DNA, complete genome, strain: HN18	HN18
+gi|764007273|emb|LN824142.1| Human herpesvirus 4 genome assembly Saliva1_assembly, segment : I	Saliva1_assembly
+gi|764007353|emb|LN824203.1| Human herpesvirus 4 genome assembly Mak_1, segment : I	Mak_1
+gi|764007436|emb|LN824204.1| Human herpesvirus 4 genome assembly HL05, segment : I	HL05
+gi|764007519|emb|LN824205.1| Human herpesvirus 4 genome assembly sLCL-1.12, segment : I	sLCL-1.12
+gi|764007602|emb|LN824206.1| Human herpesvirus 4 genome assembly pLCL-TRL1-post	pLCL-TRL1-post
+gi|764007685|emb|LN824207.1| Human herpesvirus 4 genome assembly pLCL-TRL1-pre, segment : I	pLCL-TRL1-pre
+gi|764007768|emb|LN824208.1| Human herpesvirus 4 genome assembly Akata, segment : I	Akata_Rep
+gi|764007851|emb|LN824209.1| Human herpesvirus 4 genome assembly HKN14, segment : I	HKN14
+gi|764007935|emb|LN824224.1| Human herpesvirus 4 genome assembly HKN19, segment : I	HKN19
+gi|764008018|emb|LN824225.1| Human herpesvirus 4 genome assembly HL08, segment : I	HL08
+gi|764008102|emb|LN824226.1| Human herpesvirus 4 genome assembly HL01, segment : I	HL01
+gi|764008186|emb|LN827522.1| Human herpesvirus 4 genome assembly HL09, segment : I	HL09
+gi|764008270|emb|LN827523.1| Human herpesvirus 4 genome assembly L591, segment : I	L591
+gi|764008352|emb|LN827524.1| Human herpesvirus 4 genome assembly HL11, segment : I	HL11
+gi|764008436|emb|LN827525.1| Human herpesvirus 4 genome assembly C666-1, segment : I	C666-1
+gi|764008516|emb|LN827526.1| Human herpesvirus 4 genome assembly BL37, segment : I	BL37
+gi|764008600|emb|LN827527.1| Human herpesvirus 4 genome assembly M-ABA, segment : I	M-ABA
+gi|764008683|emb|LN827544.1| Human herpesvirus 4 genome assembly Wewak_1, segment : I	Wewak_1
+gi|764008767|emb|LN827545.1| Human herpesvirus 4 genome assembly Daudi, segment : I	Daudi
+gi|764008849|emb|LN827546.1| Human herpesvirus 4 genome assembly HL02, segment : I	HL02
+gi|764008933|emb|LN827547.1| Human herpesvirus 4 genome assembly HKN15, segment : I	HKN15
+gi|764009101|emb|LN827549.1| Human herpesvirus 4 genome assembly D3201.2, segment : I	D3201.2
+gi|764009185|emb|LN827550.1| Human herpesvirus 4 genome assembly sLCL-1.11, segment : I	sLCL-1.11
+gi|764009268|emb|LN827551.1| Human herpesvirus 4 genome assembly Makau, segment : I	Makau
+gi|764009351|emb|LN827552.1| Human herpesvirus 4 genome assembly sLCL-1.08, segment : I	sLCL-1.08
+gi|764009435|emb|LN827553.1| Human herpesvirus 4 genome assembly sLCL-IS1.08, segment : I	sLCL-IS1.08
+gi|764009519|emb|LN827554.1| Human herpesvirus 4 genome assembly AFB1b, segment : I	AFB1b
+gi|764009602|emb|LN827555.1| Human herpesvirus 4 genome assembly X50-7, segment : I	X50-7
+gi|764009684|emb|LN827556.1| Human herpesvirus 4 genome assembly Cheptages, segment : I	Cheptages
+gi|764009848|emb|LN827558.1| Human herpesvirus 4 genome assembly sLCL-1.02, segment : I	sLCL-1.02
+gi|764009931|emb|LN827559.1| Human herpesvirus 4 genome assembly pLCL-TRL595, segment : I	pLCL-TRL595
+gi|764010014|emb|LN827560.1| Human herpesvirus 4 genome assembly sLCL-2.14, segment : I	sLCL-2.14
+gi|764010098|emb|LN827561.1| Human herpesvirus 4 genome assembly YCCEL1, segment : I	YCCEL1
+gi|764010182|emb|LN827562.1| Human herpesvirus 4 genome assembly sLCL-1.19, segment : I	sLCL-1.19
+gi|764010348|emb|LN827564.1| Human herpesvirus 4 genome assembly HL04, segment : I	HL04
+gi|764010420|emb|LN827565.1| Human herpesvirus 4 genome assembly sLCL-1.07, segment : I	sLCL-1.07
+gi|764010504|emb|LN827566.1| Human herpesvirus 4 genome assembly sLCL-1.06, segment : I	sLCL-1.06
+gi|764010588|emb|LN827567.1| Human herpesvirus 4 genome assembly sLCL-IM1.09, segment : I	sLCL-IM1.09
+gi|764010672|emb|LN827568.1| Human herpesvirus 4 genome assembly sLCL-1.24, segment : I	sLCL-1.24
+gi|764010755|emb|LN827569.1| Human herpesvirus 4 genome assembly sLCL-IS1.11, segment : I	sLCL-IS1.11
+gi|764010839|emb|LN827570.1| Human herpesvirus 4 genome assembly sLCL-IS1.01, segment : I	sLCL-IS1.01
+gi|764010923|emb|LN827571.1| Human herpesvirus 4 genome assembly sLCL-BL1.20, segment : I	sLCL-BL1.20
+gi|764011007|emb|LN827572.1| Human herpesvirus 4 genome assembly sLCL-IS1.18, segment : I	sLCL-IS1.18
+gi|764011091|emb|LN827573.1| Human herpesvirus 4 genome assembly sLCL-1.10, segment : I	sLCL-1.10
+gi|764011175|emb|LN827574.1| Human herpesvirus 4 genome assembly sLCL-1.09, segment : I	sLCL-1.09
+gi|764011258|emb|LN827575.1| Human herpesvirus 4 genome assembly sLCL-IS1.14, segment : I	sLCL-IS1.14
+gi|764011341|emb|LN827576.1| Human herpesvirus 4 genome assembly sLCL-IS1.20, segment : I	sLCL-IS1.20
+gi|764011424|emb|LN827577.1| Human herpesvirus 4 genome assembly sLCL-1.17, segment : I	sLCL-1.17
+gi|764011508|emb|LN827578.1| Human herpesvirus 4 genome assembly sLCL-IS1.13, chromosome : I	sLCL-IS1.13
+gi|764011592|emb|LN827579.1| Human herpesvirus 4 genome assembly sLCL-1.13, segment : I	sLCL-1.13
+gi|764011675|emb|LN827580.1| Human herpesvirus 4 genome assembly sLCL-2.16, segment : I	sLCL-2.16
+gi|764011759|emb|LN827581.1| Human herpesvirus 4 genome assembly sLCL-1.05, segment : I	sLCL-1.05
+gi|764011842|emb|LN827582.1| Human herpesvirus 4 genome assembly sLCL-BL1.03, segment : I	sLCL-BL1.03
+gi|764011926|emb|LN827583.1| Human herpesvirus 4 genome assembly sLCL-IM1.17, segment : I	sLCL-IM1.17
+gi|764012009|emb|LN827584.1| Human herpesvirus 4 genome assembly sLCL-IS1.06, segment : I	sLCL-IS1.06
+gi|764012093|emb|LN827585.1| Human herpesvirus 4 genome assembly sLCL-1.04, segment : I	sLCL-1.04
+gi|764012177|emb|LN827586.1| Human herpesvirus 4 genome assembly sLCL-IS1.15, segment : I	sLCL-IS1.15
+gi|764012261|emb|LN827587.1| Human herpesvirus 4 genome assembly sLCL-2.21, segment : I	sLCL-2.21
+gi|764012345|emb|LN827588.1| Human herpesvirus 4 genome assembly sLCL-IS1.19, segment : I	sLCL-IS1.19
+gi|764012428|emb|LN827589.1| Human herpesvirus 4 genome assembly sLCL-IS2.01, segment : I	sLCL-IS2.01
+gi|764012512|emb|LN827590.1| Human herpesvirus 4 genome assembly sLCL-IM1.05, segment : I	sLCL-IM1.05
+gi|764012596|emb|LN827591.1| Human herpesvirus 4 genome assembly sLCL-2.15, segment : I	sLCL-2.15
+gi|764012680|emb|LN827592.1| Human herpesvirus 4 genome assembly sLCL-IS1.10, segment : I	sLCL-IS1.10
+gi|764012764|emb|LN827593.1| Human herpesvirus 4 genome assembly sLCL-IS1.12, segment : I	sLCL-IS1.12
+gi|764012847|emb|LN827594.1| Human herpesvirus 4 genome assembly sLCL-IS1.07, segment : I	sLCL-IS1.07
+gi|764012930|emb|LN827595.1| Human herpesvirus 4 genome assembly sLCL-IS1.03, segment : I	sLCL-IS1.03
+gi|764013014|emb|LN827596.1| Human herpesvirus 4 genome assembly sLCL-IM1.02, segment : I	sLCL-IM1.02
+gi|764013098|emb|LN827597.1| Human herpesvirus 4 genome assembly sLCL-IS1.04, segment : I	sLCL-IS1.04
+gi|765364814|emb|LN827739.1| Human herpesvirus 4 genome assembly LCL_B958_delEber2, segment : I	LCL_B958_delEber2
+gi|766540480|emb|LN827799.1| Human herpesvirus 4 genome assembly sLCL-IM1.16, segment : I	sLCL-IM1.16
+gi|766540564|emb|LN827800.1| Human herpesvirus 4 genome assembly Jijoye, segment : I	Jijoye
+gi|787749988|gb|KP968257.1| Human herpesvirus 4 strain CCH, partial genome	CCH
+gi|787750086|gb|KP968258.1| Human herpesvirus 4 strain MP, partial genome	MP
+gi|787750199|gb|KP968259.1| Human herpesvirus 4 strain SCL, partial genome	SCL
+gi|787750302|gb|KP968260.1| Human herpesvirus 4 strain VGO, partial genome	VGO
+gi|787750415|gb|KP968261.1| Human herpesvirus 4 strain HU11393, partial genome	HU11393
+gi|787750520|gb|KP968262.1| Human herpesvirus 4 strain H018436D, partial genome	H018436D
+gi|787750634|gb|KP968263.1| Human herpesvirus 4 strain H058015C, partial genome	H058015C
+gi|787750783|gb|KP968264.1| Human herpesvirus 4 strain H002213, partial genome	H002213
+gi|802130350|emb|LN827548.2| Human herpesvirus 4 genome assembly P3HR1_c16 Assembly, segment : I	P3HR1_c16Assembly
+gi|802130370|emb|LN827557.2| Human herpesvirus 4 genome assembly BL36, segment : I	BL36
+gi|802130391|emb|LN827563.2| Human herpesvirus 4 genome assembly sLCL-1.18, segment : I	sLCL-1.18
+gi|809279182|emb|LN831023.1| Human herpesvirus 4 genome assembly sLCL-2.22, segment : I	sLCL-2.22
+gi|810056545|gb|KP735248.1| Human herpesvirus 4 strain GC1, complete genome	GC1
+gi|82503188|ref|NC_007605.1| Human herpesvirus 4 complete wild type genome	Type1_Ref
+gi|84519641|gb|AY961628.3| Human herpesvirus 4 strain GD1, complete genome	GD1
+gi|94734074|emb|V01555.2| Epstein-Barr virus (EBV) genome, strain B95-8	B95-8
+gi|957760599|gb|KR063342.1| Human herpesvirus 4 strain H03753A, partial genome	H03753A
+gi|957760676|gb|KR063343.1| Human herpesvirus 4 strain CV-ARG, partial genome	CV-ARG
+gi|957760753|gb|KR063344.1| Human herpesvirus 4 strain RPF, partial genome	RPF
+gi|957760829|gb|KR063345.1| Human herpesvirus 4 strain FNR, partial genome	FNR
+gi|957760989|gb|KT001102.1| Human herpesvirus 4 strain VA, partial genome	VA
+gi|957761062|gb|KT001103.1| Human herpesvirus 4 strain SG, partial genome	SG
+gi|961527962|gb|KT254013.1| Human herpesvirus 4 isolate EBVaGC3, partial genome	EBVaGC3
+gi|971835372|gb|KT273942.1| Human herpesvirus 4 isolate EBVaGC1, partial genome	EBVaGC1
+gi|971835443|gb|KT273943.1| Human herpesvirus 4 isolate EBVaGC2, partial genome	EBVaGC2
+gi|971835583|gb|KT273945.1| Human herpesvirus 4 isolate EBVaGC5, partial genome	EBVaGC5
+gi|971835652|gb|KT273946.1| Human herpesvirus 4 isolate EBVaGC6, partial genome	EBVaGC6
+gi|971835723|gb|KT273947.1| Human herpesvirus 4 isolate EBVaGC7, partial genome	EBVaGC7
+gi|971835791|gb|KT273948.1| Human herpesvirus 4 isolate EBVaGC8, partial genome	EBVaGC8
+gi|971835862|gb|KT273949.1| Human herpesvirus 4 isolate EBVaGC9, partial genome	EBVaGC9
+gi|995891043|dbj|AP015015.1| Human herpesvirus 4 DNA, complete genome, strain: SNU-719	SNU-719
+gi|995891127|dbj|AP015016.1| Human herpesvirus 4 DNA, complete genome, strain: YCCEL1	YCCEL1
+Jijoye_CellLine_genome_fixed_assembly_Fixed	Jijoye
+MC-C006-51V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0015
+MC-C012-51V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0016
+MC-C013-57V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0017
+MC-C024-72V_CP_genome_fixed_assembly_Fixed	HC-0039
+MC-C025-63V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0018
+MC-C028-41V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0019
+MC-C030-43V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0020
+MC-C031-50V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0021
+MC-C065-66V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0022
+MC-C104-41V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0023
+MC-C108-40V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0024
+MC-C113-52V_CP_genome_fixed_assembly_Fixed	HC-0040
+MC-C119-60V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0025
+MC-C121-53V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0026
+MC-C122-46V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0027
+MC-C137-36V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0028
+MC-C142-58V_NonBLkid_PCRsWGA_genome_fixed_assembly_Fixed	HC-0029
+Namalwa_CellLine_genome_fixed_assembly_Fixed	Namalwa
+Raji_CellLine_longRead_genome_fixed_assembly_Fixed	Raji
+11003406_10_TTR_CP_genome_fixed_assembly_Fixed	HC-0030
+1-3-0430-07-9_CP_genome_fixed_assembly_Fixed	HC-0031
+1381_22_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0017
+1-4-0554-06-9_CP_genome_fixed_assembly_Fixed	HC-0032
+1-4-0589-06-9_CP_genome_fixed_assembly_Fixed	HC-0033
+1-4-0621-14-11_CP_genome_fixed_assembly_Fixed	HC-0034
+1454-90_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0001
+1583_04_eBLFNAtumorDNA_genome_fixed_assembly_Fixed	eBL-Tumor-0018
+1-6-0663-10-11_CP_genome_fixed_assembly_Fixed	HC-0035
+1-6-0679-06-11_CP_genome_fixed_assembly_Fixed	HC-0036
+16069207_9_TTR_CP_genome_fixed_assembly_Fixed	HC-0037
+1612-09_eBLFNAtumorDNA_wga_genome_fixed_assembly_Fixed	eBL-Tumor-0002
+1-6-6007-08-11_CP_genome_fixed_assembly_Fixed	HC-0038
+BL006_NoFNA-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0042
+BL008_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0043
+BL033_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0044
+BL035_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0045
+BL044_NoFNAPaired-Plasma_PCRsWGA_genome_fixed_assembly_Fixed	eBL-Plasma-0046
+BL099_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0047
+BL103_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0048
+BL108_NoFNAPaired-Plasma_genome_fixed_assembly_Fixed	eBL-Plasma-0049

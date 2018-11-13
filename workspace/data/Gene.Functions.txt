@@ -1,0 +1,63 @@
+Category	Gene	Function
+Capsid	BcLF1	Major capsid protein
+Capsid	BVRF2	Protease
+Capsid	BdRF1	Assemblin
+Capsid	BDLF1	Minor capsid protein
+Capsid	BFRF3	Smallest capsid protein
+Capsid	BORF1	Minor capsid protein-binding protein
+Capsid	BTRF1	BTRF1
+Capsid	BVRF1	Portal plug
+Glycoprotein	BDLF3	gp150
+Glycoprotein	BXLF2	gp85
+Glycoprotein	BALF4	gB
+Glycoprotein	BLLF1	gp350
+Glycoprotein	BBRF3	Glycoprotein M
+Glycoprotein	BKRF2	gp25
+Glycoprotein	BFLF2	Nuclear membrane phosphoprotein
+Glycoprotein	BFRF1	Nuclear membrane protein p38
+Glycoprotein	BILF2	gp55/80
+NucleotideMetabolism	BXLF1	Thymidine kinase
+NucleotideMetabolism	BGLF4	Ser/Thr kinase
+NucleotideMetabolism	BKRF3	Uracil-DNA glycosylase
+NucleotideMetabolism	BLLF3	dUTPase
+NucleotideMetabolism	BORF2	Ribonucleoside reductase
+Latency	LMP1	LMP1
+Latency	EBNA1	EBNA-1
+Latency	LMP2B	LMP2A/2B
+Latency	EBNA3B	EBNA-3B
+Latency	EBNA3C	EBNA-3C
+Latency	EBNA2	EBNA-2
+Packaging	BALF3	Terminase large subunit/ATPase
+Packaging	BFLF1	BFLF1
+Replication	BBLF4	Helicase
+Replication	BSLF1	Primase
+Replication	BALF2	Single-stranded DNA-binding protein
+Replication	BBLF2-BBLF3	Primase-associated factor
+Replication	BGLF5	Alkaline exonuclease
+Replication	BALF5	DNA polymerase
+Signalling	BSLF2_BMLF1	SM protein
+Signalling	BRLF1	Rta
+Signalling	BCRF1	vIL-10 homolog
+Signalling	BHRF1	bcl-2 homolog
+Signalling	BZLF1	Zta
+Tegument	BPLF1	Large tegument protein
+Tegument	BRRF2	Unknown function
+Tegument	BNRF1	Major tegument protein
+Tegument	BOLF1	Large tegument protein-binding protein
+Tegument	BGLF1	gp115
+Tegument	BDLF2	BDLF2
+Tegument	BLRF2	BLRF2
+Tegument	BBLF1	Myristoylated phosphoprotein
+OtherFunction	BcRF1	unknown function
+OtherFunction	BARF0	unknown function
+OtherFunction	BXRF1	unknown function
+OtherFunction	BGLF3	unknown function
+OtherFunction	BFRF2	unknown function
+OtherFunction	BFRF1A	unknown function
+OtherFunction	BBRF2	unknown function
+OtherFunction	BLLF2	unknown function
+OtherFunction	BDLF4	unknown function
+OtherFunction	BNLF2b	unknown function
+OtherFunction	LF1	unknown function
+OtherFunction	LF2	unknown function
+OtherFunction	BVLF1	unknown function

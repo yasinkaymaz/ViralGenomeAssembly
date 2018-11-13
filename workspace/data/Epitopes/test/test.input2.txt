@@ -1,0 +1,2 @@
+#Type	Gene	EBVantigen	Start	End	EpitopeSequenceHLA
+CD4_T_cell_epitope	BYRF1	EBNA2	6	13	LALHGGQT

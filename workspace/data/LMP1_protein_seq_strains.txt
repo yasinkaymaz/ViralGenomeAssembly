@@ -1,0 +1,102 @@
+LMP1 Sequence ID	Strain
+NC 009334
+NC 007605
+HC-0030
+eBL-Tumor-0017	Alaskan-Raji strain
+HC-0034	Alaskan-Raji strain
+eBL-Tumor-0001	Alaskan-Raji strain
+eBL-Tumor-0018	Med Strain
+HC-0036	Alaskan-Raji strain
+HC-0037	Med Strain
+eBL-Tumor-0002	Med Strain
+eBL-Plasma-0042	Med Strain
+eBL-Plasma-0043	Alaskan-Raji strain
+eBL-Plasma-0044	Med Strain
+eBL-Plasma-0045	Alaskan-Raji strain
+eBL-Plasma-0046	Med Strain
+eBL-Plasma-0047	Med strain
+eBL-Plasma-0048	Alaskan-Raji strain
+eBL-Plasma-0049	Alaskan-Raji strain
+eBL-Plasma-0050	Alaskan-Raji strain
+eBL-Plasma-0051	Med strain
+eBL-Plasma-0052	Alaskan-Raji strain
+eBL-Plasma-0053	Med strain
+eBL-Plasma-0054	Alaskan-Raji strain
+eBL-Plasma-0055	Alaskan-Raji strain
+eBL-Tumor-0019	Med strain
+eBL-Tumor-0003	Med strain
+eBL-Tumor-0035	Alaskan-Raji strain
+eBL-Plasma-0035	Alaskan-Raji strain
+eBL-Tumor-0004	China 1 Strain
+eBL-Tumor-0020	Alaskan-Raji strain
+eBL-Tumor-0005	Med strain
+eBL-Tumor-0021	Med strain
+eBL-Tumor-0006	Med strain
+eBL-Tumor-0007	China 1 strain
+eBL-Tumor-0008	Alaskan-Raji strain
+eBL-Tumor-0036	Med strain
+eBL-Plasma-0036	Med strain
+eBL-Tumor-0022	Med strain
+eBL-Tumor-0023	na
+eBL-Tumor-0024	Alaskan-Raji strain
+eBL-Tumor-0025	Med strain
+eBL-Tumor-0026	Alaskan-Raji strain
+eBL-Tumor-0027	Med strain
+eBL-Tumor-0028	Alaskan-Raji strain
+eBL-Tumor-0037	Med strain
+eBL-Tumor-0029	Alaskan-Raji strain
+eBL-Tumor-0038	Med strain
+eBL-Plasma-0038	Med strain
+eBL-Tumor-0039	Med strain
+eBL-Plasma-0039	Med strain
+eBL-Tumor-0040	Alaskan-Raji strain
+eBL-Plasma-0040	Alaskan-Raji strain
+eBL-Tumor-0041	NC Strain
+eBL-Plasma-0041	na
+eBL-Tumor-0030	Med strain
+eBL-Tumor-0009	NC Strain
+eBL-Tumor-0031	Med strain
+eBL-Tumor-0032	Alaskan-Raji strain
+eBL-Tumor-0033	Alaskan-Raji strain
+eBL-Tumor-0010	Med strain
+eBL-Tumor-0011	China 1 strain
+eBL-Tumor-0012	Alaskan-Raji strain
+eBL-Tumor-0013	Med strain
+eBL-Tumor-0034	Alaskan-Raji strain
+eBL-Tumor-0014	Med strain
+eBL-Tumor-0015	China 1 strain
+eBL-Tumor-0016	Alaskan-Raji strain
+eBL CL-01	Alaskan-Raji strain
+eBL CL-02	Alaskan-Raji strain
+eBL CL-03	Med strain
+Daudi	Med strain
+HC-0002	Alaskan-Raji strain
+HC-0003	Med strain
+HC-0004	China 1 strain
+HC-0005	Alaskan-Raji strain
+HC-0006	Med strain
+HC-0007	Med strain
+HC-0008	China 1 strain
+HC-0009	Med strain
+HC-0010	Alaskan-Raji strain
+HC-0011	Med strain
+HC-0012	Med strain
+HC-0013	Med strain
+HC-0014	Alaskan-Raji strain
+Jijoye	Med strain
+HC-0015	Alaskan-Raji strain
+HC-0016	Med strain
+HC-0039	na
+HC-0018	Med strain
+HC-0019	Alaskan-Raji strain
+HC-0020	Med strain
+HC-0021	Med strain
+HC-0023	Alaskan-Raji strain
+HC-0024	Alaskan-Raji strain
+HC-0040	Med strain
+HC-0026	Med strain
+HC-0027	Alaskan-Raji strain
+HC-0028	Alaskan-Raji strain
+HC-0029	Med strain
+Namalwa	Alaskan-Raji strain
+Raji	Alaskan-Raji strain

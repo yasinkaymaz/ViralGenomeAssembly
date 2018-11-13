@@ -1,0 +1,9 @@
+Denaturation Buffer	Incubation	EBVincrease
+TE	8hs30C	6.31
+TE	16hs30C	8.74
+TE	8hs35C	4.05
+TE	16hs35C	6.14
+TE+Q sol	8hs30C	9.44
+TE+Q sol	16hs30C	13.94
+TE+Q sol	8hs35C	10.72
+TE+Q sol	16hs35C	15.13

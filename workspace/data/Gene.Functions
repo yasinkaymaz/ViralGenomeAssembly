@@ -1,0 +1,62 @@
+Capsid BcLF1 Major capsid protein 14
+ BVRF2 Protease 7
+ BdRF1 Assemblin 5
+ BDLF1 Minor capsid protein 3
+ BFRF3 Smallest capsid protein 3
+ BORF1 Minor capsid protein-binding protein 1
+ BTRF1 BTRF1 1
+ BVRF1 Portal plug 1
+Glycoprotein BDLF3 gp150 16
+ BXLF2 gp85 10
+ BALF4 gB 9
+ BLLF1 gp350 8
+ BBRF3 Glycoprotein M 4
+ BKRF2 gp25 4
+ BFLF2 Nuclear membrane phosphoprotein 3
+ BFRF1 Nuclear membrane protein p38 3
+ BILF2 gp55/80 1 
+Nucleotide metabolism BXLF1 Thymidine kinase 8
+ BGLF4 Ser/Thr kinase 6
+ BKRF3 Uracil-DNA glycosylase 2
+ BLLF3 dUTPase 2
+ BORF2 Ribonucleoside reductase 1
+Latency LMP1 LMP1 45
+ EBNA-1 EBNA-1 19
+ LMP2 LMP2A/2B 18
+ EBNA-3B EBNA-3B 5
+ EBNA-3C EBNA-3C 5
+ EBNA-2 EBNA-2 3
+Packaging BALF3 Terminase large subunit/ATPase 14
+ BFLF1 BFLF1 9
+Replication BBLF4 Helicase 14
+ BSLF1 Primase 10
+ BALF2 Single-stranded DNA-binding protein 6
+ BBLF2/3 Primase-associated factor 5
+ BGLF5 Alkaline exonuclease 4
+ BALF5 DNA polymerase 3 
+Signalling Spliced BSLF2+BMLF1 SM protein 14
+ BRLF1 Rta 2
+ BCRF1 vIL-10 homolog 1
+ BHRF1 bcl-2 homolog 1
+ BZLF1 Zta 1
+Tegument BPLF1 Large tegument protein 22
+ BRRF2 Unknown function 22
+ BNRF1 Major tegument protein 10
+ BOLF1 Large tegument protein-binding protein 8 
+ BGLF1 gp115 4
+ BDLF2 BDLF2 2
+ BLRF2 BLRF2 2
+ BBLF1 Myristoylated phosphoprotein 1 
+Unknown BcRF1 unknown function 19
+ BARF0 unknown function 10
+ BXRF1 unknown function 8
+ BGLF3 unknown function 8
+ BFRF2 unknown function 6
+ BFRF1A unknown function 4
+ BBRF2 unknown function 2
+ BLLF2 unknown function 2
+ BDLF4 unknown function 1
+ BNLF2b unknown function 1
+ LF1 unknown function 1
+ LF2 unknown function 1
+ BVLF1 unknown function 1 
