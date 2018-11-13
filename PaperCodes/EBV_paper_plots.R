@@ -66,12 +66,14 @@ data$Genomes <- gsub("_genome_fixed_assembly_Fixed","",rownames(data))
 datasub <- data[,c("T1_MMR", "T2_MMR","Jijoye_Pct")]
 mdatasub <- melt(datasub,id="Jijoye_Pct")
 
-err.j <- ggplot(data=mdatasub,aes(x=100*(value), y=Jijoye_Pct, color=variable))+geom_point(size=2)+
+err.j <- ggplot(data=mdatasub,aes(x=100*(value), y=Jijoye_Pct, color=variable))+geom_point(size=3)+
   xlab("Distance (% missmatch)") + ylab("Jijoye % in mixture")+
   scale_color_manual(labels = c("Type 1 (NC_007605)", "Type 2 (NC_009334)"), values = c("blue", "red"))+
   theme_bw()+
   guides(color=guide_legend("Distance to"))
 #+geom_smooth(data = mdatasub, method = "auto",aes(fill=variable), formula = y ~ log10(x))
+
+ggsave(plot=err.j,width = 11,height = 9, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/ControlGenomesDistance2.pdf", useDingbats=FALSE )
 
 pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/ControlGenomesDistance.pdf",width = 7.5,height = 5)
 err.j
@@ -103,6 +105,17 @@ ggplot(data=viral)+
   theme(text = element_text(size=20))+
   labs(colour="Viral Type",x='',y="Viral Load (copy/ng DNA)")
 dev.off()
+
+
+
+
+vlplot <- ggplot(data=viral,aes(colour=genome,genome,viralload))+  
+          geom_violin(position=position_dodge(1))+
+          geom_dotplot(aes(fill=genome),binaxis='y', stackdir='center', dotsize=1,position=position_dodge(1))+
+          theme(text = element_text(size=20))+
+          labs(colour="Viral Type",x='',y="Viral Load (copy/ng DNA)")
+
+ggsave(plot=vlplot,width = 12,height = 10, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/ViralLoadvsType2.pdf", useDingbats=FALSE )
 
 
 
@@ -255,23 +268,28 @@ library(ggman)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm.bed",header = TRUE, row.names = 4)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm-strata.bed",header = TRUE, row.names = 4)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.combined1.bed",header = TRUE, row.names = 4)
+#assoc <-read.delim("/Users/yasinkaymaz/Documents/EBV/ourbatch2/Secondround/test/Plink.1M.nullFixed.sub",header = TRUE)
+assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/AssocTest.03-27-2018_v3.txt", header = TRUE)
+head(assoc)
 
-assoc <- assoc[assoc$P < 0.75,]
-assoc.ebna3c <- assoc[ which(89135 > assoc$position & assoc$position > 86083),]$position
-assoc.sig <- assoc[ which(assoc$P < 0.001),]$position
+#assoc <- assoc[assoc$P < 0.75,]
+#assoc <- assoc[assoc$P < 1.0,]
+#assoc <- droplevels(assoc[assoc$FILTER == "PASS",])
 
-assoc[ -log10(assoc$P) > 2,]
-write.table(assoc[ -log10(assoc$P) > 2,], file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t")
+assoc.sig <- assoc[ which(assoc$P < 0.01),]$position
+
+assoc.save <- droplevels(assoc[ -log10(assoc$P+0.0000001) > 2,c("chrom", "position", "REF", "ALT", "MINA","MINU", "OBSA","OBSU","P","OR","VarAAposition",  "VarType", "RefCodon", "VarCodon", "RefAA", "VarAA",  "Gene")])
+write.table(assoc.save, file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t",quote = FALSE,row.names = FALSE)
 
 p1 <- ggman(assoc, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
 
 #p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
 p1 <- ggmanHighlight(p1,highlight = assoc.sig)+ theme_bw()
 
-ggsave(plot=p1,width = 10,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc4.pdf", useDingbats=FALSE )
+ggsave(plot=p1,width = 12,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc5.pdf", useDingbats=FALSE )
 
 
-ggman(assoc, snp = "snp", bp = "position", chrom = "chrom", pvalue = "OR",relative.positions = TRUE,pointSize = 0.5, logTransform = FALSE, ymax = 100)
+#ggman(assoc, snp = "snp", bp = "position", chrom = "chrom", pvalue = "OR",relative.positions = TRUE,pointSize = 0.5, logTransform = FALSE, ymax = 100)
 
 
 #Figure for Pre-amp dNTP optimization:
@@ -305,6 +323,200 @@ ggplot(incdata, aes(x=Incubation, y=EBVincrease,group=as.factor(Denaturation.Buf
         plot.background =element_blank())+theme_bw()+scale_fill_manual(values=c("#E69F00", "#56B4E9"))
 dev.off()
 
+#cat my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified-PART1_filtered-OnlyNonSynVariants_Effects.txt |tr -s " "|tr " " '\t' > 1.txt
+vareff <- read.delim("/Users/yasinkaymaz/Documents/EBV/ourbatch2/Secondround/test/Filtered-OnlyNonSynVariants_Effects_Fixed.txt",header = FALSE)
+head(vareff)
+vareff <- droplevels(vareff[!(vareff$V11 == "Z"),])
+mat <- confusionMatrix(vareff$V10,vareff$V11)
+
+library(corrplot)
+#pheatmap(mat$table,show_rownames = TRUE,cluster_rows = FALSE,cluster_cols=FALSE, legend = FALSE,	cellwidth = 15, cellheight = 15,
+#         border_color='white',display_numbers = mat$table)
+
+
+svg(filename = "/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/nonSynAAtable.svg", width = 10,height = 10)
+#corrplot(mat$table, method="circle",is.corr = FALSE, type="upper", order="hclust")
+corrplot(mat$table, method="circle",is.corr = FALSE,tl.srt = 0)
+dev.off()
+
+
+#Gene Function Table:
+gf <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/Gene.Functions.txt",header = TRUE)
+head(gf)
+
+gf[!(gf$Gene %in% assoc$Gene),]
+rownames(gf) <- gf$Gene
+
+data <- read.delim("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/dnds_2.txt", row.names = 1, header = TRUE)
+head(data)
+subdata <- data[,c("gene","SynPerGenomePerKb","NonsynPerGenomePerKb")]
+head(subdata)
+
+synCat <- NULL
+for (c in levels(gf$Category)){
+  print(c)
+  cgenes <- rownames(gf[gf$Category == c,])
+  print(subdata[cgenes,])
+  categ <- data.frame(Category=c,
+                      Syn=mean(subdata[cgenes,"SynPerGenomePerKb"]),
+                      Nyn=mean(subdata[cgenes,"NonsynPerGenomePerKb"]))
+  print(categ)
+  synCat <- rbind(synCat, categ)
+  
+}
+rownames(synCat) <- synCat$Category 
+#synCat <- synCat[,-c(1)]
+msynCat <- melt(synCat)
+synplot <- ggplot(msynCat,aes(x=Category, y=value, fill=variable))+geom_bar(stat="identity", position=position_dodge())+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5))+
+  ylab("Average Variant (per Gene)")+
+  xlab("Functional Categories")
+
+ggsave(plot=synplot,width = 8,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/synCategories.pdf", useDingbats=FALSE )
+
+#Epitopes table:
+epp <- read.table("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/Epitopes/Epitopes_Table.txt", header = 1)
+head(epp)
+
+
+adist("RPFFHPVGEADYFEY", epp[(epp$EpitopeSequence == "RPFFHPVGEADYFEY"),]$SampleEpitopeSequence)
+stringdist::stringsim("RPFFHPVGEADYFEY", as.character(epp[(epp$EpitopeSequence == "RPFFHPVGEADYFEY"),]$SampleEpitopeSequence))
+
+refpep <- "QVADVVRAPGVPAMQPQYF"
+testpeps <- c("PWKTLGHYNDOQLTLMNTR","TTTQVAXXXXXXXXXXXX","QVAXXXXXXXXXXXXXXXX","QVADVVRAPXXXXXXXQXX","QVADVVRAPXXXXXXXXXX","QVADVVRAPGVPAMXXXXX","QVADVVRAPGVPAMQPXXX")
+
+for (pep in testpeps){
+  newpep <- gsub("X","",pep)
+  print(paste(newpep, stringdist::stringsim(refpep, as.character(newpep),method='hamming'), sep=" "))
+}
+
+
+#distmat <- adist(refepp$EpitopeSequence, refepp$SampleEpitopeSequence)
+#pheatmap(distmat,cluster_rows = FALSE,cluster_cols = FALSE)
+#corrplot(distmat, method="circle",is.corr = FALSE,tl.srt = 0)
+
+#xxx<-head(epp,200)
+xxx <- epp
+
+LenPolymorhicPeps <- c("VQPPQLTLQV","RKCCRAKFKQLLQHYR","PHDITYPYTARNIRDAACRAV","APGPGPQPLRESIVCYFM","LDLFGQLTPHTKAVYQPRGA")
+RepeatSamples <- c("Raji_new_Rep","eBL-Tumor-0022_Rep", "eBL-Tumor-0024_Rep", "eBL-Tumor-0026_Rep", "eBL-Tumor-0037_Rep","eBL-Tumor-0038_Rep")
+BadEpitopes <- c("ILRQLLTGGVKKGRPSLKLQ","QAPTEYTRERRGVGPMPPT","IVTDFSVIK","RLRAEAQVK","SVRDRLARL","GPWVPEQWMFQGAPPSQGTP","QVADVVRAPGVPAMQPQYF","HRCQAIRKK","FIEFVGWLCKKDHTHIREWF","TYSAGIVQI","AVFDRKSDAK","VEITPYKPTW","EDLPCIVSRGGPKVKRPPIF","LEKARGSTY","KRPPIFIRRL","FLRGRAYGL","VSFIEFVGW","RRFPLDLR","RYSIFFDY","VYFQDVFGTMWCHHA","AYSSWMYSY","RQAIRDRRRNPASRR","RRARSLSAERY")
+BadSamples <- c("eBL-Tumor-0003", "eBL-Plasma-0009")
+
+xxx <- xxx[!(xxx$EpitopeSequence %in% LenPolymorhicPeps),]
+xxx <- xxx[!(xxx$EpitopeSequence %in% BadEpitopes),]
+
+xxx <- xxx[!(xxx$SampleName %in% RepeatSamples),]
+xxx <- xxx[!(xxx$SampleName %in% BadSamples),]
+
+#Calculate the similarity between Sample and reference Epitope sequences
+Simi=NULL
+for (i in 1:length(xxx[,1])){
+  #samplepep <- gsub("X","",as.character(xxx[i,]$SampleEpitopeSequence))
+  #Simi <- rbind(Simi,stringdist::stringsim(as.character(xxx[i,]$EpitopeSequence), as.character(samplepep),method='hamming'))
+  Simi <- rbind(Simi,stringdist::stringsim(as.character(xxx[i,]$EpitopeSequence), as.character(xxx[i,]$SampleEpitopeSequence)))
+}
+xxx$Similarity <- Simi
+
+refepp<- xxx[(xxx$SampleID == "Type1_Ref"),]
+
+write.table(xxx, file="~/Dropbox/Papers/EBV_project/workspace/data/EpitopesTable_withSimilarities.txt",sep="\t",quote = FALSE,row.names = FALSE)
+simMat <- reshape2::dcast(xxx, EpitopeSequence ~ SampleName )
+
+
+#simMat[is.na(simMat)] <- 0
+rownames(simMat) <- simMat$EpitopeSequence
+simMat <- simMat[,-c(1)]
+
+colannot <- NULL
+for (sample in colnames(simMat)){
+  colannot <- rbind(colannot,unique(epp[(epp$SampleName == sample),c("SampleID","ViralSubtype", "SampleGroup")]))
+}
+
+rownames(colannot) <- colannot$SampleID
+colannot <- colannot[,-c(1)]
+
+rowannot <- refepp[,c("AntigenName","EpitopeType")]
+rownames(rowannot) <- refepp$EpitopeSequence
+
+SampleGroup        <- c("purple", "orange", "green")
+names(SampleGroup) <- c("eBL", "HealthyControl","CultureBL")
+
+ViralSubtype <- c("red", "blue")
+names(ViralSubtype) <- c("Type1", "Type2")
+
+EpitopeType <- c("cyan", "orchid1")
+names(EpitopeType) <- c("CD4_T_cell_epitope","CD8_T_cell_epitope")
+
+AntigenName <- c("hotpink","brown","limegreen","navy","firebrick1","gold","dodgerblue","gray87")
+names(AntigenName) <- c("BLLF1", "BZLF1", "EBNA1","EBNA2", "EBNA3A", "EBNA3B", "EBNA3C", "LMP1")
+simMat <- cbind(simMat, 
+                Daudi_new =simMat$Daudi_new)
+colnames(simMat)
+simMat <- simMat[,-c(1)]
+
+reorderedCols <- rownames(colannot[with(colannot, order(SampleGroup, ViralSubtype)),])
+simMat <- simMat[,reorderedCols]
+
+colannot_colors <- list(SampleGroup = SampleGroup,
+                        ViralSubtype = ViralSubtype,
+                        EpitopeType=EpitopeType,
+                        AntigenName=AntigenName)
+
+out <- pheatmap(simMat,border_color='white',cellwidth = 8,cellheight = 10,cluster_cols = FALSE,annotation_row = rowannot,annotation_col = colannot,show_colnames = TRUE,annotation_colors = colannot_colors)
+
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2.pdf",width = 25,height = 25,onefile = FALSE)
+out
+dev.off()
 
 
 
+
+Conservation=NULL
+for (pep in rownames(rowannot)){
+line <- simMat[pep,]
+covredpeps <- length(line[line == 1])*100/length(line[line != 0])
+Conservation <- rbind(Conservation, pep=covredpeps)
+}
+rownames(Conservation) <- rownames(rowannot)
+colnames(Conservation) <- "ConservationLevel"
+Conservation <- as.data.frame(Conservation)
+Conservation$Epitopes <- rownames(Conservation)
+Conservation <- Conservation[rownames(simMat[out$tree_row[["order"]],]),]
+Conservation$Epitopes <- factor(Conservation$Epitopes, levels=rownames(simMat[out$tree_row[["order"]],]))
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2_cons.pdf",width = 25,height = 5,onefile = FALSE)
+
+ggplot(Conservation, aes(x=Epitopes,y=ConservationLevel))+geom_bar(stat="identity")+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5))+
+   scale_x_discrete(position = "top")+  scale_y_reverse() +
+  theme(axis.text.y = element_text(angle = 90, hjust = 1,vjust=0.5))
+dev.off()
+
+
+data <- read.table("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/sample_characteristics.txt",header=TRUE,row.names = 1)
+ggplot(data,aes(x=reorder(SampleID,Age),y=Age,color=Viral_Type))+geom_point(aes(shape=Diagnose),size=3)
+
+data.e <- droplevels(data[which(data$Diagnose == "eBL"),])
+ggplot(data.e,aes(x=reorder(SampleID,Age),y=Age,color=Viral_Type))+
+  geom_point(aes(shape=Gender),size=3)+ 
+  geom_vline(xintercept = round(length(rownames(data.e))/2), linetype="dotted")+
+  geom_hline(yintercept = median(data.e$Age), linetype="dotted")+ 
+  scale_y_continuous(breaks=seq(0,15,1))+
+  theme(axis.text.x=element_blank())+
+  xlab("Individuals")
+
+data.h <- droplevels(data[which(data$Diagnose == "HealthyControl"),])
+ggplot(data.h,aes(x=reorder(SampleID,Age),y=Age,color=Viral_Type))+
+  geom_point(aes(shape=Gender),size=3)+ 
+  geom_vline(xintercept = round(length(rownames(data.h))/2), linetype="dotted")+
+  geom_hline(yintercept = median(data.h$Age), linetype="dotted")+ 
+  scale_y_continuous(breaks=seq(0,15,1))+
+  theme(axis.text.x=element_blank())+
+  xlab("Individuals")
+
+
+#PCoA
