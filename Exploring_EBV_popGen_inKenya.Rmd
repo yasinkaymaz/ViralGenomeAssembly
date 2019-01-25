@@ -1,0 +1,265 @@
+---
+title: "Exploring_EBV_popGen"
+author: "Yasin Kaymaz"
+date: "12/21/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(vcfR)
+library(dartR)
+require(gridExtra)
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+source(here::here("PapeRCodes/functions.R"))
+```
+
+## Exploring population genetics of EBV genomes in BL endemic regions
+Here, I would like to share some of my results exploring the single nucleotide variation data of EBV genomes we sequenced. 
+All the code and data have been deposited to the repo https://github.com/yasinkaymaz/ViralGenomeAssembly
+Note: Directories are relative to repo master.
+
+We are loading SNV data of EBV genomes from 58 eBL and 40 Healthy controls, excluding the plasma genomes of paired samples and replicated genomes.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE, paged.print=FALSE}
+#Load the data
+pops <- read.delim(here::here("workspace/data/pop_info.txt"),row.names = 1, header = T)
+summary(pops)
+```
+
+I generated a vcf file out of De Novo assembled genomes following the steps:
+
+  1)  multiple sequence alignment (scripts/msa_mafft.sh)
+  
+  2)  Fixed the insertions/deletions (bin/MSA_InsertCleaner.py & bin/MSA_Gap-Singleton_Editor.py)
+  
+  3)  Determined single nucleotide variant locations (bin/MSA_SNP_finder.py)
+  
+  4)  Removed repetitive regions (bin/MSA_cleaner.py)
+  
+  5)  Finally, generated a vcf file from the output using 'snp-sites' tool.
+  
+Resulting vcf file stores 9488 variant locations from 98 genomes. 
+
+```{r}
+#vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_sequence.aln.Sub_for_Assoc_modified.vcf"))
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
+```
+
+Need to convert vcf file into genlight (gl) format. This conversion drops 200 loci with more than two alleles, which are not currently supported. What is left is 8249 loci from 98 genomes.
+
+```{r}
+gl <- vcfR2genlight(vcf.ebv)
+```
+
+I then want to remove genomes with too many missing data, in other words, short assemblies due to lack of coverage. Remove individual genomes if only less than 25% of all variants locations are covered.
+I also only keep loci at which at least 25% of genomes have been covered. 
+
+```{r}
+gl <- gl.filter.callrate(gl, method = "loc",threshold = 0.25)
+gl <- gl.filter.callrate(gl, method = "ind",threshold = 0.25)
+```
+
+This results to drop 3 healthy control genomes with low coverage; "HC-0031", "HC-0033", "HC-0038".
+
+We are left with 7458 variants from 95 genomes in total now.
+
+## Principle Coordinates Analysis (PCoA)
+
+Now, I run PCOA analysis on the data generating first 20 PCs:
+
+```{r}
+#Import genome type and patient info
+gl$pop <- pops[indNames(gl),2]
+type <- pops[indNames(gl),3]
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl,nfactors = 20)
+```
+
+Here is the PCOA of **1st** and **2nd** axis with all variants.
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+PCoAxis **2nd** and **3rd**:
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=2, yaxis=3, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+PCoAxis **4nd** and **5rd**:
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=4, yaxis=5, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+
+Then, I plot the PCA loading values for each genomic location
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df <- as.data.frame(pc$loadings)
+ggplot(df, aes(x=as.numeric(gl@position),y=Axis1, group = 1))+
+  geom_point(size=.1)+
+  labs(x="genomic positions")+
+  ggtitle("PCA Loadings from Axis 1")
+```
+
+
+
+
+## Calculating Fst for variant loci
+
+Here, I wanted to calculate locus-by-locus Fst scores to determine accumulations of genomics regions that reflect differentiation between the two comparison groups. Fixation index ranges between 0 and 1, where 0 means complete exchange of genetic material while 1 means no sharing and complete differentiation between the groups. 
+
+First, I am plotting the locus-by-locus Fst for Type 1 and Type 2 genomes regardless of disease status:
+
+```{r fig.width=12, fig.height=8}
+Fstats.ebvtype <- NAM::Fst(as.matrix(gl),fam=as.numeric(pops[indNames(gl),]$EBV_Type) )
+Fstats.phenotype <- NAM::Fst(as.matrix(gl),fam=as.numeric(pops[indNames(gl),]$Condition) )
+
+fstdata <- data.frame(loc=as.numeric(gl@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
+ggplot(fstdata, aes(loc, Fst.EBVTypes))+ geom_point(color="red",size=0.2) + ylim(0,1) +
+  labs(x="genomic positions")+
+  ggtitle("Fixation Index for Type 1 and Type 2 populations")
+
+```
+
+This, second one is for eBL associated EBV genomes and Healthy control genomes:
+
+```{r fig.width=12, fig.height=8}
+
+ggplot(fstdata, aes(loc, Fst.pheno))+ geom_point(color="blue",size=0.2) + ylim(0,1)+
+  labs(x="genomic positions")+
+  ggtitle("Fixation Index for eBL and Healthy controls")
+
+```
+
+
+## Genetic distance
+
+As we discussed, I am now calculating the pairwise genetic distance of genomes for each gene and then take the average.
+Mean pairwise distances calculated using Kimura 2 parameter method. Error bars represent standard error of mean. 
+
+        Kimura 2-Parameter distance = -0.5 log( (1 - 2p -q) * sqrt( 1 - 2q ) )
+        where:
+        p = transition frequency
+        q = transversion frequency
+  
+
+```{r fig.width=12, fig.height=6}
+
+data <- read.delim(here::here("workspace/data/pairwisedistances.ordered.txt"),header=F)
+data1 <- read.delim(here::here("workspace/data/Type1.pairwisedistances.ordered.txt"),header=F)
+data2 <- read.delim(here::here("workspace/data/Type2.pairwisedistances.ordered.txt"),header=F)
+
+ggplot(data, aes(x=reorder(V2,V1), y=V3)) + 
+  geom_errorbar(aes(ymin=V3-V4, ymax=V3+V4), width=.1) +
+  geom_point()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  xlab("EBV Genes (in genomic order)")+
+  ylab("d (K2P)")+
+  ggtitle("Gene by gene genetic distances of EBV genomes (N = 98)")
+
+```
+
+Type 1 and Type 2 genomes separately:
+
+```{r fig.width=11, fig.height=6}
+data1$Group <- "Type 1"
+data2$Group <- "Type 2"
+
+d1d2 <- rbind(data1,data2)
+
+ggplot(d1d2, aes(x=reorder(V2,V1), y=V3, color=Group)) + 
+  geom_errorbar(aes(ymin=V3-V4, ymax=V3+V4), width=.1) +
+  geom_point()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  xlab("EBV Genes (in genomic order)")+
+  ylab("d (K2P)")+
+  ggtitle("Gene by gene genetic distances of Type 1 (N = 60) and Type 2 (N = 35) EBV genomes")
+
+
+```
+
+
+Delta d:
+
+```{r fig.width=11, fig.height=6}
+
+data <- cbind(data1,data2)
+colnames(data) <- c("col1","gene1", "d_t1", "err_t1", "group1","col2","gene2", "d_t2", "err_t2", "group2")
+data$delta_d <- data$d_t1 - data$d_t2
+
+ggplot(data, aes(x=reorder(gene1,col1), y=delta_d)) +
+  geom_point(shape=23, fill="orange")+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  xlab("EBV Genes")+
+  ylab("Delta d (Type1 - Type2")+
+  ylim(-0.0025, 0.02)+
+  ggtitle("Difference between the divergence of two types")
+
+```
+
+
+### dN/dS over protein coding genes
+
+I took the main python functions from https://github.com/a1ultima/hpcleap_dnds/
+
+                dS  = -(3./4.)*math.log(1.-((4./3.)*pS))
+                dN  = -(3./4.)*math.log(1.-((4./3.)*pN))
+                
+                where; 
+                      pN: The count of the number of nonsynonymous differences (Nd) normalized by the number of all possible nonsynonymous sites (N)
+                      pS: The count of the number of synonymous differences (Sd) normalized by the number of all possible synonymous sites (S)
+                      
+                dN_dS = dN/dS
+
+
+[Here is the source for equations from Mega software](https://www.megasoftware.net/mega4/WebHelp/part_iv___evolutionary_analysis/computing_evolutionary_distances/distance_models/synonymouse_and_nonsynonymous_substitution_models/hc_nei_gojobori_method.htm)
+
+
+```{r fig.height=6, fig.width=12}
+
+data <- read.delim(here::here("workspace/data/pairwiseMeandNdS.ordered.txt"),header=F)
+data1 <- read.delim(here::here("workspace/data/Type1.pairwiseMeandNdS.ordered.txt"),header=F)
+data2 <- read.delim(here::here("workspace/data/Type2.pairwiseMeandNdS.ordered.txt"),header=F)
+
+ggplot(data, aes(x=reorder(V2,V1), y=V7)) + 
+  geom_errorbar(aes(ymin=V7-V8, ymax=V7+V8), width=.1) +
+  geom_point()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  xlab("EBV Genes (in genomic order)")+
+  ylab("dN/dS")+
+  ggtitle("Gene by gene dN/dS ratios of EBV genomes (N = 98)")
+
+
+```
+
+Type 1 and Type 2 genomes separately:
+
+```{r fig.width=11, fig.height=6}
+data1$Group <- "Type 1"
+data2$Group <- "Type 2"
+
+d1d2 <- rbind(data1,data2)
+
+ggplot(d1d2, aes(x=reorder(V2,V1), y=V7, color=Group)) + 
+  geom_errorbar(aes(ymin=V7-V8, ymax=V7+V8), width=.1) +
+  geom_point()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  xlab("EBV Genes (in genomic order)")+
+  ylab("dN/dS")+
+  ggtitle("Gene by gene dN/dS ratios of Type 1 (N = 60) and Type 2 (N = 35) EBV genomes")+ scale_color_manual(values=c( "#E69F00", "#56B4E9"))
+
+```
+
+

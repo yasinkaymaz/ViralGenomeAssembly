@@ -26,7 +26,7 @@ RefDIR="$toolDir/resources/Annotation/Type2/Vfat/EBV"
 AnnotationDir="$toolDir/resources/Annotation/Type2/"
 fi
 
-#Take input dna multi fasta file. this file hast to end with .fasta
+#Take input dna multi fasta file. this file has to end with .fasta
 InputFasta=$1
 
 #Convert input fasta to tab file
@@ -38,7 +38,7 @@ do
   sample_name=`echo $line|cut -d " " -f1`;
   seq=`echo $line|cut -d " " -f2`;
   newseq=`echo $seq | tr "atgcn" "ATGCN"`;
-  echo -e "$sample_name $newseq";
+  #echo -e "$sample_name $newseq";
   #Revert tab to fasta for a given line.
   echo -e ">$sample_name\n$newseq" > dna.fa
   #translate DNA to protein.

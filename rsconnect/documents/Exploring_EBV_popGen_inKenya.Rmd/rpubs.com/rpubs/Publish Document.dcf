@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/453353/34268ce1578447c680bfd5fd6f1c5556
+bundleId: https://api.rpubs.com/api/v1/document/453353/34268ce1578447c680bfd5fd6f1c5556
+url: http://rpubs.com/yasinkaymaz/453353
+when: 1546529137.29206

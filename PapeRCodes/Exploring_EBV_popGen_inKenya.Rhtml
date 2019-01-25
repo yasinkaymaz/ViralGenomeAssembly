@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<title>Exploring population genetics of EBV genomes in BL endemic regions</title>
+</head>
+
+<body>
+
+<p>
+Here, I would like to share some of my results exploring the single nucleotide variation analysis of EBV genomes we sequenced. 
+All the code and data have been deposited to the repo https://github.com/yasinkaymaz/ViralGenomeAssembly
+Note: Directories are relative to repo master.
+</p>
+
+<!--begin.rcode
+library(vcfR)
+library(dartR)
+require(gridExtra)
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+source(here::here("PapeRCodes/functions.R"))
+#Load the data
+pops <- read.delim(here::here("workspace/data/pop7.txt"),row.names = 1, header = T)
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_sequence.aln.Sub_for_Assoc_modified.vcf"))
+#Convert vcf file into gl format
+gl <- vcfR2genlight(vcf.ebv)
+#Filter variants from regions that are not covered (sequenced) in at least 25% of all genomes.
+gl <- gl.filter.callrate(gl, method = "ind",threshold = .25, recalc = TRUE)
+#Import genome type and patient info
+gl$pop <- pops[indNames(gl),2]
+type <- pops[indNames(gl),1]
+
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl)
+
+
+
+pc$loadings %>% as.tibble() %>% ggplot(aes())
+df <- as.data.frame(pc$loadings)
+#ggplot(df, aes(x=as.numeric(gl@position),y=Axis2, group = 1))+geom_point(size=.1)
+
+end.rcode-->
+
+<p>Here is the PCOA of 1st and 2nd axis with all variants.</p>
+
+<!--begin.rcode fig.width=7, fig.height=6
+#
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+end.rcode-->
+
+</body>
+</html>

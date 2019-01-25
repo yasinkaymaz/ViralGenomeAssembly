@@ -68,9 +68,9 @@ def PullLoci(BedFile):
 alignment = AlignIO.read(open(sys.argv[1]), "fasta")
 print("Alignment length %i" % alignment.get_alignment_length())
 
-for record in alignment :
+#for record in alignment :
 #    print(record.seq + " " + record.id)
-    print(record.id), record.seq.count('-'), record.seq.count('n')
+#    print(record.id), record.seq.count('-'), record.seq.count('n')
 
 #good alignment positions = gap
 #gap = []
@@ -78,7 +78,7 @@ for record in alignment :
 #bap = []
 
 edited = alignment[:,1:2]
-print edited
+#print edited
 
 TargetGenesLoci = PullLoci(GeneBedfile)
 
@@ -123,7 +123,7 @@ for i in range(alignment.get_alignment_length()):
 
 
 edited = edited[:,1:]
-print edited
+#print edited
 
 #>>> align.add_sequence("Gamma", "ACTGCTAGATAG")
 

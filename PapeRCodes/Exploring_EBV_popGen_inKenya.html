@@ -1,0 +1,239 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Exploring population genetics of EBV genomes in BL endemic regions</title>
+</head>
+
+<body>
+
+<p>
+Here, I would like to share some of my results exploring the single nucleotide variation analysis of EBV genomes we sequenced. 
+All the code and data have been deposited to the repo https://github.com/yasinkaymaz/ViralGenomeAssembly
+Note: Directories are relative to repo master.
+</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(vcfR)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## 
+##    *****       ***   vcfR   ***       *****
+##    This is vcfR 1.8.0 
+##      browseVignettes('vcfR') # Documentation
+##      citation('vcfR') # Citation
+##    *****       *****      *****       *****
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(dartR)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## Loading required package: adegenet
+</pre></div>
+<div class="message"><pre class="knitr r">## Loading required package: ade4
+</pre></div>
+<div class="message"><pre class="knitr r">## 
+##    /// adegenet 2.1.1 is loaded ////////////
+## 
+##    &gt; overview: '?adegenet'
+##    &gt; tutorials/doc/questions: 'adegenetWeb()' 
+##    &gt; bug reports/feature requests: adegenetIssues()
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">require</span><span class="hl std">(gridExtra)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## Loading required package: gridExtra
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(ggplot2)</span>
+<span class="hl kwd">library</span><span class="hl std">(plotly)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## 
+## Attaching package: 'plotly'
+</pre></div>
+<div class="message"><pre class="knitr r">## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+</pre></div>
+<div class="message"><pre class="knitr r">## The following object is masked from 'package:stats':
+## 
+##     filter
+</pre></div>
+<div class="message"><pre class="knitr r">## The following object is masked from 'package:graphics':
+## 
+##     layout
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(tidyverse)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## ── Attaching packages ─────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+</pre></div>
+<div class="message"><pre class="knitr r">## ✔ tibble  1.4.2     ✔ purrr   0.2.5
+## ✔ tidyr   0.8.1     ✔ dplyr   0.7.6
+## ✔ readr   1.1.1     ✔ stringr 1.3.1
+## ✔ tibble  1.4.2     ✔ forcats 0.3.0
+</pre></div>
+<div class="message"><pre class="knitr r">## ── Conflicts ────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::combine() masks gridExtra::combine()
+## ✖ dplyr::filter()  masks plotly::filter(), stats::filter()
+## ✖ dplyr::lag()     masks stats::lag()
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">source</span><span class="hl std">(here</span><span class="hl opt">::</span><span class="hl kwd">here</span><span class="hl std">(</span><span class="hl str">&quot;PapeRCodes/functions.R&quot;</span><span class="hl std">))</span>
+<span class="hl com">#Load the data</span>
+<span class="hl std">pops</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read.delim</span><span class="hl std">(here</span><span class="hl opt">::</span><span class="hl kwd">here</span><span class="hl std">(</span><span class="hl str">&quot;workspace/data/pop7.txt&quot;</span><span class="hl std">),</span><span class="hl kwc">row.names</span> <span class="hl std">=</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">header</span> <span class="hl std">= T)</span>
+<span class="hl std">vcf.ebv</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read.vcfR</span><span class="hl std">(here</span><span class="hl opt">::</span><span class="hl kwd">here</span><span class="hl std">(</span><span class="hl str">&quot;workspace/data/my_ICed_sequence.aln.Sub_for_Assoc_modified.vcf&quot;</span><span class="hl std">))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## Scanning file to determine attributes.
+## File attributes:
+##   meta lines: 3
+##   header_line: 4
+##   variant count: 9488
+##   column count: 107
+## Meta line 3 read in.
+## All meta lines processed.
+## gt matrix initialized.
+## Character matrix gt created.
+##   Character matrix gt rows: 9488
+##   Character matrix gt cols: 107
+##   skip: 0
+##   nrows: 9488
+##   row_num: 0
+## Processed variant 1000Processed variant 2000Processed variant 3000Processed variant 4000Processed variant 5000Processed variant 6000Processed variant 7000Processed variant 8000Processed variant 9000Processed variant: 9488
+## All variants processed
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com">#Convert vcf file into gl format</span>
+<span class="hl std">gl</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">vcfR2genlight</span><span class="hl std">(vcf.ebv)</span>
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning in vcfR2genlight(vcf.ebv): Found 1153 loci with more than two alleles.
+## Objects of class genlight only support loci with two alleles.
+## 1153 loci will be omitted from the genlight object.
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com">#Filter variants from regions that are not covered (sequenced) in at least 25% of all genomes.</span>
+<span class="hl std">gl</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">gl.filter.callrate</span><span class="hl std">(gl,</span> <span class="hl kwc">method</span> <span class="hl std">=</span> <span class="hl str">&quot;ind&quot;</span><span class="hl std">,</span><span class="hl kwc">threshold</span> <span class="hl std">=</span> <span class="hl num">.25</span><span class="hl std">,</span> <span class="hl kwc">recalc</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## Starting gl.filter.callrate: Filtering on Call Rate
+##   Removing individuals based on Call Rate, threshold t = 0.25 
+##   List of individuals deleted because of low call rate: 1-3-0430-07-9_CP_genome_fixed_assembly_Fixed 1-4-0589-06-9_CP_genome_fixed_assembly_Fixed 1-6-6007-08-11_CP_genome_fixed_assembly_Fixed from populations:  
+## Starting gl.filter.monomorphs: Deleting monomorphic loci
+##   Deleting monomorphic loci and loci with all NA scores
+## Completed gl.filter.monomorphs
+## 
+## Starting gl.recalc.metrics: Recalculating locus metrics
+## Starting utils.recalc.avgpic: Recalculating OneRatioRef, OneRatioSnp, PICRef, PICSnp and AvgPIC
+## Completed utils.recalc.avgpic
+## 
+## Starting utils.recalc.callrate: Recalculating CallRate
+## Completed utils.recalc.callrate
+## 
+## Starting utils.recalc.freqhets: Recalculating frequency of heterozygotes
+## Completed utils.recalc.freqhets
+## 
+## Starting utils.recalc.freqhomref: Recalculating frequency of homozygotes, reference allele
+## Completed utils.recalc.freqhomref
+## 
+## Starting utils.recalc.freqhomref: Recalculating frequency of homozygotes, alternate allele
+## Completed utils.recalc.freqhomsnp
+## 
+## Note: Locus metrics recalculated
+## Completed gl.recalc.metrics
+## 
+## gl.filter.callrate completed
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com">#Import genome type and patient info</span>
+<span class="hl std">gl</span><span class="hl opt">$</span><span class="hl std">pop</span> <span class="hl kwb">&lt;-</span> <span class="hl std">pops[</span><span class="hl kwd">indNames</span><span class="hl std">(gl),</span><span class="hl num">2</span><span class="hl std">]</span>
+<span class="hl std">type</span> <span class="hl kwb">&lt;-</span> <span class="hl std">pops[</span><span class="hl kwd">indNames</span><span class="hl std">(gl),</span><span class="hl num">1</span><span class="hl std">]</span>
+
+<span class="hl com">#Run PCOA analysis for all variants</span>
+<span class="hl std">pc</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">gl.pcoa</span><span class="hl std">(gl)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## Performing a PCoA, individuals as entities, SNP loci as attributes
+## Ordination yielded 13 informative dimensions from 94 original dimensions
+##   PCoA Axis 1 explains 43.2 % of the total variance
+##   PCoA Axis 1 and 2 combined explain 50.9 % of the total variance
+##   PCoA Axis 1-3 combined explain 55.7 % of the total variance
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">pc</span><span class="hl opt">$</span><span class="hl std">loadings</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">as.tibble</span><span class="hl std">()</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">ggplot</span><span class="hl std">(</span><span class="hl kwd">aes</span><span class="hl std">())</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl std">df</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">as.data.frame</span><span class="hl std">(pc</span><span class="hl opt">$</span><span class="hl std">loadings)</span>
+<span class="hl com">#ggplot(df, aes(x=as.numeric(gl@position),y=Axis2, group = 1))+geom_point(size=.1)</span>
+</pre></div>
+</div></div>
+
+<p>Here is the PCOA of 1st and 2nd axis with all variants.</p>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#</span>
+<span class="hl std">p</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">gl.pcoa.plot</span><span class="hl std">(pc, gl,</span> <span class="hl kwc">type</span> <span class="hl std">= type,</span> <span class="hl kwc">xaxis</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">yaxis</span><span class="hl std">=</span><span class="hl num">2</span><span class="hl std">,</span> <span class="hl kwc">ellipse</span> <span class="hl std">= F,</span> <span class="hl kwc">labels</span> <span class="hl std">=</span> <span class="hl str">&quot;pop&quot;</span><span class="hl std">,</span> <span class="hl kwc">title</span> <span class="hl std">=</span> <span class="hl str">&quot;for All variants&quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## Plotting populations
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">ggplotly</span><span class="hl std">(p)</span>
+</pre></div>
+<div class="message"><pre class="knitr r">## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning in normalizePath(f2): path[1]=&quot;./webshot50d129686852.png&quot;: No such
+## file or directory
+</pre></div>
+<div class="warning"><pre class="knitr r">## Warning in file(con, &quot;rb&quot;): cannot open file './webshot50d129686852.png':
+## No such file or directory
+</pre></div>
+<div class="error"><pre class="knitr r">## Error in file(con, &quot;rb&quot;): cannot open the connection
+</pre></div>
+</div></div>
+
+</body>
+</html>

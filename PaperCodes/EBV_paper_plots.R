@@ -121,14 +121,17 @@ ggsave(plot=vlplot,width = 12,height = 10, dpi=200, filename="/Users/yasinkaymaz
 
 #Figure 2-C
 data <- read.delim("~/Documents/EBV/type.genomes.txt",header = TRUE,row.names = 1)
+names(data)
+datasub <- data[,c("EBVtype", "SampleType")]
+datasub <- rbind(datasub, data.frame(EBVtype =c("1","2","1"), SampleType=c("BL","BL","BL")))
 
-p <- ggplot(data, aes(x=as.factor(SampleType),group=as.factor(EBVtype),fill=as.factor(EBVtype)))+
+p <- ggplot(datasub, aes(x=as.factor(SampleType),group=as.factor(EBVtype),fill=as.factor(EBVtype)))+
   geom_bar(position = "dodge")+
   xlab("Case/Control")+
   ylab("Number of Individuals")+
   scale_fill_manual("EBV Type",values = c("1"="blue","2"="red"))
 
-pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EBVtypeTest.pdf")
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EBVtypeTest_v2.pdf")
 p
 dev.off()
 
@@ -464,14 +467,12 @@ colannot_colors <- list(SampleGroup = SampleGroup,
                         EpitopeType=EpitopeType,
                         AntigenName=AntigenName)
 
-out <- pheatmap(simMat,border_color='white',cellwidth = 8,cellheight = 10,cluster_cols = FALSE,annotation_row = rowannot,annotation_col = colannot,show_colnames = TRUE,annotation_colors = colannot_colors)
+out <- pheatmap(simMat,border_color='white',cellwidth = 8,cellheight = 10,cluster_rows = FALSE, cluster_cols = FALSE,annotation_row = rowannot,annotation_col = colannot,show_colnames = TRUE,annotation_colors = colannot_colors)
 
 
 pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2.pdf",width = 25,height = 25,onefile = FALSE)
 out
 dev.off()
-
-
 
 
 Conservation=NULL
@@ -487,14 +488,60 @@ Conservation$Epitopes <- rownames(Conservation)
 Conservation <- Conservation[rownames(simMat[out$tree_row[["order"]],]),]
 Conservation$Epitopes <- factor(Conservation$Epitopes, levels=rownames(simMat[out$tree_row[["order"]],]))
 
+library(ggplot2)
 pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2_cons.pdf",width = 25,height = 5,onefile = FALSE)
-
 ggplot(Conservation, aes(x=Epitopes,y=ConservationLevel))+geom_bar(stat="identity")+
   theme_bw()+
   theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5))+
-   scale_x_discrete(position = "top")+  scale_y_reverse() +
+  scale_x_discrete(position = "top")+  scale_y_reverse() +
   theme(axis.text.y = element_text(angle = 90, hjust = 1,vjust=0.5))
 dev.off()
+
+
+#Alternative epitopes plot
+library(pheatmap)
+out <- pheatmap(simMat[rownames(rowannot),],border_color='white',cellwidth = 8,cellheight = 10,cluster_rows = FALSE, cluster_cols = FALSE,annotation_row = rowannot,annotation_col = colannot,show_colnames = TRUE,annotation_colors = colannot_colors)
+
+head(colannot)
+
+t1.genomes <- rownames(colannot[which(colannot$ViralSubtype == "Type1"),])
+t2.genomes <- rownames(colannot[which(colannot$ViralSubtype == "Type2"),])
+ebl.genomes <- rownames(colannot[which(colannot$SampleGroup == "eBL"),])
+hc.genomes <- rownames(colannot[which(colannot$SampleGroup == "HealthyControl"),])
+
+Conservations <- data.frame(Epitopes = rownames(rowannot), rowannot)
+simMat <- simMat[rownames(rowannot),]
+Conservations$Type1 <- apply(simMat[,t1.genomes], 1, function(x) length(x[x==1])*100/length(x[x !=0])  )
+Conservations$Type2 <- apply(simMat[,t2.genomes], 1, function(x) length(x[x==1])*100/length(x[x !=0])  )
+Conservations$eBL <- apply(simMat[,ebl.genomes], 1, function(x) length(x[x==1])*100/length(x[x !=0])  )
+Conservations$HC <- apply(simMat[,hc.genomes], 1, function(x) length(x[x==1])*100/length(x[x !=0])  )
+
+Conservations$Epitopes <- factor(Conservations$Epitopes, levels=rownames(rowannot))
+
+Conservations <- reshape::melt(Conservations)
+tmp <- simMat[,t2.genomes]
+
+library(ggplot2)
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2_cons_all.pdf",width = 40,height = 5,onefile = FALSE)
+  ggplot(Conservations, aes(x=Epitopes,y=value))+
+    geom_bar(aes(fill=variable),stat="identity")+
+    #facet_wrap(~variable)+
+    facet_grid(~variable)+
+    scale_fill_manual(values =c("red", "blue","purple", "orange"))+
+    theme_bw()+
+    theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5))+
+    scale_x_discrete(position = "top")+  scale_y_reverse() +
+    theme(axis.text.y = element_text(angle = 90, hjust = 1,vjust=0.5))
+dev.off()
+  
+
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/EpitopePool-Hamming_TrimX2_test.pdf",width = 25,height = 25,onefile = FALSE)
+out
+dev.off()
+
+
+
 
 
 data <- read.table("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/sample_characteristics.txt",header=TRUE,row.names = 1)

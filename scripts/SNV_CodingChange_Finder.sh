@@ -67,13 +67,13 @@ then
 
       java -Xmx16g -XX:ParallelGCThreads=$nt -jar \
       $GATKdir/GenomeAnalysisTK.jar \
-      -R $toolDir/resources/Bowtie2Index/$EBVgenome.fa \
+      -R $toolDir/resources/Bowtie2Index/"${EBVgenome}".fa \
       -T FastaAlternateReferenceMaker \
       --variant varline.vcf \
       -o AlternativeGenome_with_variant.fa
 
       #concatinate both sequences above into multi-fasta file.
-      cat $toolDir/resources/Bowtie2Index/$EBVgenome.fa AlternativeGenome_with_variant.fa > Ref.Variant.multi.fasta
+      cat $toolDir/resources/Bowtie2Index/"${EBVgenome}".fa AlternativeGenome_with_variant.fa > Ref.Variant.multi.fasta
 
 
       #which gene is the variant position in?

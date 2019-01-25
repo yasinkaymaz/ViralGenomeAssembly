@@ -1,0 +1,16 @@
+base
+vcfR
+ade4
+adegenet
+dartR
+gridExtra
+ggplot2
+plotly
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
