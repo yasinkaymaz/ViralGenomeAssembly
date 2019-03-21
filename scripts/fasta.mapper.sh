@@ -7,7 +7,7 @@ SAMPLE_NAME=$3
 
 #cat BL643_eBLFNAtumorDNA_wga_velvet_all_type2.sam|grep GGGGACTTTATGTGACCCTTGGGCCT |awk '{if(  ($3 == "*") ) print ">"$1"\n"$10 }' |less
 
-awk '{if(($3 == "*")) print ">"$1"\n"$10 }' BL643_eBLFNAtumorDNA_wga_velvet_all_type2.sam > "${InputSam%.sam}".fa
+awk '{if(($3 == "*")) print ">"$1"\n"$10 }' $InputSam > "${InputSam%.sam}".fa
 
 InputGenomeFasta="${InputSam%.sam}".fa
 
