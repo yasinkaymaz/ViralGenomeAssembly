@@ -34,14 +34,15 @@ RefDIR="$toolDir/resources/Annotation/Type2/Vfat/EBV"
 AnnotationDir="$toolDir/resources/Annotation/Type2/"
 fi
 
-python $toolDir/bin/Assembly_Splitter_from_Ns.py $InputGenomeFasta 1 "${InputGenomeFasta%.fa}"_contigs.fa.tmp
+#python $toolDir/bin/Assembly_Splitter_from_Ns.py $InputGenomeFasta 1 "${InputGenomeFasta%.fa}"_contigs.fa.tmp
 
-seqnum=`grep ">" "${InputGenomeFasta%.fa}"_contigs.fa.tmp |wc -l`;
+#seqnum=`grep ">" "${InputGenomeFasta%.fa}"_contigs.fa.tmp |wc -l`;
+seqnum=`grep ">" $InputGenomeFasta |wc -l`;
 
 for ((i=1;i<=$seqnum;i++));
   do
     let x=$i*2;
-    head -$x "${InputGenomeFasta%.fa}"_contigs.fa.tmp |\
+    head -$x $InputGenomeFasta |\
     tail -2| $toolDir/bin/fasta_chop.pl;
   done > "${InputGenomeFasta%.fa}"_contigs_chopped.fa
 
