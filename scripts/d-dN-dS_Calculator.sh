@@ -56,6 +56,8 @@ then
 
     #Extract gene sequence from Ref sequence.
     python $toolDir/bin/MSA_gene_extractor.py $GenomeMSAfasta 1 "$geneOfvariant".bed;
+
+    #<--->
     perl $toolDir/bin/fasta_to_tab.pl "$geneOfvariant".bed.aln.fasta > "$geneOfvariant".aln.tab;
 
     #is gene expressed from minus transcript? if yes, take reverse transcript of multi-fasta file.
@@ -101,6 +103,7 @@ then
       genemultifasta="$geneOfvariant".aln.fasta
 
     fi
+    #<--->
 
   #  bash $toolDir/scripts/DNA2Protein.sh $genemultifasta
 

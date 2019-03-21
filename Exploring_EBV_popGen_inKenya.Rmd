@@ -17,7 +17,11 @@ require(gridExtra)
 library(ggplot2)
 library(plotly)
 library(tidyverse)
+library(reshape2)
 source(here::here("PapeRCodes/functions.R"))
+
+rect <- data.frame(xmin=c(36216,79955,83065,86083,95662), xmax=c(37679,82877,85959,89135,97587), ymin=-Inf, ymax=Inf,gene=c("EBNA2","EBNA3A","EBNA3B","EBNA3C","EBNA1"))
+
 ```
 
 ## Exploring population genetics of EBV genomes in BL endemic regions
@@ -31,6 +35,7 @@ We are loading SNV data of EBV genomes from 58 eBL and 40 Healthy controls, excl
 #Load the data
 pops <- read.delim(here::here("workspace/data/pop_info.txt"),row.names = 1, header = T)
 summary(pops)
+
 ```
 
 I generated a vcf file out of De Novo assembled genomes following the steps:
@@ -47,21 +52,23 @@ I generated a vcf file out of De Novo assembled genomes following the steps:
   
 Resulting vcf file stores 9488 variant locations from 98 genomes. 
 
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 #vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_sequence.aln.Sub_for_Assoc_modified.vcf"))
 vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
 ```
 
 Need to convert vcf file into genlight (gl) format. This conversion drops 200 loci with more than two alleles, which are not currently supported. What is left is 8249 loci from 98 genomes.
 
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 gl <- vcfR2genlight(vcf.ebv)
 ```
+
+#### Filtration of variants and low coverage genomes
 
 I then want to remove genomes with too many missing data, in other words, short assemblies due to lack of coverage. Remove individual genomes if only less than 25% of all variants locations are covered.
 I also only keep loci at which at least 25% of genomes have been covered. 
 
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 gl <- gl.filter.callrate(gl, method = "loc",threshold = 0.25)
 gl <- gl.filter.callrate(gl, method = "ind",threshold = 0.25)
 ```
@@ -78,26 +85,33 @@ Now, I run PCOA analysis on the data generating first 20 PCs:
 #Import genome type and patient info
 gl$pop <- pops[indNames(gl),2]
 type <- pops[indNames(gl),3]
+samplelabels <- pops[indNames(gl),4]
+method <- pops[indNames(gl),1]
+
 #Run PCOA analysis for all variants
 pc <- gl.pcoa(gl,nfactors = 20)
 ```
 
 Here is the PCOA of **1st** and **2nd** axis with all variants.
-```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
 p <- gl.pcoa.plot(pc, gl, type = type, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
 ggplotly(p)
 ```
 
 PCoAxis **2nd** and **3rd**:
 
-```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
 p <- gl.pcoa.plot(pc, gl, type = type, xaxis=2, yaxis=3, ellipse = F, labels = "pop", title = "for All variants")
 ggplotly(p)
 ```
 
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = samplelabels, xaxis=2, yaxis=3, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
 PCoAxis **4nd** and **5rd**:
 
-```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, , echo=FALSE, paged.print=FALSE}
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
 p <- gl.pcoa.plot(pc, gl, type = type, xaxis=4, yaxis=5, ellipse = F, labels = "pop", title = "for All variants")
 ggplotly(p)
 ```
@@ -107,10 +121,42 @@ Then, I plot the PCA loading values for each genomic location
 
 ```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 df <- as.data.frame(pc$loadings)
-ggplot(df, aes(x=as.numeric(gl@position),y=Axis1, group = 1))+
+ggplot(df, aes(x=as.numeric(gl@position),y=abs(Axis1), group = 1))+
   geom_point(size=.1)+
   labs(x="genomic positions")+
-  ggtitle("PCA Loadings from Axis 1")
+  ggtitle("PCA Loadings from Axis 1")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=max(abs(pc$loadings[,"Axis1"]))*1.1, label=gene), size=4,angle=45)
+
+```
+
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df <- as.data.frame(pc$loadings)
+ggplot(df, aes(x=as.numeric(gl@position),y=abs(Axis2), group = 1))+
+  geom_point(size=.1)+
+  labs(x="genomic positions")+
+  ggtitle("PCA Loadings from Axis 2")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=max(abs(pc$loadings[,"Axis2"]))*1.1, label=gene), size=4,angle=45)
+
+```
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+df <- as.data.frame(pc$loadings)
+ggplot(df, aes(x=as.numeric(gl@position),y=abs(Axis3), group = 1))+
+  geom_point(size=.1)+
+  labs(x="genomic positions")+
+  ggtitle("PCA Loadings from Axis 3")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=max(abs(pc$loadings[,"Axis3"]))*1.1, label=gene), size=4,angle=45)
+
 ```
 
 
@@ -120,30 +166,154 @@ ggplot(df, aes(x=as.numeric(gl@position),y=Axis1, group = 1))+
 
 Here, I wanted to calculate locus-by-locus Fst scores to determine accumulations of genomics regions that reflect differentiation between the two comparison groups. Fixation index ranges between 0 and 1, where 0 means complete exchange of genetic material while 1 means no sharing and complete differentiation between the groups. 
 
-First, I am plotting the locus-by-locus Fst for Type 1 and Type 2 genomes regardless of disease status:
+First, I am plotting the **locus-by-locus Fst for Type 1 and Type 2 genomes regardless of disease status**:
 
 ```{r fig.width=12, fig.height=8}
 Fstats.ebvtype <- NAM::Fst(as.matrix(gl),fam=as.numeric(pops[indNames(gl),]$EBV_Type) )
 Fstats.phenotype <- NAM::Fst(as.matrix(gl),fam=as.numeric(pops[indNames(gl),]$Condition) )
 
 fstdata <- data.frame(loc=as.numeric(gl@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
-ggplot(fstdata, aes(loc, Fst.EBVTypes))+ geom_point(color="red",size=0.2) + ylim(0,1) +
-  labs(x="genomic positions")+
-  ggtitle("Fixation Index for Type 1 and Type 2 populations")
+#ggplot(fstdata, aes(loc, Fst.EBVTypes))+ geom_point(color="darkgreen",size=0.2) + ylim(0,1) +
+#  labs(x="genomic positions")+
+#  ggtitle("Fixation Index for Type 1 and Type 2 populations")
+
+
+window = 500; newfstdata <- NULL; fstdata.loc <- NULL; j=0
+for(i in 0:max(unique(round(fstdata$loc/window))) ){
+  fstdata.loc <- fstdata[which((fstdata$loc >= j*window ) & (fstdata$loc < i*window+window) ),]
+  if(dim(fstdata.loc)[1] == 0){
+    emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0),c(0,0) )
+    colnames(emptydf) <- colnames(newfstdata)
+    newfstdata <- rbind(newfstdata,emptydf)    
+  }else{
+    fstdata.loc$MeanFst <- mean(fstdata.loc$Fst.pheno)
+    newfstdata <- rbind(newfstdata,fstdata.loc)
+  }
+  j <- i+1
+}
+
+ggplot(newfstdata, aes(loc, MeanFst))+ geom_line(color="darkgreen",size=0.8) + ylim(0,1)+
+  labs(x="genomic positions",y="mean Fst - 500bp window")+
+  ggtitle("Mean Fixation Index for Type 1 and Type 2 populations")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=1.0, label=gene), size=4,angle=45)
+
 
 ```
 
-This, second one is for eBL associated EBV genomes and Healthy control genomes:
 
-```{r fig.width=12, fig.height=8}
+<!-- ```{r fig.width=12, fig.height=8} -->
+<!-- #This, second one is for eBL associated EBV genomes and Healthy control genomes: -->
 
-ggplot(fstdata, aes(loc, Fst.pheno))+ geom_point(color="blue",size=0.2) + ylim(0,1)+
-  labs(x="genomic positions")+
-  ggtitle("Fixation Index for eBL and Healthy controls")
+<!-- ggplot(fstdata, aes(loc, Fst.pheno))+ geom_point(color="blue",size=0.2) + ylim(0,1)+ -->
+<!--   labs(x="genomic positions")+ -->
+<!--   ggtitle("Fixation Index for eBL and Healthy controls") -->
+
+<!-- ``` -->
+
+Then, I look at the **Fst between eBL and HC EBVs within Type 1 genomes only**:
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+gl.t1 <- gl.keep.pop(gl, pop.list=c("Type1"),recalc = TRUE)
+
+Fstats.ebvtype <- NAM::Fst(as.matrix(gl.t1),fam=as.numeric(pops[indNames(gl.t1),]$EBV_Type) )
+Fstats.phenotype <- NAM::Fst(as.matrix(gl.t1),fam=as.numeric(pops[indNames(gl.t1),]$Condition) )
+
+fstdata <- data.frame(loc=as.numeric(gl.t1@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
+
+
+window = 500; newfstdata <- NULL; fstdata.loc <- NULL; j=0
+for(i in 0:max(unique(round(fstdata$loc/window))) ){
+  fstdata.loc <- fstdata[which((fstdata$loc >= j*window ) & (fstdata$loc < i*window+window) ),]
+  if(dim(fstdata.loc)[1] == 0){
+    emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0),c(0,0) )
+    colnames(emptydf) <- colnames(newfstdata)
+    newfstdata <- rbind(newfstdata,emptydf)    
+  }else{
+    fstdata.loc$MeanFst <- mean(fstdata.loc$Fst.pheno)
+    newfstdata <- rbind(newfstdata,fstdata.loc)
+  }
+  j <- i+1
+}
 
 ```
 
 
+```{r echo=FALSE, fig.height=8, fig.width=12, message=FALSE, warning=FALSE}
+# 
+# ggplot(fstdata, aes(loc, Fst.pheno))+ geom_point(color="blue",size=0.2) + ylim(0,1)+
+#   labs(x="genomic positions")+
+#   ggtitle("Fixation Index for eBL and Healthy controls - Only Type 1 Genomes")
+
+
+p.fst.t1 <- ggplot(newfstdata, aes(loc, MeanFst))+ geom_line(color="blue",size=0.8)+
+  ylim(0,1)+ xlim(-1,175000)+
+   theme_bw()+
+  labs(x="genomic positions",y="mean Fst - 500bp window")+
+  ggtitle("Mean Fixation Index for eBL and Healthy controls - Only Type 1 Genomes")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=0.8, label=gene), size=4,angle=45)+ xlim(c(0,175000))
+
+p.fst.t1
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+gl.t2 <- gl.keep.pop(gl, pop.list=c("Type2"),recalc = TRUE)
+
+Fstats.ebvtype <- NAM::Fst(as.matrix(gl.t2),fam=as.numeric(pops[indNames(gl.t2),]$EBV_Type) )
+Fstats.phenotype <- NAM::Fst(as.matrix(gl.t2),fam=as.numeric(pops[indNames(gl.t2),]$Condition) )
+
+fstdata <- data.frame(loc=as.numeric(gl.t2@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
+
+
+window = 500; newfstdata <- NULL; fstdata.loc <- NULL; j=0
+for(i in 0:max(unique(round(fstdata$loc/window))) ){
+  fstdata.loc <- fstdata[which((fstdata$loc >= j*window ) & (fstdata$loc < i*window+window) ),]
+  if(dim(fstdata.loc)[1] == 0){
+    emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0),c(0,0) )
+    colnames(emptydf) <- colnames(newfstdata)
+    newfstdata <- rbind(newfstdata,emptydf)    
+  }else{
+    fstdata.loc$MeanFst <- mean(fstdata.loc$Fst.pheno)
+    newfstdata <- rbind(newfstdata,fstdata.loc)
+  }
+  j <- i+1
+}
+
+```
+
+Then, I look at the **Fst between eBL and HC EBVs within Type 2 genomes only**:
+
+```{r echo=FALSE, fig.height=8, fig.width=12, message=FALSE, warning=FALSE}
+# 
+# ggplot(fstdata, aes(loc, Fst.pheno))+ geom_point(color="red",size=0.2) + ylim(0,1)+
+#   labs(x="genomic positions")+
+#   ggtitle("Fixation Index for eBL and Healthy controls - Only Type 2 Genomes")
+
+
+p.fst.t2 <- ggplot(newfstdata, aes(loc, MeanFst))+ geom_line(color="red",size=0.8)+
+  ylim(0,1)+ xlim(1,175000)+
+   theme_bw()+
+  labs(x="genomic positions",y="mean Fst - 500bp window")+
+  ggtitle("Mean Fixation Index for eBL and Healthy controls - Only Type 2 Genomes")+
+  geom_rect(data=rect, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+  geom_text(data=rect, aes(x=xmin+(xmax-xmin)/2, y=0.8, label=gene), size=4,angle=45)
+
+p.fst.t2
+```
+
+```{r include=FALSE}
+ggsave(plot=grid.arrange(p.fst.t1,p.fst.t2, ncol=1,nrow=2),width = 18,height = 5, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/Fst.t1t2.pdf", useDingbats=FALSE )
+
+
+```
 ## Genetic distance
 
 As we discussed, I am now calculating the pairwise genetic distance of genomes for each gene and then take the average.
@@ -161,14 +331,24 @@ data <- read.delim(here::here("workspace/data/pairwisedistances.ordered.txt"),he
 data1 <- read.delim(here::here("workspace/data/Type1.pairwisedistances.ordered.txt"),header=F)
 data2 <- read.delim(here::here("workspace/data/Type2.pairwisedistances.ordered.txt"),header=F)
 
-ggplot(data, aes(x=reorder(V2,V1), y=V3)) + 
+#Mean gene divergence: 
+mean(data$V3,na.rm = T)
+#SD
+sd(data$V3,na.rm = T)
+
+p.d <- ggplot(data, aes(x=reorder(V2,V1), y=V3)) + 
   geom_errorbar(aes(ymin=V3-V4, ymax=V3+V4), width=.1) +
-  geom_point()+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_point(size=3)+ theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5, size=11), 
+        axis.text.y = element_text(size=11),
+        axis.title.y = element_text(size=14),
+        axis.title.x = element_text(size=14))+
   xlab("EBV Genes (in genomic order)")+
   ylab("d (K2P)")+
+    ylim(0,0.15)+
   ggtitle("Gene by gene genetic distances of EBV genomes (N = 98)")
 
+p.d
 ```
 
 Type 1 and Type 2 genomes separately:
@@ -179,17 +359,26 @@ data2$Group <- "Type 2"
 
 d1d2 <- rbind(data1,data2)
 
-ggplot(d1d2, aes(x=reorder(V2,V1), y=V3, color=Group)) + 
+p.d.t12 <- ggplot(d1d2, aes(x=reorder(V2,V1), y=V3, color=Group)) + 
   geom_errorbar(aes(ymin=V3-V4, ymax=V3+V4), width=.1) +
-  geom_point()+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_point(size=3)+ theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5, size=11), 
+        axis.text.y = element_text(size=11),
+        axis.title.y = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        legend.justification=c(1,1), legend.position=c(1,1))+
   xlab("EBV Genes (in genomic order)")+
   ylab("d (K2P)")+
+  ylim(0,0.15)+
   ggtitle("Gene by gene genetic distances of Type 1 (N = 60) and Type 2 (N = 35) EBV genomes")
 
-
+p.d.t12
 ```
 
+
+```{r include=FALSE}
+ggsave(plot=grid.arrange(p.d, p.d.t12, ncol=1,nrow=2),width = 15,height = 7, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/GeneticDistance-2.pdf", useDingbats=FALSE )
+```
 
 Delta d:
 
@@ -200,10 +389,13 @@ colnames(data) <- c("col1","gene1", "d_t1", "err_t1", "group1","col2","gene2", "
 data$delta_d <- data$d_t1 - data$d_t2
 
 ggplot(data, aes(x=reorder(gene1,col1), y=delta_d)) +
-  geom_point(shape=23, fill="orange")+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  xlab("EBV Genes")+
-  ylab("Delta d (Type1 - Type2")+
+  geom_point(size=3,shape=23, fill="orange")+ 
+  theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5, size=11), 
+        axis.text.y = element_text(size=11),
+        axis.title.y = element_text(size=14),
+        axis.title.x = element_text(size=14))+  xlab("EBV Genes")+
+  ylab("Delta d (Type1 - Type2)")+
   ylim(-0.0025, 0.02)+
   ggtitle("Difference between the divergence of two types")
 
@@ -235,8 +427,11 @@ data2 <- read.delim(here::here("workspace/data/Type2.pairwiseMeandNdS.ordered.tx
 
 ggplot(data, aes(x=reorder(V2,V1), y=V7)) + 
   geom_errorbar(aes(ymin=V7-V8, ymax=V7+V8), width=.1) +
-  geom_point()+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_point(size=3)+ theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5, size=11), 
+        axis.text.y = element_text(size=11),
+        axis.title.y = element_text(size=14),
+        axis.title.x = element_text(size=14))+
   xlab("EBV Genes (in genomic order)")+
   ylab("dN/dS")+
   ggtitle("Gene by gene dN/dS ratios of EBV genomes (N = 98)")
@@ -252,14 +447,158 @@ data2$Group <- "Type 2"
 
 d1d2 <- rbind(data1,data2)
 
-ggplot(d1d2, aes(x=reorder(V2,V1), y=V7, color=Group)) + 
+p.dnds.t12 <- ggplot(d1d2, aes(x=reorder(V2,V1), y=V7, color=Group)) + 
   geom_errorbar(aes(ymin=V7-V8, ymax=V7+V8), width=.1) +
-  geom_point()+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_point(size=3)+ theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5, size=11), 
+        axis.text.y = element_text(size=11),
+        axis.title.y = element_text(size=14),
+        axis.title.x = element_text(size=14),
+        legend.justification=c(0,1), legend.position=c(0,1))+
   xlab("EBV Genes (in genomic order)")+
   ylab("dN/dS")+
   ggtitle("Gene by gene dN/dS ratios of Type 1 (N = 60) and Type 2 (N = 35) EBV genomes")+ scale_color_manual(values=c( "#E69F00", "#56B4E9"))
 
+p.dnds.t12
+```
+
+```{r fig.width=11, fig.height=6}
+
+data <- read.delim("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/data/dnds_2.txt", row.names = 1, header = TRUE)
+head(data)
+subdata <- data[,c("gene","SynPerGenomePerKb","NonsynPerGenomePerKb")]
+#subdata$genes <- rownames(data)
+subdata <- melt(subdata)
+subdata$lineorder <- rep(seq(1,87),2)
+
+p.ns <- ggplot(subdata, aes(x=reorder(gene,lineorder), value,fill=variable))+
+  geom_bar(stat="identity", position=position_dodge())+
+    theme_bw()+ 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,vjust=0.5),
+        legend.justification=c(1,1), legend.position=c(1,1))+
+  ylab("Number of variant per Genome per Kb")+
+  xlab("Viral Genes (in genomic order)")
+
+p.ns
 ```
 
 
+```{r include=FALSE, fig.width=11, fig.height=6}
+ggsave(plot=grid.arrange(p.ns, p.dnds.t12, ncol=1,nrow=2),width = 15,height = 7, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/NS-dNdS_1.pdf", useDingbats=FALSE )
+```
+
+
+## PCoA plots for ***Only Type 2** genomes:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+#vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_sequence.aln.Sub_for_Assoc_modified.vcf"))
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
+
+gl <- vcfR2genlight(vcf.ebv)
+#Import genome type and patient info
+gl$pop <- pops[indNames(gl),2]
+gl <- gl.keep.pop(gl, pop.list=c("Type2"),recalc = TRUE)
+gl <- gl.filter.callrate(gl, method = "loc", threshold = 0.05)
+gl <- gl.filter.callrate(gl, method = "ind", threshold = 0.25)
+type <- pops[indNames(gl),3]
+samplelabels <- pops[indNames(gl),4]
+method <- pops[indNames(gl),1]
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl,nfactors = 20)
+
+```
+
+
+Here is the PCOA of **1st** and **2nd** axis with all variants.
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+PCoAxis **2nd** and **3rd**:
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=2, yaxis=3, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+PCoAxis **4nd** and **5rd**:
+
+```{r fig.width=12, fig.height=8, echo=TRUE, message=FALSE, warning=FALSE, echo=FALSE, paged.print=FALSE}
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=4, yaxis=5, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+for(ebvtype in c("Type1","Type2")){
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
+
+gl <- vcfR2genlight(vcf.ebv)
+#Import genome type and patient info
+gl$pop <- pops[indNames(gl),2]
+gl <- gl.keep.pop(gl, pop.list=ebvtype, recalc = TRUE)
+gl <- gl.filter.callrate(gl, method = "loc", threshold = 0.05)
+gl <- gl.filter.callrate(gl, method = "ind", threshold = 0.25)
+type <- pops[indNames(gl),3]
+samplelabels <- pops[indNames(gl),4]
+method <- pops[indNames(gl),1]
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl,nfactors = 20)
+
+iii=0
+plots <- list() 
+pcaplots <- list()
+axis.list <- c("Axis1","Axis2","Axis3","Axis4","Axis5","Axis6")
+
+for (Axis in axis.list){
+  #print(genome)
+  iii=iii+1
+
+  df <- data.frame(loc = gl$position, Load=abs(pc$loadings[,Axis])) 
+  head(df)
+  dim(df)
+  
+  window = 1000; newdf <- NULL; df.loc <- NULL; j=0
+  for(i in 0:max(unique(round(df$loc/window))) ){
+    df.loc <- df[which((df$loc >= j*window ) & (df$loc < i*window+window) ),]
+    print(df.loc)
+    if(dim(df.loc)[1] == 0){
+      emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0) )
+      colnames(emptydf) <- colnames(newdf)
+      newdf <- rbind(newdf,emptydf)    
+    }else{
+      df.loc$MeanLoad <- mean(df.loc$Load)
+      newdf <- rbind(newdf,df.loc)
+    }
+    j <- i+1
+  }
+  
+  p1 <- ggplot(newdf, aes(loc/1000, MeanLoad))+ geom_line(color="darkgreen",size=0.8) +
+   ylim(0,0.07)+
+    ggtitle(paste("Only", ebvtype, "Genomes", sep=" "))+
+    geom_rect(data=rect/1000, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+    labs(x="Genomic Position (Kb)",y=paste("mean PC",Axis,"Loadings",sep=" ") )+
+    geom_text(data=rect, aes(x=xmin/1000+((xmax-xmin)/1000)/2, y=0.05, label=gene), size=4,angle=45)
+
+  pca.p <- gl.pcoa.plot(pc, gl, type = type, xaxis=iii, yaxis=iii+1, ellipse = F, labels = "pop", title = paste("for All variants for", ebvtype, "Genomes",sep = " ") )
+  #print(p1)
+  plots[[iii]] <- p1
+  pcaplots[[iii]] <- pca.p
+  
+  
+}
+
+pdf(paste("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/MeanPCALoadings_",ebvtype,".pdf",sep=""),width = 18,height = 30)
+multiplot(plotlist = plots)
+dev.off()
+
+ggsave(plot=multiplot(plotlist = pcaplots),width = 7,height = 30, dpi=200, filename=paste("~/Dropbox/Papers/EBV_project/workspace/Figure_temps/PCAplots_only_",ebvtype,".pdf",sep = ""), useDingbats=FALSE )
+
+}
+
+
+```

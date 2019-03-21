@@ -1,99 +1,99 @@
-sampleName	Method	EBV_Type	Condition
-eBL_CL-01	Direct Sequencing	Type1	eBL
-eBL_CL-02	Direct Sequencing	Type2	eBL
-eBL_CL-03	Direct Sequencing	Type1	eBL
-HC-0001	Preamp-sWGA	Type1	HealthyControl
-HC-0002	Preamp-sWGA	Type2	HealthyControl
-HC-0003	Preamp-sWGA	Type1	HealthyControl
-HC-0004	Preamp-sWGA	Type2	HealthyControl
-HC-0005	Preamp-sWGA	Type2	HealthyControl
-HC-0006	Preamp-sWGA	Type2	HealthyControl
-HC-0007	Preamp-sWGA	Type1	HealthyControl
-HC-0008	Preamp-sWGA	Type1	HealthyControl
-HC-0009	Preamp-sWGA	Type1	HealthyControl
-HC-0010	Preamp-sWGA	Type1	HealthyControl
-HC-0011	Preamp-sWGA	Type2	HealthyControl
-HC-0012	Preamp-sWGA	Type2	HealthyControl
-HC-0013	Preamp-sWGA	Type1	HealthyControl
-HC-0014	Preamp-sWGA	Type2	HealthyControl
-HC-0015	Preamp-sWGA	Type1	HealthyControl
-HC-0016	Preamp-sWGA	Type2	HealthyControl
-HC-0017	Preamp-sWGA	Type1	HealthyControl
-HC-0018	Preamp-sWGA	Type2	HealthyControl
-HC-0019	Preamp-sWGA	Type2	HealthyControl
-HC-0020	Preamp-sWGA	Type1	HealthyControl
-HC-0021	Preamp-sWGA	Type1	HealthyControl
-HC-0022	Preamp-sWGA	Type2	HealthyControl
-HC-0023	Preamp-sWGA	Type2	HealthyControl
-HC-0024	Preamp-sWGA	Type1	HealthyControl
-HC-0025	Preamp-sWGA	Type1	HealthyControl
-HC-0026	Preamp-sWGA	Type2	HealthyControl
-HC-0027	Preamp-sWGA	Type2	HealthyControl
-HC-0028	Preamp-sWGA	Type2	HealthyControl
-HC-0029	Preamp-sWGA	Type1	HealthyControl
-HC-0030	Preamp-sWGA	Type1	HealthyControl
-HC-0031	Preamp-sWGA	Type2	HealthyControl
-HC-0032	Preamp-sWGA	Type1	HealthyControl
-HC-0033	Preamp-sWGA	Type2	HealthyControl
-HC-0034	Preamp-sWGA	Type2	HealthyControl
-HC-0035	Preamp-sWGA	Type1	HealthyControl
-HC-0036	Preamp-sWGA	Type1	HealthyControl
-HC-0037	Preamp-sWGA	Type1	HealthyControl
-HC-0038	Preamp-sWGA	Type2	HealthyControl
-HC-0039	Preamp-sWGA	Type2	HealthyControl
-HC-0040	Preamp-sWGA	Type2	HealthyControl
-eBL-Tumor-0001	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0002	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0003	GenomiPhi-WGA	Type2	eBL
-eBL-Tumor-0004	Preamp-sWGA	Type1	eBL
-eBL-Tumor-0005	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0006	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0007	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0008	Preamp-sWGA	Type2	eBL
-eBL-Tumor-0009	Preamp-sWGA	Type1	eBL
-eBL-Tumor-0010	Preamp-sWGA	Type1	eBL
-eBL-Tumor-0011	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0012	GenomiPhi-WGA	Inter-typic	eBL
-eBL-Tumor-0013	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0014	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0015	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0016	GenomiPhi-WGA	Type1	eBL
-eBL-Tumor-0017	Direct Sequencing	Type2	eBL
-eBL-Tumor-0018	Direct Sequencing	Type1	eBL
-eBL-Tumor-0019	Direct Sequencing	Type1	eBL
-eBL-Tumor-0020	Direct Sequencing	Type2	eBL
-eBL-Tumor-0021	Direct Sequencing	Type1	eBL
-eBL-Tumor-0022	Direct Sequencing	Type1	eBL
-eBL-Tumor-0023	Direct Sequencing	Type1	eBL
-eBL-Tumor-0024	Direct Sequencing	Type2	eBL
-eBL-Tumor-0025	Direct Sequencing	Type1	eBL
-eBL-Tumor-0026	Direct Sequencing	Type2	eBL
-eBL-Tumor-0027	Direct Sequencing	Type1	eBL
-eBL-Tumor-0028	Direct Sequencing	Type2	eBL
-eBL-Tumor-0029	Direct Sequencing	Type1	eBL
-eBL-Tumor-0030	Direct Sequencing	Type1	eBL
-eBL-Tumor-0031	Direct Sequencing	Type1	eBL
-eBL-Tumor-0032	Direct Sequencing	Type1	eBL
-eBL-Tumor-0033	Direct Sequencing	Inter-typic	eBL
-eBL-Tumor-0034	Direct Sequencing	Type1	eBL
-eBL-Tumor-0035	GenomiPhi-WGA	Type2	eBL
-eBL-Tumor-0036	Preamp-sWGA	Type2	eBL
-eBL-Tumor-0037	Direct Sequencing	Type1	eBL
-eBL-Tumor-0038	Direct Sequencing	Type1	eBL
-eBL-Tumor-0039	Direct Sequencing	Type1	eBL
-eBL-Tumor-0040	Direct Sequencing	Type2	eBL
-eBL-Tumor-0041	Direct Sequencing	Type1	eBL
-eBL-Plasma-0042	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0043	Preamp-sWGA	Type2	eBL
-eBL-Plasma-0044	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0045	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0046	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0047	Direct Sequencing	Type1	eBL
-eBL-Plasma-0048	Direct Sequencing	Type2	eBL
-eBL-Plasma-0049	Direct Sequencing	Inter-typic	eBL
-eBL-Plasma-0050	Direct Sequencing	Type1	eBL
-eBL-Plasma-0051	Direct Sequencing	Type1	eBL
-eBL-Plasma-0052	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0053	Preamp-sWGA	Type1	eBL
-eBL-Plasma-0054	Direct Sequencing	Type2	eBL
-eBL-Plasma-0055	Direct Sequencing	Type1	eBL
+sampleName	Method	EBV_Type	Condition	Label
+eBL_CL-01	Direct Sequencing	Type1	eBL	eBL_Cell_Line
+eBL_CL-02	Direct Sequencing	Type2	eBL	eBL_Cell_Line
+eBL_CL-03	Direct Sequencing	Type1	eBL	eBL_Cell_Line
+HC-0001	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0002	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0003	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0004	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0005	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0006	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0007	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0008	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0009	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0010	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0011	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0012	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0013	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0014	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0015	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0016	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0017	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0018	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0019	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0020	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0021	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0022	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0023	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0024	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0025	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0026	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0027	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0028	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0029	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0030	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0031	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0032	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0033	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0034	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0035	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0036	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0037	Preamp-sWGA	Type1	HealthyControl	HealthyControl
+HC-0038	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0039	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+HC-0040	Preamp-sWGA	Type2	HealthyControl	HealthyControl
+eBL-Tumor-0001	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0002	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0003	GenomiPhi-WGA	Type2	eBL	eBL_Tumor
+eBL-Tumor-0004	Preamp-sWGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0005	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0006	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0007	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0008	Preamp-sWGA	Type2	eBL	eBL_Tumor
+eBL-Tumor-0009	Preamp-sWGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0010	Preamp-sWGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0011	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0012	GenomiPhi-WGA	Inter-typic	eBL	eBL_Tumor
+eBL-Tumor-0013	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0014	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0015	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0016	GenomiPhi-WGA	Type1	eBL	eBL_Tumor
+eBL-Tumor-0017	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0018	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0019	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0020	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0021	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0022	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0023	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0024	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0025	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0026	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0027	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0028	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0029	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0030	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0031	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0032	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0033	Direct Sequencing	Inter-typic	eBL	eBL_Tumor
+eBL-Tumor-0034	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0035	GenomiPhi-WGA	Type2	eBL	eBL_Tumor
+eBL-Tumor-0036	Preamp-sWGA	Type2	eBL	eBL_Tumor
+eBL-Tumor-0037	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0038	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0039	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Tumor-0040	Direct Sequencing	Type2	eBL	eBL_Tumor
+eBL-Tumor-0041	Direct Sequencing	Type1	eBL	eBL_Tumor
+eBL-Plasma-0042	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0043	Preamp-sWGA	Type2	eBL	eBL_Plasma
+eBL-Plasma-0044	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0045	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0046	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0047	Direct Sequencing	Type1	eBL	eBL_Plasma
+eBL-Plasma-0048	Direct Sequencing	Type2	eBL	eBL_Plasma
+eBL-Plasma-0049	Direct Sequencing	Inter-typic	eBL	eBL_Plasma
+eBL-Plasma-0050	Direct Sequencing	Type1	eBL	eBL_Plasma
+eBL-Plasma-0051	Direct Sequencing	Type1	eBL	eBL_Plasma
+eBL-Plasma-0052	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0053	Preamp-sWGA	Type1	eBL	eBL_Plasma
+eBL-Plasma-0054	Direct Sequencing	Type2	eBL	eBL_Plasma
+eBL-Plasma-0055	Direct Sequencing	Type1	eBL	eBL_Plasma

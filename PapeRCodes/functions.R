@@ -63,20 +63,24 @@ gl.pcoa.plot <- function(glPca, data, type, title, scale=FALSE, ellipse=FALSE, p
     
     # Plot
     p <- ggplot(df, aes(x=df$PCoAx, y=df$PCoAy)) +
-      geom_point(size=1.5,aes(colour=pop, shape=type)) +
-      ggtitle(paste("PCoA Plot", title, sep=" ")) +
-      theme(axis.title=element_text(face="bold.italic",size="10", color="black"),
-            axis.text.x  = element_text(face="bold",angle=0, vjust=0.5, size=10),
-            axis.text.y  = element_text(face="bold",angle=0, vjust=0.5, size=10),
+      geom_point(size=3,aes(colour=pop, shape=type,text=sprintf("SampleID: %s", ind))) +
+      scale_color_manual(values=c("green","blue","red"))+
+      #geom_point(size=3,aes(colour=type,text=sprintf("SampleID: %s", ind))) +
+      #scale_color_manual(values=c("brown","magenta1","red","green"))+
+      ggtitle(paste("PCoA Plot", title, sep=" ")) + theme_bw()+
+      theme(axis.title = element_text(face="bold",size=20, color="black"), 
+            axis.text.x  = element_text(face="bold", angle=0, vjust=0.5, size=10),
+            axis.text.y  = element_text(face="bold", angle=0, vjust=0.5, size=10),
             legend.title = element_text(colour="black", size=10, face="bold"),
             legend.text = element_text(colour="black", size=10, face="bold"),
-            title = element_text(colour="black", size=10, face="bold")
+            title = element_text(colour="black", size=10, face="bold"),
+            axis.line = element_line(colour = 'black', size = 0.5)
       ) +
       labs(x=xlab, y=ylab) +
       geom_hline(yintercept=0) +
       geom_vline(xintercept=0) +
-      theme(legend.position="right")+
-      scale_color_manual(values=c("red","blue"))
+      theme(legend.position="right")
+      
     # Scale the axes in proportion to % explained, if requested
     if(scale==TRUE) { p <- p + coord_fixed(ratio=e[yaxis]/e[xaxis]) }
     # Add ellipses if requested
@@ -427,3 +431,39 @@ gl.filter.maf <- function(x, threshold=0.01, v=2) {
   return(x2)
 }
 
+
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+  
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  
+  numPlots = length(plots)
+  
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  
+  if (numPlots==1) {
+    print(plots[[1]])
+    
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}

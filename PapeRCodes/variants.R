@@ -188,3 +188,163 @@ ggplot(data, aes(x=reorder(gene1,col1), y=delta_d)) +
   ylim(-0.0025, 0.02)+
   ggtitle("Difference between the divergence of two types")
 
+
+source(here::here("PapeRCodes/functions.R"))
+
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+
+
+gl.t1 <- gl.keep.pop(gl, pop.list=c("Type1"),recalc = TRUE)
+Fstats.ebvtype <- NAM::Fst(as.matrix(gl.t1),fam=as.numeric(pops[indNames(gl.t1),]$EBV_Type) )
+Fstats.phenotype <- NAM::Fst(as.matrix(gl.t1),fam=as.numeric(pops[indNames(gl.t1),]$Condition) )
+fstdata <- data.frame(loc=as.numeric(gl.t1@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
+
+gl.t2 <- gl.keep.pop(gl, pop.list=c("Type2"),recalc = TRUE)
+Fstats.ebvtype <- NAM::Fst(as.matrix(gl.t2),fam=as.numeric(pops[indNames(gl.t2),]$EBV_Type) )
+Fstats.phenotype <- NAM::Fst(as.matrix(gl.t2),fam=as.numeric(pops[indNames(gl.t2),]$Condition) )
+fstdata <- data.frame(loc=as.numeric(gl.t2@position), Fst.EBVTypes=Fstats.ebvtype$fst, Fst.pheno = Fstats.phenotype$fst )
+
+
+window = 500; newfstdata <- NULL; fstdata.loc <- NULL; j=0
+
+for(i in 0:max(unique(round(fstdata$loc/window))) ){
+  fstdata.loc <- fstdata[which((fstdata$loc >= j*window ) & (fstdata$loc < i*window+window) ),]
+  if(dim(fstdata.loc)[1] == 0){
+    emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0),c(0,0) )
+    colnames(emptydf) <- colnames(newfstdata)
+    newfstdata <- rbind(newfstdata,emptydf)    
+  }else{
+    fstdata.loc$MeanFst <- mean(fstdata.loc$Fst.pheno)
+    newfstdata <- rbind(newfstdata,fstdata.loc)
+  }
+  j <- i+1
+}
+
+#newfstdata$Gene <- ifelse( ((newfstdata$loc >= 80000 ) & (newfstdata$loc < 90000)),"EBNA","NA")
+
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
+
+gl <- vcfR2genlight(vcf.ebv)
+gl$pop <- pops[indNames(gl),2]
+
+pop(gl)
+gl.t2 <- gl.keep.pop(gl.t2, pop.list=c("Type2"),recalc = TRUE)
+gl.t2 <- gl.filter.callrate(gl.t2, method = "loc",threshold = 0.25)
+gl.t2 <- gl.filter.callrate(gl.t2, method = "ind",threshold = 0.25)
+
+#Import genome type and patient info
+gl.t2$pop <- pops[indNames(gl.t2),2]
+type <- pops[indNames(gl.t2),3]
+samplelabels <- pops[indNames(gl.t2),4]
+method <- pops[indNames(gl.t2),1]
+
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl.t2,nfactors = 20)
+p <- gl.pcoa.plot(pc, gl.t2, type = samplelabels, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+
+
+#Average window of PCA loadings
+rect <- data.frame(xmin=c(36216,79955,83065,86083,95662), xmax=c(37679,82877,85959,89135,97587), ymin=-Inf, ymax=Inf,gene=c("EBNA2","EBNA3A","EBNA3B","EBNA3C","EBNA1"))
+
+gl$position
+
+gl <- vcfR2genlight(vcf.ebv)
+
+#gl <- gl.filter.maf(gl,v = 3)
+
+gl <- gl.filter.callrate(gl, method = "loc",threshold = 0.25, recalc = TRUE,v=3)
+gl <- gl.filter.callrate(gl, method = "ind",threshold = 0.25, recalc = TRUE,v=3)
+gl
+
+gl$pop <- pops[indNames(gl),2]
+type <- pops[indNames(gl),3]
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl,nfactors = 20)
+
+
+iii=0
+plots <- list() 
+pcaplots <- list()
+for (Axis in c("Axis1","Axis2","Axis3","Axis4","Axis5","Axis6")){
+  #print(genome)
+  iii=iii+1
+
+  df <- data.frame(loc = gl$position, Load=abs(pc$loadings[,Axis])) 
+  head(df)
+  dim(df)
+  
+  window = 1000; newdf <- NULL; df.loc <- NULL; j=0
+  for(i in 0:max(unique(round(df$loc/window))) ){
+    df.loc <- df[which((df$loc >= j*window ) & (df$loc < i*window+window) ),]
+    print(df.loc)
+    if(dim(df.loc)[1] == 0){
+      emptydf <- data.frame(c(i*window, i*window+window),c(0,0),c(0,0) )
+      colnames(emptydf) <- colnames(newdf)
+      newdf <- rbind(newdf,emptydf)    
+    }else{
+      df.loc$MeanLoad <- mean(df.loc$Load)
+      newdf <- rbind(newdf,df.loc)
+    }
+    j <- i+1
+  }
+  
+  p1 <- ggplot(newdf, aes(loc/1000, MeanLoad))+ geom_line(color="darkgreen",size=0.8) +
+ #  ylim(0,0.03)+
+    geom_rect(data=rect/1000, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+              color="transparent", fill="orange", alpha=0.3,
+              inherit.aes = FALSE, show.legend = T)+
+    labs(x="Genomic Position (Kb)",y=paste("mean PC",Axis,"Loadings",sep=" ") )+
+    geom_text(data=rect, aes(x=xmin/1000+((xmax-xmin)/1000)/2, y=0.025, label=gene), size=4,angle=45)
+
+  pca.p <- gl.pcoa.plot(pc, gl, type = type, xaxis=iii, yaxis=iii+1, ellipse = F, labels = "pop", title = "for All variants")
+  #print(p1)
+  plots[[iii]] <- p1
+  pcaplots[[iii]] <- pca.p
+  
+  
+}
+
+
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/MeanPCALoadings5_type2.pdf",width = 18,height = 30)
+multiplot(plotlist = plots)
+multiplot(plotlist = pcaplots)
+dev.off()
+
+
+
+source("~/Dropbox/codes/ViralGenomeAssembly/PapeRCodes/functions.R")
+
+pops <- read.delim("~/Dropbox/codes/ViralGenomeAssembly/workspace/data/pop_info.txt",row.names = 1, header = T)
+summary(pops)
+vcf.ebv <- read.vcfR("~/Dropbox/codes/ViralGenomeAssembly/workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf")
+
+gl <- vcfR2genlight(vcf.ebv)
+
+
+#Import genome type and patient info
+gl$pop <- pops[indNames(gl),2]
+
+gl <- gl.keep.pop(gl, pop.list=c("Type2"),recalc = TRUE)
+
+gl <- gl.filter.callrate(gl, method = "loc", threshold = 0.05)
+gl <- gl.filter.callrate(gl, method = "ind", threshold = 0.25)
+
+type <- pops[indNames(gl),3]
+samplelabels <- pops[indNames(gl),4]
+method <- pops[indNames(gl),1]
+#Run PCOA analysis for all variants
+pc <- gl.pcoa(gl,nfactors = 20)
+
+p <- gl.pcoa.plot(pc, gl, type = type, xaxis=4, yaxis=5, ellipse = F, labels = "pop", title = "for All variants")
+ggplotly(p)
+
+
+
+library(SNPRelate)
+vcf.fn <- system.file("~/Dropbox/codes/ViralGenomeAssembly/workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf", package="SNPRelate")
+
+snpgdsVCF2GDS(vcf.fn, "my.gds")
+
+

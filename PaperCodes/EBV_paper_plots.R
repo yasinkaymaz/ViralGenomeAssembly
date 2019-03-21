@@ -163,17 +163,18 @@ for (genome in c("Jijoye","Namalwa","eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tum
   data <- data.frame(Pos=data1$start,Sim2Type1=data1$Sim2Type1,Sim2Type2=data2$Sim2Type2)
   mdata <- melt(data, id=c("Pos"))
   
-  p1 <- ggplot(mdata, aes(Pos/1000, y=value, colour=variable))+geom_line(size=1)+
+  p1 <- ggplot(mdata, aes(Pos/1000, y=value, colour=variable))+geom_line(size=1,show.legend = FALSE)+
+  #p1 <- ggplot(mdata, aes(Pos/1000, y=value, colour=variable))+geom_area(size=1)+
     scale_colour_manual(labels = c("Similarity to Type 1", "Similarity to Type 2"), values=c("blue", "red"))+
     xlab("Genomic Postion (kb)")+
     ylab("Percent Similarity")+
     scale_x_continuous(breaks = round(seq(min(mdata$Pos/1000), max(mdata$Pos/1000), by = 20) ),expand = c(0, 0))+
     theme(axis.text.x = element_text(angle = 0, hjust = .5,vjust=0.5))
-
+  print(p1)
 plots[[i]] <- p1
 }
 
-pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-3.pdf",width = 18,height = 16)
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-4.pdf",width = 18,height = 10)
 multiplot(plotlist = plots)
 dev.off()
 
@@ -206,7 +207,7 @@ dev.off()
 
 #Deleted Genome CoveragePlot
 i=0
-plots <- list()
+plots.d <- list()
 for (genome in c("eBL-Tumor-0031", "Raji_CellLine_longRead","Daudi_CellLine")){
   i=i+1
   print(genome)
@@ -228,13 +229,13 @@ for (genome in c("eBL-Tumor-0031", "Raji_CellLine_longRead","Daudi_CellLine")){
     xlab("Genomic Postion (kb)")+
     ylab("Depth of Coverage")
 
-  plots[[i]] <- p1
+  plots.d[[i]] <- p1
 
 }
 #geom_line(size=1,color="brown")
 
-pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/DeletedGenomes2.pdf",width = 18,height = 12)
-multiplot(plotlist = plots)
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/DeletedGenomes2-2.pdf",width = 18,height = 6)
+multiplot(plotlist = plots.d)
 dev.off()
 
 #PCA with MSA
@@ -263,9 +264,9 @@ for (day in seq(1,28,7) ){
 
 #Figure 5C
 
-library(devtools)
+#library(devtools)
 #install_github("drveera/ggman")
-library(ggman)
+#library(ggman)
 
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.bed",header = TRUE, row.names = 4)
 #assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/assocP.filtered.1Milperm.bed",header = TRUE, row.names = 4)
@@ -274,7 +275,7 @@ library(ggman)
 #assoc <-read.delim("/Users/yasinkaymaz/Documents/EBV/ourbatch2/Secondround/test/Plink.1M.nullFixed.sub",header = TRUE)
 assoc <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/AssocTest.03-27-2018_v3.txt", header = TRUE)
 head(assoc)
-
+dim(assoc)
 #assoc <- assoc[assoc$P < 0.75,]
 #assoc <- assoc[assoc$P < 1.0,]
 #assoc <- droplevels(assoc[assoc$FILTER == "PASS",])
@@ -284,15 +285,26 @@ assoc.sig <- assoc[ which(assoc$P < 0.01),]$position
 assoc.save <- droplevels(assoc[ -log10(assoc$P+0.0000001) > 2,c("chrom", "position", "REF", "ALT", "MINA","MINU", "OBSA","OBSU","P","OR","VarAAposition",  "VarType", "RefCodon", "VarCodon", "RefAA", "VarAA",  "Gene")])
 write.table(assoc.save, file="~/Dropbox/Papers/EBV_project/workspace/data/SignificantVariatAssociations.txt",sep="\t",quote = FALSE,row.names = FALSE)
 
-p1 <- ggman(assoc, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
+# p1 <- ggman(assoc,sigLine = 2, snp = "position", bp = "position", chrom = "chrom", pvalue = "P",relative.positions = TRUE,pointSize = 1.5)
+# 
+# #p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
+# p1 <- ggmanHighlight(p1,highlight = assoc.sig)+ theme_bw()
+# 
+# ggsave(plot=p1,width = 12,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc5.pdf", useDingbats=FALSE )
 
-#p1 <- ggmanHighlight(p1,highlight = assoc.ebna3c)+ theme_bw()
-p1 <- ggmanHighlight(p1,highlight = assoc.sig)+ theme_bw()
+head(assoc)
+p1 <- ggplot(assoc, aes(x=position/1000, y=-log10(P)))+ geom_point(size=4, color="grey")+
+  geom_hline(aes(yintercept= as.numeric(2)),colour = "red", linetype="dashed", size = 1) + theme_bw()+
+  geom_point(data=assoc[ -log10(assoc$P+0.0000001) > 2,],aes(x=position/1000, y=-log10(P)),size=4, color="red")+
+  ylab("−log10 (P value)")+
+  xlab("Genomic Postion (kb)")+
+  ylim(0,5)+
+  theme(axis.text.x = element_text(color = "black",face = "bold", size=18), 
+        axis.text.y = element_text(color = "black",face = "bold",size=18),
+        axis.title.y = element_text(color = "black",face = "bold",size=20),
+        axis.title.x = element_text(color = "black",face = "bold",size=20))
 
-ggsave(plot=p1,width = 12,height = 6, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc5.pdf", useDingbats=FALSE )
-
-
-#ggman(assoc, snp = "snp", bp = "position", chrom = "chrom", pvalue = "OR",relative.positions = TRUE,pointSize = 0.5, logTransform = FALSE, ymax = 100)
+ggsave(plot=p1,width = 18,height = 9, dpi=200, filename="/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/assoc5.pdf", useDingbats=FALSE )
 
 
 #Figure for Pre-amp dNTP optimization:
@@ -567,3 +579,52 @@ ggplot(data.h,aes(x=reorder(SampleID,Age),y=Age,color=Viral_Type))+
 
 
 #PCoA
+library(vcfR)
+library(dartR)
+require(gridExtra)
+library(ggplot2)
+library(plotly)
+library(tidyverse)
+source(here::here("PapeRCodes/functions.R"))
+pops <- read.delim(here::here("workspace/data/pop_info.txt"),row.names = 1, header = T)
+vcf.ebv <- read.vcfR(here::here("workspace/data/my_ICed_my_edited_sequence.aln.IDreplaced.OnlyIndividuals-MinusCellLines_sub_modified_repeatFiltered.vcf"))
+gl <- vcfR2genlight(vcf.ebv)
+gl <- gl.filter.callrate(gl, method = "loc",threshold = 0.25)
+gl <- gl.filter.callrate(gl, method = "ind",threshold = 0.25)
+gl$pop <- pops[indNames(gl),2]
+type <- pops[indNames(gl),3]
+samplelables <- pops[indNames(gl),4]
+pc <- gl.pcoa(gl,nfactors = 20)
+
+#Run PCOA analysis for all variants
+
+
+source(here::here("PapeRCodes/functions.R"))
+gl.pcoa.plot(pc, gl, type = samplelables, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "")
+
+
+pcap <- gl.pcoa.plot(pc, gl, type = samplelables, xaxis=1, yaxis=2, ellipse = F, labels = "pop", title = "")
+pcap <- pcap + xlim(c(-25,25)) + ylim(c(-12.5,12.5))
+ggsave(plot=pcap,width = 8,height = 6, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/PCoA1.pdf", useDingbats=FALSE )
+
+
+pcap <- gl.pcoa.plot(pc, gl, type = type, xaxis=2, yaxis=3, ellipse = F, labels = "pop", title = "")
+pcap <- pcap + xlim(c(-15,15)) + ylim(c(-15,15))
+ggsave(plot=pcap,width = 8,height = 6, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/PCoA2.pdf", useDingbats=FALSE )
+
+
+p34 <- gl.pcoa.plot(pc, gl, type = samplelables, xaxis=3, yaxis=4, ellipse = F, labels = "pop", title = "for All variants")
+p56 <- gl.pcoa.plot(pc, gl, type = samplelables, xaxis=5, yaxis=6, ellipse = F, labels = "pop", title = "for All variants")
+p78 <- gl.pcoa.plot(pc, gl, type = samplelables, xaxis=7, yaxis=8, ellipse = F, labels = "pop", title = "for All variants")
+
+ggsave(plot=grid.arrange(p12,p23,p45, ncol=3),width = 18,height = 5, dpi=200, filename="~/Dropbox/Papers/EBV_project/workspace/Figure_temps/PCoA2.supp1.pdf", useDingbats=FALSE )
+
+#Samples processing table:
+data <- read.delim("~/Dropbox/Papers/EBV_project/workspace/data/SamplesProcessing.txt", header=T)
+head(data)
+table(data[,c("Amplification","Sample.Source")])
+
+
+data <- read.delim("~/Dropbox/EBV_Capture/MyBait/Mild_Balanced_Boosted_Probes.txt", header = F, row.names = 2)
+head(data)
+hist(data$V4)
