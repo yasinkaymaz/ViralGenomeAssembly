@@ -44,7 +44,7 @@ seqnum=`grep ">" $InputGenomeFasta |wc -l`;
 for ((i=1;i<=$seqnum;i++));
   do
     let x=$i*2;
-    head -$x $InputGenomeFasta | tail -2 | perl fasta_chop.pl;
+    head -$x $InputGenomeFasta | tail -2 | perl ~/codes/ViralGenomeAssembly/bin/fasta_chop.pl;
 done > "${InputGenomeFasta%.fa}"_contigs_chopped.fa
 
 bowtie2 -p $nt -f -x $toolDir/resources/Bowtie2Index/$EBVgenome \
