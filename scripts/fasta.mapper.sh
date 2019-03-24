@@ -55,16 +55,13 @@ bowtie2 -p $nt -f -x $toolDir/resources/Bowtie2Index/$EBVgenome \
 
 #Sort sam file and output as bam
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
-picard.jar \
+$PICARDPATH/picard.jar \
 SortSam \
 INPUT="${InputGenomeFasta%.fa}"_mapped2_"$Type".sam \
 OUTPUT="${InputGenomeFasta%.fa}"_mapped2_"$Type"_sorted.bam \
 SORT_ORDER=coordinate
 #Index bam file
 java -Xmx10g -XX:ParallelGCThreads=$nt -jar \
-picard.jar \
+$PICARDPATH/picard.jar \
 BuildBamIndex \
 INPUT="${InputGenomeFasta%.fa}"_mapped2_"$Type"_sorted.bam
-
-
-rm *tmp
