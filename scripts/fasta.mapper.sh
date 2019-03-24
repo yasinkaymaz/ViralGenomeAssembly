@@ -16,7 +16,7 @@ PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
 Bowtie2PATH="$toolDir/bin/linux/bowtie2-2.3.3.1-linux-x86_64"
 nt=2
 
-export PATH="$Bowtie2PATH":"$toolDir":"$toolDir/bin/":"$PICARDPATH":$PATH
+export PATH="${Bowtie2PATH}":"${toolDir}":"${toolDir}/bin/":"${PICARDPATH}":${PATH}
 
 #EBV genome type
 if [ "$type" = "1" ]
