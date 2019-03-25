@@ -165,8 +165,8 @@ def Reads2ConcensusGenome(args):
 
 	###load mask regions ###
 
-	tmp=FlexBed.readfile(args.regions_to_mask, args.nameChr)
-	maskbed=FlexBed(tmp)
+#	tmp=FlexBed.readfile(args.regions_to_mask, args.nameChr)
+#	maskbed=FlexBed(tmp)
 	if args.read_bam:
 		readbam=pysam.Samfile(args.read_bam, 'rb')
 		print "Mapped # of reads:", readbam.mapped
