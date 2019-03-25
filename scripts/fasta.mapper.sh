@@ -17,6 +17,8 @@ InputGenomeFasta="${InputSam%.sam}".fa
 toolDir='~/codes/ViralGenomeAssembly'
 PICARDPATH="$toolDir/bin/linux/picard-2.14.1/build/libs"
 Bowtie2PATH="$toolDir/bin/linux/bowtie2-2.3.3.1-linux-x86_64"
+INDEXGENOMESDIR="$toolDir/resources/Bowtie2Index"
+
 nt=2
 
 export PATH="${Bowtie2PATH}":"${toolDir}":"${toolDir}/bin/":"${PICARDPATH}":${PATH}
@@ -62,8 +64,21 @@ OUTPUT="${InputGenomeFasta%.fa}"_mapped2_"$Type"_sorted.bam \
 SORT_ORDER=coordinate
 
 picard BuildBamIndex \
-BuildBamIndex \
 INPUT="${InputGenomeFasta%.fa}"_mapped2_"$Type"_sorted.bam
+
+
+
+
+
+python ~/codes/ViralGenomeAssembly/bin/Reads2ConcensusGenome.py \
+Reads2ConcensusGenome \
+-n $EBVgenome \
+--regions_to_mask ~/codes/ViralGenomeAssembly/resources/Annotation/Type1//NC_007605_repeatMask.bed \
+-r BL643_eBLFNAtumorDNA_wga_velvet_all_type2_mapped2_type1_sorted.bam \
+-f /n/home13/yasinkaymaz/codes/ViralGenomeAssembly/resources/Bowtie2Index/"$EBVgenome".fa \
+-o "$SAMPLE_NAME"_EBV_"$Type"
+
+
 
 #
 # #Sort sam file and output as bam
