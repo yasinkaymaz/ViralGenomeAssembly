@@ -174,7 +174,7 @@ for (genome in c("Jijoye","Namalwa","eBL-Tumor-0033", "eBL-Plasma-0049","eBL-Tum
 plots[[i]] <- p1
 }
 
-pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-4.pdf",width = 18,height = 10)
+pdf("/Users/yasinkaymaz/Dropbox/Papers/EBV_project/workspace/Figure_temps/HybridGenomes-6.pdf",width = 18,height = 10)
 multiplot(plotlist = plots)
 dev.off()
 

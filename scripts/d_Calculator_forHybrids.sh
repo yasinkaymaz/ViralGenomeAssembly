@@ -108,7 +108,7 @@ then
   #  bash $toolDir/scripts/DNA2Protein.sh $genemultifasta
 
     #Calculate d-Kimura two parameter for All genomes
-    python $toolDir/bin/MSA_distanceCalc.py MeanPairwiseKimuraDist -af $genemultifasta -rn $geneOfvariant >> pairwisedistances.txt
+  #  python $toolDir/bin/MSA_distanceCalc.py MeanPairwiseKimuraDist -af $genemultifasta -rn $geneOfvariant >> pairwisedistances.txt
 #    python $toolDir/bin/MSA_distanceCalc.py MeandNdS -af $genemultifasta -rn $geneOfvariant >> pairwiseMeandNdS.txt
     ##Calculate d-Kimura two parameter for Type1 genomes
     # python $toolDir/bin/MSA_distanceCalc.py MeanPairwiseKimuraDist -af $Type1multifasta -rn $geneOfvariant >> Type1.pairwisedistances.txt
@@ -123,7 +123,7 @@ then
 #    rm "$geneOfvariant".aln.c.tab "$geneOfvariant".aln.rc.tab
   done
 
-  awk 'NR==FNR{a[$2]=$0;next}{print a[$1]"\t"$0}' $toolDir/workspace/data/EBV_gene_order.txt pairwisedistances.txt|cut -f1,3,5-|sort -k1,1n > pairwisedistances.ordered.txt
+  #awk 'NR==FNR{a[$2]=$0;next}{print a[$1]"\t"$0}' $toolDir/workspace/data/EBV_gene_order.txt pairwisedistances.txt|cut -f1,3,5-|sort -k1,1n > pairwisedistances.ordered.txt
   # awk 'NR==FNR{a[$2]=$0;next}{print a[$1]"\t"$0}' $toolDir/workspace/data/EBV_gene_order.txt Type1.pairwisedistances.txt|cut -f1,3,5-|sort -k1,1n > Type1.pairwisedistances.ordered.txt
   # awk 'NR==FNR{a[$2]=$0;next}{print a[$1]"\t"$0}' $toolDir/workspace/data/EBV_gene_order.txt Type2.pairwisedistances.txt|cut -f1,3,5-|sort -k1,1n > Type2.pairwisedistances.ordered.txt
 

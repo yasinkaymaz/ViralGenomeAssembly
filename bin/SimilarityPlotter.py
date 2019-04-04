@@ -19,7 +19,7 @@ alndata = []
 if len(sys.argv) < 3:
 	print "This code computes the similarities between a given genome and both type 1 and type 2 reference EBV genomes separately using an multiple sequence alignment file."
 	print "Please provide required arguments in proper order:"
-	print "MSA_parser_cleaner.py Sample1 AlignmentFile"
+	print "SimilarityPlotter.py Sample1 AlignmentFile"
 	print "Feed with an alignment file in fasta format."
 	print "The alignment should also include two reference EBV genomes, NC_007605 and NC_009334."
 	sys.exit(1)
@@ -95,7 +95,7 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 # 		#put the bases at the location of the query sequence 1 and 2 into a set
 		set_pair = set(new_df.loc[ [sys.argv[1],Ref1 ],i  ])
 
-		if 'n' in set_pair:
+		if 'N' in set_pair:
 			UncoveredPos_1.append(Ref_pos)
 			print set_pair
 		#if there is a mismatch error and this position is not in repeat regions, count as sequencing error.
@@ -106,7 +106,7 @@ with open(sys.argv[2]+".tmp.file.aln", "r") as alnfile:
 
 		######## Do the same things for Ref2, which is type 2 reference genome.
 		set_pair = set(new_df.loc[ [sys.argv[1],Ref2 ],i  ])
-		if 'n' in set_pair:
+		if 'N' in set_pair:
 			UncoveredPos_2.append(Ref_pos)
 			print set_pair
 		#if there is a mismatch error and this position is not in repeat regions, count as sequencing error.
