@@ -14,7 +14,10 @@ VarCall=1
 . /n/home13/yasinkaymaz/miniconda3/etc/profile.d/conda.sh
 
 conda activate py27
-
+source new-modules.sh
+module load R/3.4.2-fasrc01
+module load gcc/7.1.0-fasrc01
+module purge
 #EBV genome type
 if [ "$type" = "1" ]
 then
